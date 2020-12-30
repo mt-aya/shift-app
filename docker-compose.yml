@@ -1,0 +1,26 @@
+version: '3'
+
+volumes:
+  mysql-data:
+
+services: 
+  web:
+    build: .
+    ports:
+      - '3000:3000'
+    volumes:
+      - '.:/shift-app'
+    tty: true
+    stdin_open: true
+    depends_on:
+      - db
+    links:
+      - db
+
+  db:
+    image: 'mysql:5.7'
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: root
+    volumes:
+      - ./tmp/db:/var/lib/mysql
