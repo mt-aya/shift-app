@@ -1,10 +1,10 @@
 <div>
   <p>管理者の方はこちらから</p>
-  <%= link_to 'ログイン', '#', class: "login" %>
-  <%= link_to '新規登録', '#', class: "sign-up" %>
+  <%= link_to 'ログイン', new_administrator_session_path, class: "login" %>
+  <%= link_to '新規登録', new_administrator_registration_path, class: "sign-up" %>
 </div>
 <div>
   <p>スタッフの方はこちらから</p>
-  <%= link_to 'ログイン', '#', class: "login" %>
-  <%= link_to '新規登録', '#', class: "sign-up" %>
+  <%= link_to 'ログイン', new_staff_user_session_path, class: "login" %>
+  <%= link_to '新規登録', new_staff_user_registration_path, class: "sign-up" %>
 </div>
