@@ -16,7 +16,7 @@
       <%= f.label :id_name, "ユーザーID", class: "form-text" %>
       <span class="indispensable">必須</span>
     </div>
-    <%= f.email_field :id_name, class: "input-default", placeholder: "usershift" %>
+    <%= f.text_field :id_name, class: "input-default", placeholder: "usershift" %>
     <p class="form-notice">6文字以上の半角英数字が使用できます（招待時に必要となります）</p>
   </div>
 
@@ -43,8 +43,8 @@
       <span class="indispensable">必須</span>
     </div>
     <div class="input-name-group">
-      <%= f.text_area :last_name, class: "input-name", placeholder: "山田" %>
-      <%= f.text_area :first_name, class: "input-name", placeholder: "太郎" %>
+      <%= f.text_field :last_name, class: "input-name", placeholder: "山田" %>
+      <%= f.text_field :first_name, class: "input-name", placeholder: "太郎" %>
     </div>
   </div>
 
