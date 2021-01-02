@@ -1,10 +1,18 @@
-<div>
-  <p>管理者の方はこちらから</p>
-  <%= link_to 'ログイン', new_owner_session_path, class: "login" %>
-  <%= link_to '新規登録', new_owner_registration_path, class: "sign-up" %>
-</div>
-<div>
-  <p>スタッフの方はこちらから</p>
-  <%= link_to 'ログイン', new_staff_user_session_path, class: "login" %>
-  <%= link_to '新規登録', new_staff_user_registration_path, class: "sign-up" %>
-</div>
+<% if owner_signed_in? %>
+  <%= link_to "#{current_owner.last_name} #{current_owner.first_name}", "#", class: 'owner_name' %>
+  <%= link_to 'ログアウト', destroy_owner_session_path, method: :delete, class: "logout" %>
+<% elsif staff_user_signed_in? %>
+  <%= link_to "#{current_staff_user.last_name} #{current_staff_user.first_name}", "#", class: 'staff_name' %>
+  <%= link_to 'ログアウト', destroy_staff_user_session_path, method: :delete, class: "logout" %>
+<% else %>
+  <div>
+    <p>管理者の方はこちらから</p>
+    <%= link_to 'ログイン', new_owner_session_path, class: "login" %>
+    <%= link_to '新規登録', new_owner_registration_path, class: "sign-up" %>
+  </div>
+  <div>
+    <p>スタッフの方はこちらから</p>
+    <%= link_to 'ログイン', new_staff_user_session_path, class: "login" %>
+    <%= link_to '新規登録', new_staff_user_registration_path, class: "sign-up" %>
+  </div>
+<% end %>
