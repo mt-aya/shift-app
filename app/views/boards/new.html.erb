@@ -1,0 +1,16 @@
+<h2 class='form-header-text'>シフトボード作成</h2>
+
+<div class='shift-board-form'>
+  <%= form_with model: @board, local: true do |f| %>
+    <div class="board-form-group">
+      <div class="board-form-wrapper">
+        <%= f.label :name, "シフトボード名", class: "form-text" %>
+      </div>
+      <%= f.password_field :name, class: "input-default", placeholder: "〇〇支店のシフトボード" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "作成", class: "board-create-btn" %>
+    </div>
+  <% end %>
+</div>
