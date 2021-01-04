@@ -19,6 +19,10 @@ class BoardsController < ApplicationController
     end
   end
 
+  def show
+    @board = Board.find(params[:id])
+  end
+
   private
   def board_params
     params.require(:board).permit(:name).merge(owner_id: current_owner.id)
