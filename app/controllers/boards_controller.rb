@@ -21,6 +21,8 @@ class BoardsController < ApplicationController
 
   def show
     @board = Board.find(params[:id])
+    gon.board_id = @board.id
+    gon.board_name = @board.name
   end
 
   private

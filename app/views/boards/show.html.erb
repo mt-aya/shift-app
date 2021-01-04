@@ -1,3 +1,18 @@
-<h2 class="board-name">
-  <%= @board.name %>
-</h2>
+<%= render 'shared/header' %>
+
+<div id='board-show-main'>
+  <h2 class="board-name-btn" id="board-name-btn">
+    <%= @board.name %>
+  </h2>
+
+  <div id="board-show-modal">
+    <div id="board-edit-content">
+      <button type="button" class="modal-close-btn" id="modal-close-btn">×</button>
+      <%= form_with model: @board do |f| %>
+        <h3 class="edit-header-text">シフトボード名の変更</h3>
+        <%= f.text_field :name, id: "board-edit-name" %>
+        <%= f.submit '変更する', id: "board-edit-btn" %>
+      <% end %>
+    </div>
+  </div>
+</div>
