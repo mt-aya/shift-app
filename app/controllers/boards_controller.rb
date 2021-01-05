@@ -25,6 +25,12 @@ class BoardsController < ApplicationController
     gon.board_name = @board.name
   end
 
+  def update
+    @board = Board.find(params[:id])
+    update_board = @board.update!(board_params)
+    render json: {board: @board}
+  end
+
   private
   def board_params
     params.require(:board).permit(:name).merge(owner_id: current_owner.id)
