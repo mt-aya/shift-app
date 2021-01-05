@@ -3,7 +3,7 @@
 class DeviseCreateStaffUsers < ActiveRecord::Migration[6.0]
   def change
     create_table :staff_users do |t|
-      t.string :id_name,    null: false
+      t.string :id_name,    null: false, unique: true
       t.string :last_name,  null: false
       t.string :first_name, null: false
       ## Database authenticatable
