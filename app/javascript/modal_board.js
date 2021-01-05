@@ -1,15 +1,19 @@
 if (location.pathname.match(`/boards/${gon.board_id}`)){
   document.addEventListener("DOMContentLoaded", () => {
     const boardNameBtn = document.getElementById("board-name-btn");
+    const inviteBtn = document.getElementById("invite-btn");
+    const modalOverlay = document.getElementById("board-show-modal");
 
     // 表示されているシフトボード名クリックした場合の処理
     boardNameBtn.addEventListener("click", () => {
-      const modalOverlay = document.getElementById("board-show-modal");
+      const modalEditWindow = document.getElementById("board-edit-content");
       modalOverlay.style.display = 'block';
-      const closeBtn = document.getElementById("modal-close-btn");
+      modalEditWindow.style.display = 'block';
+      const editCloseBtn = document.getElementById("edit-close-btn");
       // シフトボード名編集画面（モーダルウィンドウ）の閉じるボタンをクリックした場合の処理
-      closeBtn.addEventListener("click", () => {
+      editCloseBtn.addEventListener("click", () => {
         modalOverlay.style.display = 'none';
+        modalEditWindow.style.display = 'none';
       });
       const submit = document.getElementById("edit-submit-btn");
       // 「変更する」をクリックした場合の処理
@@ -32,5 +36,18 @@ if (location.pathname.match(`/boards/${gon.board_id}`)){
         e.preventDefault();
       });
     });
+
+    // 招待ボタンをクリックした場合の処理
+    inviteBtn.addEventListener("click", () => {
+      const modalInviteWindow = document.getElementById("board-invite-content");
+      modalOverlay.style.display = 'block';
+      modalInviteWindow.style.display = 'block';
+      const inviteCloseBtn = document.getElementById("invite-close-btn");
+      // 招待画面（モーダルウィンドウ）の閉じるボタンをクリックした場合の処理
+      inviteCloseBtn.addEventListener("click", () => {
+        modalOverlay.style.display = 'none';
+        modalInviteWindow.style.display = 'none';
+      });
+    })
   });
 }
