@@ -24,6 +24,8 @@ class BoardsController < ApplicationController
     gon.board_id = @board.id
     gon.board_name = @board.name
     @board_staff = BoardStaff.new
+    @board_staffs = @board.staff_users
+    gon.board_staffs_id = @board_staffs.map { |s| s[:id] }
   end
 
   def update
@@ -33,10 +35,16 @@ class BoardsController < ApplicationController
   end
 
   def search
-    return nil if params[:keyword] == ""
-    results = StaffUser.where(id_name: params[:keyword])
-    render json: {results: results}
+    @results = StaffUser.search(params[:keyword])
+    render json: {results: @results}
+  end
 
+  def invite
+    @board_staff = BoardStaff.new(board_staff_params)
+    if @board_staff.valid?
+      result_staff = @board_staff.save
+      render json: {result: result_staff}
+    end
   end
 
   private
@@ -44,4 +52,7 @@ class BoardsController < ApplicationController
     params.require(:board).permit(:name).merge(owner_id: current_owner.id)
   end
 
+  def board_staff_params
+    params.require(:board_staff).permit(:id_name).merge(board_id: params[:id])
+  end
 end

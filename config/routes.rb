@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :boards, only: [:index, :new, :create, :show, :update] do
     member do
       get 'search'
+      post 'invite'
     end
   end
 end

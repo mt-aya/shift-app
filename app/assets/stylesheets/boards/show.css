@@ -47,6 +47,10 @@
   opacity: 0.4;
 }
 
+.staff-list-wrapper {
+  display: flex;
+}
+
 .modal-close-btn {
   float: right;
   color:#888888;

@@ -16,4 +16,8 @@ class StaffUser < ApplicationRecord
     validates :last_name
     validates :first_name
   end
+
+  def self.search(search)
+    StaffUser.where(id_name: search) if search != ""
+  end
 end
