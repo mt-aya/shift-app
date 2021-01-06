@@ -8,5 +8,9 @@ Rails.application.routes.draw do
     sessions: 'owners/sessions'
   }
   root to: 'shifts#index'
-  resources :boards, only: [:index, :new, :create, :show, :update]
+  resources :boards, only: [:index, :new, :create, :show, :update] do
+    member do
+      get 'search'
+    end
+  end
 end

@@ -12,7 +12,7 @@
   align-items: center;
 }
 
-.board-name-btn p {
+#board-name-text {
   font-size: 22px;
   color: #555555;
   font-weight: bold;
@@ -95,3 +95,6 @@
   box-shadow: 2px 2px 4px gray;
 }
 
+#invite-staff-submit {
+  display: none;
+}

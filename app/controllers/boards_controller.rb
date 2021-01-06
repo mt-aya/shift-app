@@ -23,6 +23,7 @@ class BoardsController < ApplicationController
     @board = Board.find(params[:id])
     gon.board_id = @board.id
     gon.board_name = @board.name
+    @board_staff = BoardStaff.new
   end
 
   def update
@@ -31,8 +32,16 @@ class BoardsController < ApplicationController
     render json: {board: @board}
   end
 
+  def search
+    return nil if params[:keyword] == ""
+    results = StaffUser.where(id_name: params[:keyword])
+    render json: {results: results}
+
+  end
+
   private
   def board_params
     params.require(:board).permit(:name).merge(owner_id: current_owner.id)
   end
+
 end

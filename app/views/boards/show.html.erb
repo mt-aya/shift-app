@@ -3,7 +3,7 @@
 <div id='board-show-main'>
   <div class='board-show-header'>
     <div class="board-name-btn" id="board-name-btn">
-      <p><%= @board.name %></p>
+      <p id="board-name-text"><%= @board.name %></p>
     </div>
 
     <div class="invite-btn-wrapper">
@@ -20,14 +20,20 @@
         <%= f.submit '変更する', id: "edit-submit-btn" %>
       <% end %>
     </div>
+
     <div id="board-invite-content">
       <button type="button" class="modal-close-btn" id="invite-close-btn">×</button>
       <h3 class="invite-header-text">ボードに招待</h3>
-      <%= form_with model: @board_staff, url: boards_path, id: "staff-search-form" do |f| %>
-        <%= f.text_field :id_name, id: "search-staff-name" %>
-        <%= f.email_field :email, id: "search-staff-email" %>
-        <button type="button" id="staff-search-btn">ユーザーを探す</button>
-        <%= f.submit '招待', id: "staff-search-submit" %>
+      <%= form_with model: @board_staff, url: invite_board_path, id: "invite-form" do |f| %>
+        <div class="search-staff-name-group">
+          <%= f.label :id_name, 'ユーザーID' %>
+          <%= f.text_field :id_name, id: "invite-staff-name" %>
+        </div>
+        <button type="button" id="search-staff-btn">検索する</button>
+        <p id="invite_staff_last_name"></p>
+        <p id="invite_staff_first_name"></p>
+        <p id="result-no-staff"></p>
+        <%= f.submit '招待する', id: "invite-staff-submit" %>
       <% end %>
     </div>
   </div>
