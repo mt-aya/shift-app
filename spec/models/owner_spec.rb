@@ -69,7 +69,7 @@ RSpec.describe Owner, type: :model do
       it 'emailは@が含まれていないと登録できない' do
         @owner.email = 'email'
         @owner.valid?
-        expect(@owner.errors.full_messages).to include("Email is invalid")
+        expect(@owner.errors.full_messages).to include('Email is invalid')
       end
 
       it 'passwordは数字だけでは登録できない' do
@@ -77,7 +77,7 @@ RSpec.describe Owner, type: :model do
         @owner.password = owner_password
         @owner.password_confirmation = owner_password
         @owner.valid?
-        expect(@owner.errors.full_messages).to include("Password is invalid")
+        expect(@owner.errors.full_messages).to include('Password is invalid')
       end
 
       it 'passwordは英字だけでは登録できない' do
@@ -85,7 +85,7 @@ RSpec.describe Owner, type: :model do
         @owner.password = owner_password
         @owner.password_confirmation = owner_password
         @owner.valid?
-        expect(@owner.errors.full_messages).to include("Password is invalid")
+        expect(@owner.errors.full_messages).to include('Password is invalid')
       end
 
       it 'passwordは英・数字混合でも5文字以下だと登録できない' do
@@ -93,7 +93,7 @@ RSpec.describe Owner, type: :model do
         @owner.password = owner_password
         @owner.password_confirmation = owner_password
         @owner.valid?
-        expect(@owner.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
+        expect(@owner.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
       end
 
       it '重複したemailが既に存在する場合は登録できない' do
@@ -101,19 +101,19 @@ RSpec.describe Owner, type: :model do
         another_owner = FactoryBot.build(:owner)
         another_owner.email = @owner.email
         another_owner.valid?
-        expect(another_owner.errors.full_messages).to include("Email has already been taken")
+        expect(another_owner.errors.full_messages).to include('Email has already been taken')
       end
 
       it 'last_nameは半角だと登録できない' do
         @owner.last_name = 'hankaku'
         @owner.valid?
-        expect(@owner.errors.full_messages).to include("Last name is invalid")
+        expect(@owner.errors.full_messages).to include('Last name is invalid')
       end
 
       it 'first_nameは半角だと登録できない' do
         @owner.first_name = 'hankaku'
         @owner.valid?
-        expect(@owner.errors.full_messages).to include("First name is invalid")
+        expect(@owner.errors.full_messages).to include('First name is invalid')
       end
     end
   end

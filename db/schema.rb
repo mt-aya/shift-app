@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_01_144446) do
+ActiveRecord::Schema.define(version: 2021_01_03_220843) do
+
+  create_table "board_staff_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "board_id"
+    t.bigint "staff_user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["board_id"], name: "index_board_staff_users_on_board_id"
+    t.index ["staff_user_id"], name: "index_board_staff_users_on_staff_user_id"
+  end
+
+  create_table "boards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "owner_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["owner_id"], name: "index_boards_on_owner_id"
+  end
 
   create_table "owners", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "company", null: false
@@ -42,4 +59,7 @@ ActiveRecord::Schema.define(version: 2021_01_01_144446) do
     t.index ["reset_password_token"], name: "index_staff_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "board_staff_users", "boards"
+  add_foreign_key "board_staff_users", "staff_users"
+  add_foreign_key "boards", "owners"
 end
