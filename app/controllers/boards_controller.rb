@@ -1,5 +1,4 @@
 class BoardsController < ApplicationController
-
   def index
     owner = Owner.find(current_owner.id)
     @boards = owner.boards.order('created_at DESC')
@@ -31,23 +30,24 @@ class BoardsController < ApplicationController
   def update
     @board = Board.find(params[:id])
     update_board = @board.update!(board_params)
-    render json: {board: @board}
+    render json: { board: @board }
   end
 
   def search
     @results = StaffUser.search(params[:keyword])
-    render json: {results: @results}
+    render json: { results: @results }
   end
 
   def invite
     @board_staff = BoardStaff.new(board_staff_params)
     if @board_staff.valid?
       result_staff = @board_staff.save
-      render json: {result: result_staff}
+      render json: { result: result_staff }
     end
   end
 
   private
+
   def board_params
     params.require(:board).permit(:name).merge(owner_id: current_owner.id)
   end

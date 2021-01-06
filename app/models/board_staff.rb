@@ -16,9 +16,7 @@ class BoardStaff
         result_staff = staff_user unless board.staff_users.exists?(id: staff_user.id)
       end
       board_staff_user = BoardStaffUser.create(board_id: board_id, staff_user_id: result_staff.id)
-      return result_staff
-    else
-      return nil
+      result_staff
     end
   end
 end

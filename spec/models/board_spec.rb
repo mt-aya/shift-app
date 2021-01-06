@@ -22,7 +22,7 @@ RSpec.describe Board, type: :model do
       it 'ownerが紐付いていないと保存できない' do
         @board.owner = nil
         @board.valid?
-        expect(@board.errors.full_messages).to include("Owner must exist")
+        expect(@board.errors.full_messages).to include('Owner must exist')
       end
     end
   end

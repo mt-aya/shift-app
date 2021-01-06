@@ -79,7 +79,7 @@ RSpec.describe StaffUser, type: :model do
       it 'emailは@が含まれていないと登録できない' do
         @staff_user.email = 'email'
         @staff_user.valid?
-        expect(@staff_user.errors.full_messages).to include("Email is invalid")
+        expect(@staff_user.errors.full_messages).to include('Email is invalid')
       end
 
       it 'passwordは数字だけでは登録できない' do
@@ -87,7 +87,7 @@ RSpec.describe StaffUser, type: :model do
         @staff_user.password = staff_user_password
         @staff_user.password_confirmation = staff_user_password
         @staff_user.valid?
-        expect(@staff_user.errors.full_messages).to include("Password is invalid")
+        expect(@staff_user.errors.full_messages).to include('Password is invalid')
       end
 
       it 'passwordは英字だけでは登録できない' do
@@ -95,7 +95,7 @@ RSpec.describe StaffUser, type: :model do
         @staff_user.password = staff_user_password
         @staff_user.password_confirmation = staff_user_password
         @staff_user.valid?
-        expect(@staff_user.errors.full_messages).to include("Password is invalid")
+        expect(@staff_user.errors.full_messages).to include('Password is invalid')
       end
 
       it 'passwordは英・数字混合でも5文字以下だと登録できない' do
@@ -103,7 +103,7 @@ RSpec.describe StaffUser, type: :model do
         @staff_user.password = staff_user_password
         @staff_user.password_confirmation = staff_user_password
         @staff_user.valid?
-        expect(@staff_user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
+        expect(@staff_user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
       end
 
       it '重複したemailが既に存在する場合は登録できない' do
@@ -111,37 +111,37 @@ RSpec.describe StaffUser, type: :model do
         another_staff_user = FactoryBot.build(:staff_user)
         another_staff_user.email = @staff_user.email
         another_staff_user.valid?
-        expect(another_staff_user.errors.full_messages).to include("Email has already been taken")
+        expect(another_staff_user.errors.full_messages).to include('Email has already been taken')
       end
 
       it 'id_nameは6~16文字でも全角だと登録できない' do
         @staff_user.id_name = 'あいうえおア'
         @staff_user.valid?
-        expect(@staff_user.errors.full_messages).to include("Id name is invalid")
+        expect(@staff_user.errors.full_messages).to include('Id name is invalid')
       end
 
       it 'id_nameは5文字以下だと登録できない' do
         @staff_user.id_name = 'abcde'
         @staff_user.valid?
-        expect(@staff_user.errors.full_messages).to include("Id name is invalid")
+        expect(@staff_user.errors.full_messages).to include('Id name is invalid')
       end
 
       it 'id_nameは17文字以上だと登録できない' do
         @staff_user.id_name = '1234567890abcdefg'
         @staff_user.valid?
-        expect(@staff_user.errors.full_messages).to include("Id name is invalid")
+        expect(@staff_user.errors.full_messages).to include('Id name is invalid')
       end
 
       it 'last_nameは半角だと登録できない' do
         @staff_user.last_name = 'hankaku'
         @staff_user.valid?
-        expect(@staff_user.errors.full_messages).to include("Last name is invalid")
+        expect(@staff_user.errors.full_messages).to include('Last name is invalid')
       end
 
       it 'first_nameは半角だと登録できない' do
         @staff_user.first_name = 'hankaku'
         @staff_user.valid?
-        expect(@staff_user.errors.full_messages).to include("First name is invalid")
+        expect(@staff_user.errors.full_messages).to include('First name is invalid')
       end
     end
   end

@@ -6,7 +6,7 @@ class Owner < ApplicationRecord
 
   has_many :boards
 
-  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,}+\z/i.freeze  # 英・数どちらも含む6文字以上の半角英数字
+  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,}+\z/i.freeze # 英・数どちらも含む6文字以上の半角英数字
   VALID_NAME_REGEX = VALID_NAME_REGEX = /\A[ぁ-んァ-ヶ一-龥々]+\z/.freeze   # 全角ひらがな、カタカナ、漢字
   validates :password, format: { with: VALID_PASSWORD_REGEX }
   validates :company, presence: true
