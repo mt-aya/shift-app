@@ -1,6 +1,6 @@
 # テーブル設計
 
-## administrators テーブル
+## owners テーブル
 
 | Column             | Type     | Options     |
 | ------------------ | -------- | ----------- |
@@ -12,49 +12,49 @@
 
 ### Association
 
-- has_many :rooms
+- has_many :boards
 
 ## staff_users テーブル
 
-| Column             | Type     | Options     |
-| ------------------ | -------- | ----------- |
-| email              | string   | null: false |
-| encrypted_password | string   | null: false |
-| id_name            | string   | null: false |
-| last_name          | string   | null: false |
-| first_name         | string   | null: false |
+| Column             | Type     | Options                   |
+| ------------------ | -------- | ------------------------- |
+| email              | string   | null: false               |
+| encrypted_password | string   | null: false               |
+| id_name            | string   | null: false, unique: true |
+| last_name          | string   | null: false               |
+| first_name         | string   | null: false               |
 
 ### Association
 
-- has_many :room_staff_users
-- has_many :rooms, though: :room_staff_users
+- has_many :board_staff_users
+- has_many :boards, though: :board_staff_users
 - has_many :requested_shifts
 - has_many :decided_shift
 
-## rooms テーブル
+## boards テーブル
 
-| Column        | Type       | Options           |
-| ------------- | ---------- | ----------------- |
-| name          | string     | null: false       |
-| administrator | references | foreign_key: true |
+| Column | Type       | Options           |
+| ------ | ---------- | ----------------- |
+| name   | string     | null: false       |
+| owner  | references | foreign_key: true |
 
 ### Association
 
-- has_many :room_staff_users
-- has_many :staff_users, though: :room_staff_users
+- has_many :board_staff_users
+- has_many :staff_users, though: :board_staff_users
 - has_many :shift_frames
-- belongs_to :administrator
+- belongs_to :owner
 
-## room_staff_users テーブル
+## board_staff_users テーブル
 
-| Column     | Type       | Options           |
-| ---------- | ---------- | ----------------- |
-| room       | references | foreign_key: true |
-| staff_user | references | foreign_key: true |
+| Column      | Type       | Options           |
+| ----------- | ---------- | ----------------- |
+| board       | references | foreign_key: true |
+| staff_user  | references | foreign_key: true |
 
 ### Association
 
-- belongs_to :room
+- belongs_to :board
 - belongs_to :staff_user
 
 ## shift_frames テーブル
@@ -65,11 +65,11 @@
 | end_day         | datetime   | null: false      |
 | settled_request | boolean    | null: false      |
 | settled_create  | boolean    | null: false      |
-| room            | references | foreign_key:true |
+| board           | references | foreign_key:true |
 
 ### Association
 
-- belongs_to :room
+- belongs_to :board
 - has_many :requested_shifts
 - has_many :created_shifts
 
