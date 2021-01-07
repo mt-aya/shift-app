@@ -112,7 +112,7 @@ if (location.pathname.match(`/boards/${gon.board_id}`)){
           <div class="member-list">
             <a href="#">${responseInvite.last_name}</a>
           </div>`
-        addStaff.insertAdjacentHTML("beforeend", addStaffHtml);
+        addStaff.insertAdjacentHTML("afterend", addStaffHtml);
         emptyHtml();
         document.getElementById('invite-staff-name').value = '';
         inviteSubmit.style.display = "none";
