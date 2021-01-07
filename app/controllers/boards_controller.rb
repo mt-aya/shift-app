@@ -1,4 +1,9 @@
 class BoardsController < ApplicationController
+  before_action :visit_staff_user
+  before_action :authenticate_owner!
+  before_action :current_board, only: [:show, :update, :correct_owner]
+  before_action :correct_owner, only: [:show, :update, :search, :invite]
+
   def index
     owner = Owner.find(current_owner.id)
     @boards = owner.boards.order('created_at DESC')
@@ -19,7 +24,6 @@ class BoardsController < ApplicationController
   end
 
   def show
-    @board = Board.find(params[:id])
     gon.board_id = @board.id
     gon.board_name = @board.name
     @board_staff = BoardStaff.new
@@ -28,7 +32,6 @@ class BoardsController < ApplicationController
   end
 
   def update
-    @board = Board.find(params[:id])
     update_board = @board.update!(board_params)
     render json: { board: @board }
   end
@@ -54,5 +57,17 @@ class BoardsController < ApplicationController
 
   def board_staff_params
     params.require(:board_staff).permit(:id_name).merge(board_id: params[:id])
+  end
+
+  def visit_staff_user
+    redirect_to root_path if staff_user_signed_in?
+  end
+
+  def current_board
+    @board = Board.find(params[:id])
+  end
+
+  def correct_owner
+    redirect_to boards_path if current_owner.id != @board.owner.id
   end
 end

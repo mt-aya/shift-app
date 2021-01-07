@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class Owners::SessionsController < Devise::SessionsController
+  before_action :cannot_visit_staff
   # before_action :configure_sign_in_params, only: [:create]
+
 
   # GET /resource/sign_in
   # def new
@@ -27,5 +29,9 @@ class Owners::SessionsController < Devise::SessionsController
 
   def after_sign_in_path_for(_resource)
     boards_path
+  end
+
+  def cannot_visit_staff
+    redirect_to root_path if staff_user_signed_in?
   end
 end

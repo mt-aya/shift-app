@@ -2,6 +2,7 @@
 
 class Owners::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
+  before_action :cannot_visit_staff
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
@@ -59,4 +60,8 @@ class Owners::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  def cannot_visit_staff
+    redirect_to root_path if staff_user_signed_in?
+  end
 end
