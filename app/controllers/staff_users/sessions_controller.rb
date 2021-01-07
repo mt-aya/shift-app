@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class StaffUsers::SessionsController < Devise::SessionsController
+  before_action :cannot_visit_owner
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -24,4 +25,8 @@ class StaffUsers::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+
+  def cannot_visit_owner
+    redirect_to root_path if owner_signed_in?
+  end
 end
