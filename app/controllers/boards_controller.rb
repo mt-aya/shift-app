@@ -4,11 +4,7 @@ class BoardsController < ApplicationController
   before_action :correct_owner, only: [:show, :update, :search, :invite]
 
   def index
-    owner = Owner.find(current_owner.id)
-    @boards = owner.boards.order('created_at DESC')
-  end
-
-  def new
+    @boards = current_owner.boards.order('created_at ASC')
     @board = Board.new
   end
 

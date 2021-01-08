@@ -1,14 +1,8 @@
 <%= render 'shared/header' %>
 
-<div class='board-contents'>
-  <div class ='board-list'>
-    <h2>シフトボードの一覧</h2>
-    <% @boards.each do |board| %>
-      <%= link_to board_path(board.id) do %>
-        <%= board.name %>
-      <% end %>
-    <% end %>
-  </div>
-  <%= link_to 'シフトボードを作成する', new_board_path %>
+<div class="side-bar_left">
+  <%= render 'shared/board_list' %>
 </div>
 
+<div class="main_right">
+</div>

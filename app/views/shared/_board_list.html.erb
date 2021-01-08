@@ -1,0 +1,23 @@
+<div class="side-bar-header">
+  <div class="board-creation">
+    <%= form_with model: @board, local: true do |f| %>
+      <div class="new-board-name">
+        <%= f.label '新規シフトボードの作成', class: "new-board-title" %>
+      </div>
+      <div class="new-board-form_left">
+        <%= f.text_field :name, class: "new-board-name-input", placeholder: "例）〇〇支店のシフト" %>
+      </div>
+      <div class="new-board-form_right">
+        <%= f.submit '作成', class: "board-create-btn" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="side_bar_content">
+  <% @boards.each do |board| %>
+    <div class="board-name">
+      <%= link_to board.name, board_shifts_path(board), class: "board-name-link" %>
+    </div>
+  <% end %>
+</div>
