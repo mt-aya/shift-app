@@ -1,4 +1,4 @@
-if (location.pathname.match(`/boards/${gon.board_id}`)){
+if (location.pathname.match(`/boards/${gon.board_id}/shifts`)){
   document.addEventListener("DOMContentLoaded", () => {
     const boardNameBtn = document.getElementById("board-name-btn");
     const inviteBtn = document.getElementById("invite-btn");
@@ -118,6 +118,6 @@ if (location.pathname.match(`/boards/${gon.board_id}`)){
         inviteSubmit.style.display = "none";
         };
       e.preventDefault();
-      });
+    });
   });
 }

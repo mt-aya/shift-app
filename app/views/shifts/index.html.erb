@@ -3,8 +3,20 @@
 <div id='board-show-main'>
   <%# シフトボード内ヘッダー %>
   <div class='board-show-header'>
+    <nav class="board-list-menu">
+      <div class="board-list-menu-btn" id="board-list-menu">
+        <i class="fas fa-angle-down fa-lg"></i>
+      </div>
+      <ul class="board-list-pulldown" id="board-list-pulldown" style="display:none;">
+        <% current_owner.boards.each do |board| %>
+          <li class="pulldown-list-each-board">
+            <%= link_to board.name, board_shifts_path(board), class: "pulldown-board-link" %>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
     <div class="board-name-btn" id="board-name-btn">
-      <p id="board-name-text"><%= @board.name %></p>
+      <h2 id="board-name-text"><%= @board.name %></p>
     </div>
 
     <div class="invite-btn-wrapper">

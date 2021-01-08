@@ -1,10 +1,5 @@
 <header>
   <% if owner_signed_in? %>
-    <nav class="board-list-menu">
-      <h2></h2>
-      <ul>
-      </ul>
-    </nav>
     <%= link_to "#{current_owner.last_name} #{current_owner.first_name}", boards_path, class: 'owner_name' %>
     <%= link_to 'ログアウト', destroy_owner_session_path, method: :delete, class: "logout" %>
   <% else %>
