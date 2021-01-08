@@ -56,13 +56,15 @@
   width: 100%;
   padding: 12px 8px;
   text-decoration: none;
-  color: #888888;
+  color: #5b5b5b;
+  opacity: 0.7;
   font-size: 16px;
-  transition: background-color 0.2s;
+  transition: opacity 0.3s, background-color 0.3s;
 }
 
 .pulldown-board-link:hover {
   background-color: #eeeeee;
+  opacity: 1;
 }
 
 #board-name-text {

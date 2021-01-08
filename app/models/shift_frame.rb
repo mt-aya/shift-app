@@ -11,7 +11,7 @@ class ShiftFrame < ApplicationRecord
 
   def not_before_start
     if start_day > end_day || end_day == nil || start_day == nil
-      errors.add(:end_day, "は開始日より前の日付は設定できません")
+      errors.add(:end_day, "は開始日より前の日付は指定できません")
     end
   end
 
