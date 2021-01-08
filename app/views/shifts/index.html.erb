@@ -1,1 +1,54 @@
-<%= render "shared/header" %>
+<%= render "shared/second_header" %>
+
+<div id='board-show-main'>
+  <%# シフトボード内ヘッダー %>
+  <div class='board-show-header'>
+    <div class="board-name-btn" id="board-name-btn">
+      <p id="board-name-text"><%= @board.name %></p>
+    </div>
+
+    <div class="invite-btn-wrapper">
+      <button type="button" id="invite-btn">招待</button>
+    </div>
+
+    <div class="staff-list-wrapper">
+      <% @board_staffs.each do |staff| %>
+        <div class="member-list">
+          <%= link_to "#{staff.last_name}", "#", class: "board-staff-link" %>
+        </div>
+      <% end %>
+      <div id="add-staff"></div>
+    </div>
+
+    <div class="shift-setting-wrapper">
+      <%# <%= link_to 'シフト期間設定', board_frame_index_path %>
+    </div>
+  </div>
+
+  <%# モーダルウィンドウ %>
+  <div id="board-show-modal">
+    <div id="board-edit-content">
+      <button type="button" class="modal-close-btn" id="edit-close-btn">×</button>
+      <%= form_with model: @board, url: "/boards/#{@board.id}", id: "edit-form" do |f| %>
+        <h3 class="edit-header-text">シフトボード名の変更</h3>
+        <%= f.text_field :name, id: "board-edit-name" %>
+        <%= f.submit '変更する', id: "edit-submit-btn" %>
+      <% end %>
+    </div>
+
+    <div id="board-invite-content">
+      <button type="button" class="modal-close-btn" id="invite-close-btn">×</button>
+      <h3 class="invite-header-text">ボードに招待</h3>
+      <%= form_with model: @board_staff, url: "/boards/#{@board.id}/search", id: "invite-form" do |f| %>
+        <div class="search-staff-name-group">
+          <%= f.label :id_name, 'ユーザーID' %>
+          <%= f.text_field :id_name, id: "invite-staff-name" %>
+        </div>
+        <button type="button" id="search-staff-btn">検索する</button>
+        <p id="result-staff-name"></p>
+        <p id="result-message"></p>
+        <button  type="button", id="invite-staff-submit" >招待する</button>
+      <% end %>
+    </div>
+  </div>
+</div>
