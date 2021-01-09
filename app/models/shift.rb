@@ -1,5 +1,5 @@
 class Shift < ApplicationRecord
-  belongs_to :shift_frame
+  belongs_to :board
   belongs_to :staff_user
 
   with_options presence: true do

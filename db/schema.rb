@@ -44,23 +44,14 @@ ActiveRecord::Schema.define(version: 2021_01_07_212045) do
     t.index ["reset_password_token"], name: "index_owners_on_reset_password_token", unique: true
   end
 
-  create_table "shift_frames", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.datetime "start_day", null: false
-    t.datetime "end_day", null: false
-    t.bigint "board_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["board_id"], name: "index_shift_frames_on_board_id"
-  end
-
   create_table "shifts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "start_time", null: false
     t.datetime "end_time", null: false
     t.bigint "staff_user_id"
-    t.bigint "shift_frame_id"
+    t.bigint "board_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["shift_frame_id"], name: "index_shifts_on_shift_frame_id"
+    t.index ["board_id"], name: "index_shifts_on_board_id"
     t.index ["staff_user_id"], name: "index_shifts_on_staff_user_id"
   end
 
@@ -82,7 +73,6 @@ ActiveRecord::Schema.define(version: 2021_01_07_212045) do
   add_foreign_key "board_staff_users", "boards"
   add_foreign_key "board_staff_users", "staff_users"
   add_foreign_key "boards", "owners"
-  add_foreign_key "shift_frames", "boards"
-  add_foreign_key "shifts", "shift_frames"
+  add_foreign_key "shifts", "boards"
   add_foreign_key "shifts", "staff_users"
 end
