@@ -16,7 +16,7 @@ class Shift < ApplicationRecord
   end
 
   def not_change_date
-    if (start_day.all_day).cover?(end_day)
+    unless (start_time.all_day).cover?(end_time)
       errors.add(:end_time, "は開始時間と異なる日付は指定できません")
     end
   end
