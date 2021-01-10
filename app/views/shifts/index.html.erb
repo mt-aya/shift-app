@@ -20,7 +20,7 @@
     </div>
 
     <div class="invite-btn-wrapper">
-      <button type="button" id="invite-btn">招待</button>
+      <i class="fas fa-user-plus lg" id="invite-btn"></i>
     </div>
 
     <div class="staff-list-wrapper">
@@ -31,10 +31,44 @@
       <% end %>
       <div id="add-staff"></div>
     </div>
+  </div>
 
-    <div class="shift-setting-wrapper">
-      <%= link_to 'シフト期間設定', "/boards/#{@board.id}/shift_frames" %>
+  <%# シフト表 %>
+  <div class="main-shift-board">
+    <div class="displayed-week">
+      <%= "#{@first_day_str} - #{@last_day_str}" %>
     </div>
+    <table class="shift-table">
+      <tbody class="shift-table-body">
+        <tr class="shift-table-date-row">
+          <th class="date-cell-empty week"></th>
+          <% @this_week_days.each do |d| %>
+            <th class="date-cell week">
+              <span><%= d[:day] %></span>
+              <span><%= d[:wday] %></span>
+            </th>
+          <% end %>
+        </tr>
+        <% @this_week_shifts.each do |staff_shift| %>
+          <tr class="each-staff-shift-row">
+            <td class="staff-name-cell week">
+              <p>
+                <%= "#{staff_shift[:staff_ln]} #{staff_shift[:staff_fn]}" %>
+              </p>
+            </td>
+            <% staff_shift[:days].each do |shifts| %>
+              <td class="week-shift-cell week">
+                <% shifts[:shift].each do |shift| %>
+                  <div>
+                    <%= "#{shift[:start_time]} - #{shift[:end_time]}" %>
+                  </div>
+                <% end %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 
   <%# モーダルウィンドウ %>
