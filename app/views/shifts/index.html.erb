@@ -34,41 +34,31 @@
   </div>
 
   <%# シフト表 %>
-  <div class="main-shift-board">
-    <div class="displayed-week">
-      <%= "#{@first_day_str} - #{@last_day_str}" %>
+  <div class="week-shift-calendar">
+    <div class="week-empty-cell"></div>
+    <div class="week-date-row">
+      <%= week_calendar do |date|%>
+        <%= "#{date.day}#{t('date.day_names')[date.wday]}" %>
+      <% end %>
     </div>
-    <table class="shift-table">
-      <tbody class="shift-table-body">
-        <tr class="shift-table-date-row">
-          <th class="date-cell-empty week"></th>
-          <% @this_week_days.each do |d| %>
-            <th class="date-cell week">
-              <span><%= d[:day] %></span>
-              <span><%= d[:wday] %></span>
-            </th>
-          <% end %>
-        </tr>
-        <% @this_week_shifts.each do |staff_shift| %>
-          <tr class="each-staff-shift-row">
-            <td class="staff-name-cell week">
-              <p>
-                <%= "#{staff_shift[:staff_ln]} #{staff_shift[:staff_fn]}" %>
-              </p>
-            </td>
-            <% staff_shift[:days].each do |shifts| %>
-              <td class="week-shift-cell week">
-                <% shifts[:shift].each do |shift| %>
-                  <div>
-                    <%= "#{shift[:start_time]} - #{shift[:end_time]}" %>
-                  </div>
+    <div class="week-shift-table">
+      <% @staffs.each do |staff| %>
+        <div class="week-staff-row">
+          <div class="staff-name-column" >
+            <%= "#{staff.last_name} #{staff.first_name}" %>
+          </div>
+          <div class="week-staff-shift">
+            <%= week_calendar(events: staff.shifts) do |date, shifts| %>
+              <div class="week-daily-shift-cell">
+                <% shifts.each do |shift| %>
+                  <%= "#{l(shift.start_time, format: :short)} - #{l(shift.end_time, format: :short)}" %>
                 <% end %>
-              </td>
+              </div>
             <% end %>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 
   <%# モーダルウィンドウ %>
