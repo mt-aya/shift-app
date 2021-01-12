@@ -29,6 +29,6 @@ class ShiftsController < ApplicationController
   def get_set_week
     board = Board.find(params[:board_id])
     @staffs = board.staff_users
-    @shifts = board.shifts.includes(:staff_users)
+    @shifts = board.shifts
   end
 end

@@ -1,28 +1,20 @@
 <div class="simple-calendar">
   <div class="calendar-heading">
-    <%= link_to t('simple_calendar.previous', default: ''), calendar.url_for_previous_view, class: "fas fa-chevron-left lg" %>
+    <%= link_to t('simple_calendar.previous', default: ''), calendar.url_for_previous_view, class: "fas fa-angle-double-left" %>
     <% if calendar.number_of_weeks == 1 %>
-      <span class="calendar-title"><%= l(start_date.beginning_of_week, format: :long) %></span>
-      <span class="calendar-title--">-</span>
-      <span class="calendar-title"><%= l(start_date.end_of_week, format: :long) %></span>
+      <span class="calendar-title week-begin"><%= l(start_date.beginning_of_week, format: :long) %></span>
+      <span class="calendar-title center">-</span>
+      <span class="calendar-title week-end"><%= l(start_date.end_of_week, format: :long) %></span>
     <%else%>
         <span class="calendar-title">Week <%= calendar.week_number %> - <%= calendar.end_week %></span>
     <%end%>
-      <%= link_to t('simple_calendar.next', default: ''), calendar.url_for_next_view, class: "fas fa-chevron-right lg" %>
+      <%= link_to t('simple_calendar.next', default: ''), calendar.url_for_next_view, class: "fas fa-angle-double-right" %>
   </div>
 
   <table class="table table-striped">
-    <thead>
-      <tr>
-        <% date_range.slice(0, 7).each do |day| %>
-          <th><%= t('date.abbr_day_names')[day.wday] %></th>
-        <% end %>
-      </tr>
-    </thead>
-
-    <tbody>
+    <tbody class="week-tbody">
       <% date_range.each_slice(7) do |week| %>
-        <tr>
+        <tr class="row">
           <% week.each do |day| %>
             <%= content_tag :td, class: calendar.td_classes_for(day) do %>
               <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(passed_block) %>

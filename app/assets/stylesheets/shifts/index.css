@@ -1,3 +1,7 @@
+input {
+  outline: solid 1px #5b5b5b;
+}
+
 #board-show-main {
   margin: 0;
   height: 800px;
@@ -105,44 +109,97 @@
 }
 
 /* シフト表 */
-.main-shift-board {
-  padding: 40px 20px;
+.week-staff-row .calendar-heading {
+  display: none;
 }
 
-.shift-table {
-  width: 1206px;
-  margin: 0 auto;
+.week-shift-calendar {
+  margin: 40px 40px;
 }
 
-.shift-table-body {
+.week-shift-head {
+  display: flex;
+}
+
+.calendar-heading {
+  margin: 20px 0 28px 0;
+  text-align: center;
+}
+
+.week-empty-cell, .week-staff-cell {
+  width: 10%;
+  padding: 4px;
+  border-bottom: 1px solid #5b5b5b;
+}
+
+.week-staff-row {
+  display: flex;
+  height: 57px;
+}
+
+.week-shift-head {
   width: 100%;
 }
 
-.date-cell, .date-cell-empty {
-  height: 36px;
+.week-date-row {
+  width: calc(90% - 1px);
 }
 
-.shift-table, .week {
-  border: 1px solid #b8b8b8;
-  border-collapse: collapse;
+.table.table-striped {
+  width: 100%;
+  height: 100%;
 }
 
-.staff-name-cell, .date-cell-empty {
-  width: 10%;
+.week-tbody {
+  width: 100%;
 }
 
-.week-shift-cell, .date-cell {
-  width: calc(90% / 7);
+.week-staff-shift {
+  width: calc(90% - 1px);
 }
 
-.staff-name-cell, .week-shift-cell {
-  height: 54px;
+.day {
+  border: 1px solid #5b5b5b;
+  height: 100%;
+  width: calc(100% / 7);
+}
+
+.week-staff-row .day {
+  border-top: none;
+  height: 100%;
+}
+
+.week-staff-cell {
+  height: 100%;
+  border-left: 1px solid #5b5b5b;
+  font-size: 16px;
+}
+
+.calendar-title {
+  color: #5b5b5b;
+  font-size: 20px;
+}
+
+.week-date-cell {
+  height: 30px;
+  padding: 4px;
+}
+
+.week-daily-shift-cell {
+  height: 56px;
+  padding: 4px;
+}
+
+.fa-angle-double-left, .fa-angle-double-right {
+  text-decoration: none;
+  padding: 4px 2px 2px 2px;
+  color: #008db7;
+  font-size: 22px;
+}
+
+.shift-time {
   text-align: center;
-  padding: 6px 4px;
-}
-
-.date-cell {
-  background-color: ;
+  font-size: 16px;
 }
 
 /* モーダル */

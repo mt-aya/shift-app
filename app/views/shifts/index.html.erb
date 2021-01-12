@@ -10,7 +10,7 @@
       <ul class="board-list-pulldown" id="board-list-pulldown" style="display:none;">
         <% current_owner.boards.each do |board| %>
           <li class="pulldown-list-each-board">
-            <%= link_to board.name, board_shifts_path(board), class: "pulldown-board-link" %>
+            <%= link_to board.name, board_shifts_path(board), class: "pulldown-board-link", id:"pulldown-board-link" %>
           </li>
         <% end %>
       </ul>
@@ -33,25 +33,31 @@
     </div>
   </div>
 
-  <%# シフト表 %>
+  <%# シフト表 (週) %>
   <div class="week-shift-calendar">
-    <div class="week-empty-cell"></div>
-    <div class="week-date-row">
-      <%= week_calendar do |date|%>
-        <%= "#{date.day}#{t('date.day_names')[date.wday]}" %>
-      <% end %>
+    <div class="week-shift-head">
+      <div class="week-empty-cell"></div>
+      <div class="week-date-row">
+        <%= week_calendar do |date|%>
+          <div class="week-date-cell">
+            <%= "#{date.day}#{t('date.day_names')[date.wday]}" %>
+          </div>
+        <% end %>
+      </div>
     </div>
     <div class="week-shift-table">
       <% @staffs.each do |staff| %>
         <div class="week-staff-row">
-          <div class="staff-name-column" >
+          <div class="week-staff-cell" >
             <%= "#{staff.last_name} #{staff.first_name}" %>
           </div>
           <div class="week-staff-shift">
             <%= week_calendar(events: staff.shifts) do |date, shifts| %>
               <div class="week-daily-shift-cell">
                 <% shifts.each do |shift| %>
-                  <%= "#{l(shift.start_time, format: :short)} - #{l(shift.end_time, format: :short)}" %>
+                  <p class="shift-time">
+                    <%= "#{l(shift.start_time, format: :short)} - #{l(shift.end_time, format: :short)}" %>
+                  </p>
                 <% end %>
               </div>
             <% end %>
