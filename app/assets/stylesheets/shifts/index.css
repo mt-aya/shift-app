@@ -15,6 +15,7 @@ input {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  margin-bottom: 60px;
 }
 
 .board-list-menu {
@@ -108,100 +109,6 @@ input {
   display: flex;
 }
 
-/* シフト表 */
-.week-staff-row .calendar-heading {
-  display: none;
-}
-
-.week-shift-calendar {
-  margin: 40px 40px;
-}
-
-.week-shift-head {
-  display: flex;
-}
-
-.calendar-heading {
-  margin: 20px 0 28px 0;
-  text-align: center;
-}
-
-.week-empty-cell, .week-staff-cell {
-  width: 10%;
-  padding: 4px;
-  border-bottom: 1px solid #5b5b5b;
-}
-
-.week-staff-row {
-  display: flex;
-  height: 57px;
-}
-
-.week-shift-head {
-  width: 100%;
-}
-
-.week-date-row {
-  width: calc(90% - 1px);
-}
-
-.table.table-striped {
-  width: 100%;
-  height: 100%;
-}
-
-.week-tbody {
-  width: 100%;
-}
-
-.week-staff-shift {
-  width: calc(90% - 1px);
-}
-
-.week-shift-calendar .day {
-  border: 1px solid #5b5b5b;
-  height: 100%;
-  width: calc(100% / 7);
-}
-
-.week-staff-row .day {
-  border-top: none;
-  height: 100%;
-}
-
-.week-staff-cell {
-  height: 100%;
-  border-left: 1px solid #5b5b5b;
-  font-size: 16px;
-}
-
-.calendar-title {
-  color: #5b5b5b;
-  font-size: 20px;
-}
-
-.week-date-cell {
-  height: 30px;
-  padding: 4px;
-}
-
-.week-daily-shift-cell {
-  height: 56px;
-  padding: 4px;
-}
-
-.fa-angle-double-left, .fa-angle-double-right {
-  text-decoration: none;
-  padding: 4px 2px 2px 2px;
-  color: #008db7;
-  font-size: 22px;
-}
-
-.shift-time {
-  text-align: center;
-  font-size: 16px;
-}
-
 /* シフト表共通 */
 .shift-title .table.table-striped, .date-list .calendar-heading, .staff-shift-group .calendar-heading {
   display: none;
@@ -219,7 +126,7 @@ input {
   display: flex;
 }
 
-.shift-table {
+.month-shift .shift-table {
   display: block;
   overflow-x: scroll;
   white-space: nowrap;
@@ -253,6 +160,63 @@ input {
 
 .date-list .day {
   background-color: #efefef;
+}
+
+.table.table-striped {
+  width: 100%;
+  height: 100%;
+}
+
+.shift-time {
+  text-align: center;
+  font-size: 16px;
+}
+
+.calendar-heading {
+  margin: 20px 0 28px 0;
+  text-align: center;
+}
+
+.calendar-title {
+  color: #5b5b5b;
+  font-size: 20px;
+}
+
+.fa-angle-double-left, .fa-angle-double-right {
+  text-decoration: none;
+  padding: 4px 2px 2px 2px;
+  color: #008db7;
+  font-size: 22px;
+}
+
+/* 週表示（シフト） */
+.week-shift {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.week-shift .shift-table {
+  margin: 0 auto;
+}
+
+.week-shift .date-list .day {
+  height: 40px;
+  min-width: calc((1200px - 122px) / 7);
+}
+
+.week-shift .staff-shift-group .day {
+  height: 60px;
+  min-width: calc((1200px - 122px) / 7);
+}
+
+.week-shift .empty {
+  height: 41px;
+  min-width: 120px;
+}
+
+.week-shift .staff-cell {
+  height: 61px;
+  min-width: 120px;
 }
 
 /* 月表示（シフト） */

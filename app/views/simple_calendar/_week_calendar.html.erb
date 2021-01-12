@@ -12,9 +12,9 @@
   </div>
 
   <table class="table table-striped">
-    <tbody class="week-tbody">
+    <tbody class="simple-tbody">
       <% date_range.each_slice(7) do |week| %>
-        <tr class="row">
+        <tr>
           <% week.each do |day| %>
             <%= content_tag :td, class: calendar.td_classes_for(day) do %>
               <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(passed_block) %>

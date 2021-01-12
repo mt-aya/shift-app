@@ -33,33 +33,39 @@
     </div>
   </div>
 
-  <%# シフト表 (週) %>
-  <div class="week-shift-calendar">
-    <div class="week-shift-head">
-      <div class="week-empty-cell"></div>
-      <div class="week-date-row">
-        <%= week_calendar do |date|%>
-          <div class="week-date-cell">
-            <%= "#{date.day}#{t('date.day_names')[date.wday]}" %>
-          </div>
-        <% end %>
-      </div>
+  <div class="switch">
+    <button type="button" id="switch-month-btn">月</button>
+    <button type="button" id="switch-week-btn">週</button>
+    <button type="button" id="switch-calendar-btn">カレンダー</button>
+  </div>
+
+  <%# 週 シフト %>
+  <div class="week-shift">
+    <div class="shift-title">
+      <%= week_calendar do |date|%>
+      <% end %>
     </div>
-    <div class="week-shift-table">
+    <div class="shift-table">
+      <div class="date-row">
+        <div class="empty"></div>
+        <div class="date-list">
+          <%= week_calendar do |date|%>
+            <%= "#{date.day}#{t('date.day_names')[date.wday]}" %>
+          <% end %>
+        </div>
+      </div>
       <% @staffs.each do |staff| %>
-        <div class="week-staff-row">
-          <div class="week-staff-cell" >
+        <div class="staff-shift-list">
+          <div class="staff-cell">
             <%= "#{staff.last_name} #{staff.first_name}" %>
           </div>
-          <div class="week-staff-shift">
+          <div class="staff-shift-group">
             <%= week_calendar(events: staff.shifts) do |date, shifts| %>
-              <div class="week-daily-shift-cell">
-                <% shifts.each do |shift| %>
-                  <p class="shift-time">
-                    <%= "#{l(shift.start_time, format: :short)} - #{l(shift.end_time, format: :short)}" %>
-                  </p>
-                <% end %>
-              </div>
+              <% shifts.each do |shift| %>
+                <p class="shift-time">
+                  <%= "#{l(shift.start_time, format: :short)} - #{l(shift.end_time, format: :short)}" %>
+                </p>
+              <% end %>
             <% end %>
           </div>
         </div>
