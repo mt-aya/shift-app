@@ -1,0 +1,13 @@
+.side-bar_left {
+  height: calc(100vh - 50px);
+  width: 260px;
+  float: left;
+  border-right: #555555;
+}
+
+.main_right {
+  height: calc(100vh - 50px);
+  width: calc(100vw - 260px);
+  float: right;
+  background-color: #eeeeee;
+}

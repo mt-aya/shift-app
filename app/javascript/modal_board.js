@@ -1,4 +1,4 @@
-if (location.pathname.match(`/boards/${gon.board_id}`)){
+if (location.pathname.match(`/boards/${gon.board_id}/shifts`)){
   document.addEventListener("DOMContentLoaded", () => {
     const boardNameBtn = document.getElementById("board-name-btn");
     const inviteBtn = document.getElementById("invite-btn");
@@ -32,7 +32,9 @@ if (location.pathname.match(`/boards/${gon.board_id}`)){
         }
         const responseBoard = updateXhr.response.board;
         const boardNameText = document.getElementById("board-name-text");
+        const pulldownLink = document.getElementById("pulldown-board-link")
         boardNameText.innerHTML = responseBoard.name;  // シフトボード名の表示の変更
+        pulldownLink.innerHTML = responseBoard.name;
         modalOverlay.style.display = 'none';           // モーダルウィンドウを閉じる
         modalEditWindow.style.display = 'none';
       };
@@ -118,6 +120,6 @@ if (location.pathname.match(`/boards/${gon.board_id}`)){
         inviteSubmit.style.display = "none";
         };
       e.preventDefault();
-      });
+    });
   });
 }

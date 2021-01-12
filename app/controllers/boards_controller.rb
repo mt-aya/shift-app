@@ -1,14 +1,10 @@
 class BoardsController < ApplicationController
   before_action :visit_staff_user
   before_action :authenticate_owner!
-  before_action :correct_owner, only: [:show, :update, :search, :invite]
+  before_action :correct_owner, only: [:update, :search, :invite]
 
   def index
-    owner = Owner.find(current_owner.id)
-    @boards = owner.boards.order('created_at DESC')
-  end
-
-  def new
+    @boards = current_owner.boards.order('created_at ASC')
     @board = Board.new
   end
 
@@ -20,15 +16,6 @@ class BoardsController < ApplicationController
     else
       render :new
     end
-  end
-
-  def show
-    @board = Board.find(params[:id])
-    gon.board_id = @board.id
-    gon.board_name = @board.name
-    @board_staff = BoardStaff.new
-    @board_staffs = @board.staff_users
-    gon.board_staffs_id = @board_staffs.map { |s| s[:id] }
   end
 
   def update

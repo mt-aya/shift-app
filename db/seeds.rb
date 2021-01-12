@@ -1,7 +1,35 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+5.times do |n|
+  Shift.create!(
+    start_time: DateTime.parse("#{n + 10}/01/2021 17:00 +09:00"),
+    end_time: DateTime.parse("#{n + 10}/01/2021 21:00 +09:00"),
+    staff_user_id: 1,
+    board_id: 11
+  )
+end
+
+5.times do |n|
+  Shift.create!(
+    start_time: DateTime.parse("#{n + 10}/01/2021 13:00 +09:00"),
+    end_time: DateTime.parse("#{n + 10}/01/2021 21:00 +09:00"),
+    staff_user_id: 11,
+    board_id: 11
+  )
+end
+
+5.times do |n|
+  Shift.create!(
+    start_time: DateTime.parse("#{n + 5}/01/2021 17:00 +09:00"),
+    end_time: DateTime.parse("#{n + 5}/01/2021 21:00 +09:00"),
+    staff_user_id: 4,
+    board_id: 11
+  )
+end
+
+5.times do |n|
+  Shift.create!(
+    start_time: DateTime.parse("#{n + 5}/01/2021 13:00 +09:00"),
+    end_time: DateTime.parse("#{n + 5}/01/2021 21:00 +09:00"),
+    staff_user_id: 11,
+    board_id: 11
+  )
+end

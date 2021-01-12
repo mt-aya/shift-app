@@ -62,3 +62,5 @@ gem 'pry-rails'
 gem 'devise'
 
 gem 'gon'
+
+gem 'simple_calendar', '~> 2.0'

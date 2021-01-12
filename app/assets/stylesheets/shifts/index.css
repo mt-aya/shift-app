@@ -1,0 +1,332 @@
+input {
+  outline: solid 1px #5b5b5b;
+}
+
+#board-show-main {
+  margin: 0;
+  height: 800px;
+  background-color: #f4f9ff;
+  position: relative;
+}
+
+.board-show-header {
+  background-color: #eaf4ff;
+  height: 60px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.board-list-menu {
+  margin: 0 2px 0 6px;
+}
+
+.board-list-menu-btn {
+  padding: 3px;
+  transition: transform 0.25s ease-in-out;
+}
+
+.board-list-menu-btn:hover {
+  transform: scale(1.1);
+}
+
+.board-list-menu-btn:active {
+  transform: scale(.9);
+}
+
+.fa-angle-down {
+  color: #555555;
+  padding: 3px;
+}
+
+.board-list-pulldown {
+  position: absolute;
+  top: 44px;
+  left: 10px;
+  border: 1px solid #b8b8b8;
+  background-color: #ffffff;
+  width: 180px;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.pulldown-list-each-board {
+  width: 100%;
+  margin-top: -1px;
+  border-top: 1px solid #b8b8b8;
+}
+
+.pulldown-board-link {
+  display: block;
+  width: 100%;
+  padding: 12px 8px;
+  text-decoration: none;
+  color: #5b5b5b;
+  opacity: 0.7;
+  font-size: 16px;
+  transition: opacity 0.3s, background-color 0.3s;
+}
+
+.pulldown-board-link:hover {
+  background-color: #eeeeee;
+  opacity: 1;
+}
+
+#board-name-text {
+  font-size: 22px;
+  color: #555555;
+  font-weight: bold;
+}
+
+.board-name-btn:hover {
+  cursor: pointer;
+}
+
+.board-name-btn {
+  margin: 0 10px 0 0;
+  padding: 4px;
+}
+
+#invite-btn {
+  color: #555555;
+  opacity: 0.6;
+  padding: 6px;
+  transition: opacity 0.3s
+}
+
+#invite-btn:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+#invite-btn:active {
+  opacity: 1;
+}
+
+.staff-list-wrapper {
+  margin-left: 10px;
+  display: flex;
+}
+
+/* 表示切り替えボタン */
+.switch-bar {
+  padding: 6px 20px 0 20px;
+  width: 100%;
+  height: 48px;
+  display: flex;
+  justify-content: left;
+  background-color: #eaf4ff;
+}
+
+.switch {
+  margin: 0 5px;
+  padding: 10px;
+}
+
+/* シフト表共通 */
+.shift-title .table.table-striped, .date-list .calendar-heading, .staff-shift-group .calendar-heading {
+  display: none;
+}
+
+.date-row .simple-tbody, .staff-shift-group .simple-tbody {
+  display: flex;
+}
+
+.date-row, .date-list, .staff-shift-list, .staff-shift-group {
+  display: inline-block;
+}
+
+.date-row, .staff-shift-list {
+  display: flex;
+}
+
+.month-shift .shift-table {
+  display: block;
+  overflow-x: scroll;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+.day {
+  border: 1px solid #5b5b5b;
+}
+
+.staff-shift-group .day {
+  border-top: none;
+}
+
+.empty {
+  border-bottom: 1px solid #5b5b5b;
+}
+
+.staff-cell {
+  border-left: 1px solid #5b5b5b;
+  border-bottom: 1px solid #5b5b5b;
+}
+
+.today {
+  background-color: #fff3b8;
+}
+
+.prev-month, .next-month {
+  background-color: #d4d9d6;
+}
+
+.date-list .day {
+  background-color: #efefef;
+}
+
+.table.table-striped {
+  width: 100%;
+  height: 100%;
+}
+
+.shift-time {
+  text-align: center;
+  font-size: 16px;
+}
+
+.calendar-heading {
+  margin: 20px 0 28px 0;
+  text-align: center;
+}
+
+.calendar-title {
+  color: #5b5b5b;
+  font-size: 20px;
+}
+
+.fa-angle-double-left, .fa-angle-double-right {
+  text-decoration: none;
+  padding: 4px 2px 2px 2px;
+  color: #008db7;
+  font-size: 22px;
+}
+
+/* 週表示（シフト） */
+.week-shift {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.week-shift .shift-table {
+  margin: 0 auto;
+}
+
+.week-shift .date-list .day {
+  height: 40px;
+  min-width: calc((1200px - 122px) / 7);
+}
+
+.week-shift .staff-shift-group .day {
+  height: 60px;
+  min-width: calc((1200px - 122px) / 7);
+}
+
+.week-shift .empty {
+  height: 41px;
+  min-width: 120px;
+}
+
+.week-shift .staff-cell {
+  height: 61px;
+  min-width: 120px;
+}
+
+/* 月表示（シフト） */
+.month-shift {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.month-shift .wday-name {
+  display: none;
+}
+
+.month-shift .staff-shift-group .day {
+  height: 60px;
+  min-width: 120px;
+}
+
+.month-shift .empty {
+  height: 41px;
+  min-width: 120px;
+}
+
+.month-shift .date-list .day {
+  height: 40px;
+  min-width: 120px;
+}
+
+.month-shift .staff-cell {
+  height: 61px;
+  min-width: 120px;
+}
+
+
+/* 月表示（カレンダー） */
+.month-calendar {
+  margin: 0 auto;
+  width: 1200px;
+}
+
+.month-calendar .simple-calendar {
+  margin: 0;
+}
+
+.month-calendar .day {
+  height: 80px;
+}
+
+/* モーダル */
+.modal-close-btn {
+  float: right;
+  color:#b8b8b8;
+  font-size: 2.5em;
+  border: none;
+  background: transparent;
+  outline: none;
+}
+
+.modal-close-btn:hover {
+  cursor: pointer;
+}
+
+#board-show-modal {
+  display: none;
+  background-color: rgba(36, 42, 42, 0.6);
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  padding-top: 110px;
+}
+
+#board-edit-content {
+  display: none;
+  margin: 0 auto;
+  z-index: 6;
+  background-color: #ffffff;
+  width: 350px;
+  height: 250px;
+  border-radius: 4px;
+  padding: 0 10px;
+  box-shadow: 2px 2px 4px gray;
+}
+
+#board-invite-content {
+  display: none;
+  margin: 0 auto;
+  z-index: 3;
+  background-color: #ffffff;
+  width: 350px;
+  height: 250px;
+  border-radius: 4px;
+  padding: 0 10px;
+  box-shadow: 2px 2px 4px gray;
+}
+
+#invite-staff-submit {
+  display: none;
+}
