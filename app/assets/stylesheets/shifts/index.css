@@ -11,7 +11,7 @@ input {
 
 .board-show-header {
   background-color: #eaf4ff;
-  height: 44px;
+  height: 60px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -158,7 +158,7 @@ input {
   width: calc(90% - 1px);
 }
 
-.day {
+.week-shift-calendar .day {
   border: 1px solid #5b5b5b;
   height: 100%;
   width: calc(100% / 7);
@@ -200,6 +200,104 @@ input {
 .shift-time {
   text-align: center;
   font-size: 16px;
+}
+
+/* シフト表共通 */
+.shift-title .table.table-striped, .date-list .calendar-heading, .staff-shift-group .calendar-heading {
+  display: none;
+}
+
+.date-row .simple-tbody, .staff-shift-group .simple-tbody {
+  display: flex;
+}
+
+.date-row, .date-list, .staff-shift-list, .staff-shift-group {
+  display: inline-block;
+}
+
+.date-row, .staff-shift-list {
+  display: flex;
+}
+
+.shift-table {
+  display: block;
+  overflow-x: scroll;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+.day {
+  border: 1px solid #5b5b5b;
+}
+
+.staff-shift-group .day {
+  border-top: none;
+}
+
+.empty {
+  border-bottom: 1px solid #5b5b5b;
+}
+
+.staff-cell {
+  border-left: 1px solid #5b5b5b;
+  border-bottom: 1px solid #5b5b5b;
+}
+
+.today {
+  background-color: #fff3b8;
+}
+
+.prev-month, .next-month {
+  background-color: #d4d9d6;
+}
+
+.date-list .day {
+  background-color: #efefef;
+}
+
+/* 月表示（シフト） */
+.month-shift {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.month-shift .wday-name {
+  display: none;
+}
+
+.month-shift .staff-shift-group .day {
+  height: 60px;
+  min-width: 120px;
+}
+
+.month-shift .empty {
+  height: 41px;
+  min-width: 120px;
+}
+
+.month-shift .date-list .day {
+  height: 40px;
+  min-width: 120px;
+}
+
+.month-shift .staff-cell {
+  height: 61px;
+  min-width: 120px;
+}
+
+
+/* 月表示（カレンダー） */
+.month-calendar {
+  margin: 0 auto;
+  width: 1200px;
+}
+
+.month-calendar .simple-calendar {
+  margin: 0;
+}
+
+.month-calendar .day {
+  height: 80px;
 }
 
 /* モーダル */

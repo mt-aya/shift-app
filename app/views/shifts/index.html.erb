@@ -67,6 +67,55 @@
     </div>
   </div>
 
+  <%# 月 シフト %>
+  <div class="month-shift">
+    <div class="shift-title">
+      <%= month_calendar do |date|%>
+      <% end %>
+    </div>
+    <div class="shift-table">
+      <div class="date-row">
+        <div class="empty"></div>
+        <div class="date-list">
+          <%= month_calendar do |date|%>
+            <%= "#{date.day}#{t('date.day_names')[date.wday]}" %>
+          <% end %>
+        </div>
+      </div>
+      <% @staffs.each do |staff| %>
+        <div class="staff-shift-list">
+          <div class="staff-cell">
+            <%= "#{staff.last_name} #{staff.first_name}" %>
+          </div>
+          <div class="staff-shift-group">
+            <%= month_calendar(events: staff.shifts) do |date, shifts| %>
+              <% shifts.each do |shift| %>
+                <p class="shift-time">
+                  <%= "#{l(shift.start_time, format: :short)} - #{l(shift.end_time, format: :short)}" %>
+                </p>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <%# 月カレンダー %>
+  <div class="month-calendar">
+    <%= month_calendar(events: @shifts) do |date, shifts| %>
+      <div class="month-day">
+        <%= date.day %>
+      </div>
+      <div class="month-day-staff">
+        <% shifts.each do |shift| %>
+          <% staff = StaffUser.find(shift.staff_user_id) %>
+          <%= "#{staff.last_name}" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
   <%# モーダルウィンドウ %>
   <div id="board-show-modal">
     <div id="board-edit-content">
