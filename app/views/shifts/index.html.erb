@@ -33,14 +33,21 @@
     </div>
   </div>
 
-  <div class="switch">
-    <button type="button" id="switch-month-btn">月</button>
-    <button type="button" id="switch-week-btn">週</button>
-    <button type="button" id="switch-calendar-btn">カレンダー</button>
+  <%# 表示切り替えボタン %>
+  <div class="switch-bar">
+    <div id="switch-week" class="switch">
+      <p>週</p>
+    </div>
+    <div id="switch-month" class="switch">
+      <p>月</p>
+    </div>
+    <div id="switch-calendar" class="switch">
+      <p>カレンダー</p>
+    </div>
   </div>
 
   <%# 週 シフト %>
-  <div class="week-shift">
+  <div class="week-shift" id="week-shift" style="display:none;">
     <div class="shift-title">
       <%= week_calendar do |date|%>
       <% end %>
@@ -74,7 +81,7 @@
   </div>
 
   <%# 月 シフト %>
-  <div class="month-shift">
+  <div class="month-shift" id="month-shift" style="display:block;">
     <div class="shift-title">
       <%= month_calendar do |date|%>
       <% end %>
@@ -108,7 +115,7 @@
   </div>
 
   <%# 月カレンダー %>
-  <div class="month-calendar">
+  <div class="month-calendar" id="month-calendar" style="display:none;">
     <%= month_calendar(events: @shifts) do |date, shifts| %>
       <div class="month-day">
         <%= date.day %>
