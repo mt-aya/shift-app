@@ -112,14 +112,16 @@
                       <p class="shift-time">
                         <%= "#{l(shift.start_time, format: :short)} - #{l(shift.end_time, format: :short)}" %>
                       </p>
-                      <ul class="shift-edit-or-delete-select">
-                        <li class="shift-time-edit">
-                          <%= link_to '', "#", class: "fas fa-edit" %>
-                        </li>
-                        <li class="shift-time-delete">
-                          <%= link_to '', "/boards/#{@board.id}/shifts/#{shift.id}", method: :delete, class: "far fa-trash-alt" %>
-                        </li>
-                      </ul>
+                      <div class="shift-menu-list-box">
+                        <ul class="shift-menu-list">
+                          <li class="shift-time-edit">
+                            <%= link_to '', "#", class: "fas fa-edit" %>
+                          </li>
+                          <li class="shift-time-delete">
+                            <%= link_to '', "/boards/#{@board.id}/shifts/#{shift.id}", method: :delete, class: "far fa-trash-alt" %>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
                   <% end %>
                   <div class="add-shift-place">

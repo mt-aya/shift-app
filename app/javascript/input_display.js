@@ -17,6 +17,17 @@ if (location.pathname.match(`/boards/${gon.board_id}/shifts`)){
       content.addEventListener("mouseleave", () => {
         addShift.style.visibility = "hidden";
       });
+
+      const shiftTimes = content.querySelectorAll(".one-shift-time");
+      shiftTimes.forEach(function(shift) {
+        const editOrDelete = shift.querySelector(".shift-menu-list-box");
+        shift.addEventListener("mouseover", () => {
+          editOrDelete.style.display = "block";
+        });
+        shift.addEventListener("mouseleave", () => {
+          editOrDelete.style.display = "none";
+        });
+      });
     });
   });
 }

@@ -225,6 +225,7 @@ input {
 
 .shift-time {
   font-size: 15px;
+  float: left;
 }
 
 .shift-down-icon-wrapper {
@@ -244,14 +245,21 @@ input {
   cursor: pointer;
 }
 
-.shift-edit-or-delete-select {
+.one-shift-time {
+  width: 100%;
+}
+
+.shift-menu-list-box {
   position: absolute;
   top: 0;
   left: 110px;
   z-index: 2;
-  display: flex;
-
+  display: none;
   background-color: #ffffff;
+}
+
+.shift-menu-list {
+  display: flex;
 }
 
 .shift-create-content {
