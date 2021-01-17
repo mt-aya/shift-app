@@ -18,14 +18,24 @@ if (location.pathname.match(`/boards/${gon.board_id}/shifts`)){
         addShift.style.visibility = "hidden";
       });
 
-      const shiftTimes = content.querySelectorAll(".one-shift-time");
+      const shiftTimes = content.querySelectorAll(".each-shift-time-content");
       shiftTimes.forEach(function(shift) {
         const editOrDelete = shift.querySelector(".shift-menu-list-box");
+        const shiftEditBtn = shift.querySelector(".shift-edit-btn");
+        const shiftEditForm = shift.querySelector(".shift-edit-content");
+        const editCancel = shiftEditForm.querySelector(".shift-edit-form-cancel");
         shift.addEventListener("mouseover", () => {
           editOrDelete.style.display = "block";
         });
         shift.addEventListener("mouseleave", () => {
           editOrDelete.style.display = "none";
+        });
+        shiftEditBtn.addEventListener("click", () => {
+          console.log(shiftEditForm);
+          shiftEditForm.style.display = "block";
+        });
+        editCancel.addEventListener("click", () => {
+          shiftEditForm.style.display = "none";
         });
       });
     });

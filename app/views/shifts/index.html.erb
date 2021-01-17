@@ -108,19 +108,36 @@
               <div class="shift-content">
                 <div class="shift-time-wrapper">
                   <% shifts.each do |shift| %>
-                    <div class="one-shift-time">
-                      <p class="shift-time">
-                        <%= "#{l(shift.start_time, format: :short)} - #{l(shift.end_time, format: :short)}" %>
-                      </p>
-                      <div class="shift-menu-list-box">
-                        <ul class="shift-menu-list">
-                          <li class="shift-time-edit">
-                            <%= link_to '', "#", class: "fas fa-edit" %>
-                          </li>
-                          <li class="shift-time-delete">
-                            <%= link_to '', "/boards/#{@board.id}/shifts/#{shift.id}", method: :delete, class: "far fa-trash-alt" %>
-                          </li>
-                        </ul>
+                    <div class="each-shift-time-content">
+                      <div class="one-shift-time">
+                        <p class="shift-time">
+                          <%= "#{l(shift.start_time, format: :short)} - #{l(shift.end_time, format: :short)}" %>
+                        </p>
+                        <div class="shift-menu-list-box">
+                          <ul class="shift-menu-list">
+                            <li class="shift-time-edit">
+                              <button type="button" class="fas fa-edit shift-edit-btn"></button>
+                            </li>
+                            <li class="shift-time-delete">
+                              <%= link_to '', "/boards/#{@board.id}/shifts/#{shift.id}", method: :delete, class: "far fa-trash-alt" %>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="shift-edit-content">
+                        <p><%= l(date, format: :long) %></p>
+                        <p><%= staff.last_name %><%= staff.first_name %></p>
+                        <%= form_with model: [@board, @shift], url: "/boards/#{@board.id}/shifts/#{shift.id}", local:true do |f| %>
+                          <%= hidden_field_tag :id, shift.id %>
+                          <%= hidden_field_tag :staff_user_id, staff.id %>
+                          <div class="shift-form-time-group">
+                            <%= f.time_select :start_time, class:"start-form-box", default: shift.start_time, minute_step: 5 %>
+                            <span>-</span>
+                            <%= f.time_select :end_time, class: "end-form-box", default: shift.end_time, minute_step: 5 %>
+                          </div>
+                          <%= f.submit '保存する', class: "shift-edit-form-submit" %>
+                          <button type="button" class="shift-edit-form-cancel">キャンセル</button>
+                        <% end %>
                       </div>
                     </div>
                   <% end %>
