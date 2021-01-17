@@ -1,5 +1,9 @@
 ja:
   date:
+    order:
+      - :year
+      - :month
+      - :day
     abbr_day_names:
       - 日
       - 月

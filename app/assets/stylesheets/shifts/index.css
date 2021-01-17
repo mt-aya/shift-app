@@ -108,14 +108,19 @@ input {
   display: flex;
 }
 
+.under-board-header {
+  display: flex;
+  background-color: #eaf4ff;
+  padding: 6px 30px 0 30px;
+  height: 52px;
+}
+
 /* 表示切り替えボタン */
 .switch-bar {
-  padding: 6px 20px 0 20px;
-  width: 100%;
-  height: 48px;
+  padding: 0 20px;
+  width: 25%;
   display: flex;
   justify-content: left;
-  background-color: #eaf4ff;
 }
 
 .switch {
@@ -202,6 +207,58 @@ input {
   color: #008db7;
   font-size: 22px;
 }
+
+.shift-content {
+  width: 100%;
+  height: 100%;
+}
+
+.shift-time-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.one-shift-time {
+  display: flex;
+  justify-content: space-between;
+}
+
+.shift-time {
+  font-size: 15px;
+  float: left;
+}
+
+.shift-down-icon-wrapper {
+  display: none;
+}
+
+.add-shift-place {
+  width: 100%;
+}
+
+.add-shift {
+  font-size: 18px;
+  text-align: center;
+  margin: 0 auto;
+  width: 80%;
+  display: none;
+  cursor: pointer;
+}
+
+.shift-create-content {
+  position: absolute;
+  top: 200px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: none;
+  background-color: #ffffff;
+  z-index: 6;
+  width: 350px;
+  box-shadow: 2px 2px 8px gray;
+}
+
 
 /* 週表示（シフト） */
 .week-shift {
@@ -294,7 +351,7 @@ input {
 
 #board-show-modal {
   display: none;
-  background-color: rgba(36, 42, 42, 0.6);
+  background-color: rgba(36, 42, 42, 0.1);
   z-index: 5;
   width: 100%;
   height: 100%;
@@ -310,23 +367,22 @@ input {
   background-color: #ffffff;
   width: 350px;
   height: 250px;
-  border-radius: 4px;
   padding: 0 10px;
-  box-shadow: 2px 2px 4px gray;
+  box-shadow: 2px 2px 8px gray;
 }
 
 #board-invite-content {
   display: none;
   margin: 0 auto;
-  z-index: 3;
+  z-index: 6;
   background-color: #ffffff;
   width: 350px;
   height: 250px;
-  border-radius: 4px;
   padding: 0 10px;
-  box-shadow: 2px 2px 4px gray;
+  box-shadow: 2px 2px 8px gray;
 }
 
 #invite-staff-submit {
   display: none;
 }
+

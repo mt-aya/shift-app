@@ -22,7 +22,7 @@ class Shift < ApplicationRecord
   end
 
   def not_doubling
-    same_date_shifts = Shift.where(staff_user_id: staff_user_id, start_time: start_time.all_day)
+    same_date_shifts = Shift.where(staff_user_id: staff_user_id, board_id: board_id, start_time: start_time.all_day)
     same_date_shifts.each do |shift|
       if shift.start_time <= end_time && shift.end_time >= start_time
         errors.add(:base, "同じユーザーに既に登録されている期間と重複するものは指定できません")
