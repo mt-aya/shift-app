@@ -6,7 +6,7 @@ if (location.pathname.match(`/boards/${gon.board_id}/shifts`)){
       const shiftForm = content.querySelector(".shift-create-content");
       const formCancel = shiftForm.querySelector(".shift-create-form-cancel");
       content.addEventListener("mouseover", () => {
-        addShift.style.display = "block";
+        addShift.style.visibility = "visible";
       });
       addShift.addEventListener("click", () => {
         shiftForm.style.display = "block";
@@ -15,7 +15,7 @@ if (location.pathname.match(`/boards/${gon.board_id}/shifts`)){
         shiftForm.style.display = "none";
       });
       content.addEventListener("mouseleave", () => {
-        addShift.style.display = "none";
+        addShift.style.visibility = "hidden";
       });
     });
   });

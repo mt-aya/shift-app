@@ -25,6 +25,12 @@ class ShiftsController < ApplicationController
     end
   end
 
+  def destroy
+    shift = Shift.find(params[:id])
+    shift.destroy
+    redirect_to board_shifts_path(params[:board_id])
+  end
+
   private
 
   def shift_params

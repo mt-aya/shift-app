@@ -220,13 +220,11 @@ input {
 }
 
 .one-shift-time {
-  display: flex;
-  justify-content: space-between;
+  position: relative;
 }
 
 .shift-time {
   font-size: 15px;
-  float: left;
 }
 
 .shift-down-icon-wrapper {
@@ -242,8 +240,18 @@ input {
   text-align: center;
   margin: 0 auto;
   width: 80%;
-  display: none;
+  visibility: hidden;
   cursor: pointer;
+}
+
+.shift-edit-or-delete-select {
+  position: absolute;
+  top: 0;
+  left: 110px;
+  z-index: 2;
+  display: flex;
+
+  background-color: #ffffff;
 }
 
 .shift-create-content {
@@ -302,7 +310,7 @@ input {
 
 .month-shift .staff-shift-group .day {
   height: 60px;
-  min-width: 120px;
+  min-width: 140px;
 }
 
 .month-shift .empty {
@@ -312,7 +320,7 @@ input {
 
 .month-shift .date-list .day {
   height: 40px;
-  min-width: 120px;
+  min-width: 140px;
 }
 
 .month-shift .staff-cell {
