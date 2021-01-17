@@ -33,16 +33,18 @@
     </div>
   </div>
 
-  <%# 表示切り替えボタン %>
-  <div class="switch-bar">
-    <div id="switch-week" class="switch">
-      <p>週</p>
-    </div>
-    <div id="switch-month" class="switch">
-      <p>月</p>
-    </div>
-    <div id="switch-calendar" class="switch">
-      <p>カレンダー</p>
+  <%# ヘッダー下 %>
+  <div class="under-board-header">
+    <div class="switch-bar">
+      <div id="switch-week" class="switch">
+        <p>週</p>
+      </div>
+      <div id="switch-month" class="switch">
+        <p>月</p>
+      </div>
+      <div id="switch-calendar" class="switch">
+        <p>カレンダー</p>
+      </div>
     </div>
   </div>
 
@@ -73,6 +75,7 @@
                   <%= "#{l(shift.start_time, format: :short)} - #{l(shift.end_time, format: :short)}" %>
                 </p>
               <% end %>
+              <i class="fas fa-caret-down lg shift-down"></i>
             <% end %>
           </div>
         </div>
@@ -101,12 +104,39 @@
             <%= "#{staff.last_name} #{staff.first_name}" %>
           </div>
           <div class="staff-shift-group">
-            <%= month_calendar(events: staff.shifts) do |date, shifts| %>
-              <% shifts.each do |shift| %>
-                <p class="shift-time">
-                  <%= "#{l(shift.start_time, format: :short)} - #{l(shift.end_time, format: :short)}" %>
-                </p>
-              <% end %>
+            <%= month_calendar(events: staff.shifts.where(board_id: @board.id)) do |date, shifts| %>
+              <div class="shift-content">
+                <div class="shift-time-wrapper">
+                  <% shifts.each do |shift| %>
+                    <div class="one-shift-time">
+                      <p class="shift-time">
+                        <%= "#{l(shift.start_time, format: :short)} - #{l(shift.end_time, format: :short)}" %>
+                      </p>
+                      <ul class="shift-edit-or-delete-select">
+                        <li>変更する</li>
+                        <li>削除する</li>
+                      </ul>
+                    </div>
+                  <% end %>
+                  <div class="add-shift-place">
+                    <p class="add-shift">+</p>
+                  </div>
+                </div>
+                <div class="shift-create-content">
+                  <p><%= l(date, format: :long) %></p>
+                  <p><%= staff.last_name %><%= staff.first_name %></p>
+                  <%= form_with model: [@board, @shift], local:true do |f| %>
+                    <%= hidden_field_tag :staff_user_id, staff.id %>
+                    <div class="shift-form-time-group">
+                      <%= f.time_select :start_time, class:"start-form-box", default: date.in_time_zone, minute_step: 5 %>
+                      <span>-</span>
+                      <%= f.time_select :end_time, class: "end-form-box", default: date.in_time_zone, minute_step: 5 %>
+                    </div>
+                    <%= f.submit '保存する', class: "shift-create-form-submit" %>
+                    <button type="button" class="shift-create-form-cancel">キャンセル</button>
+                  <% end %>
+                </div>
+              </div>
             <% end %>
           </div>
         </div>
@@ -155,4 +185,5 @@
       <% end %>
     </div>
   </div>
+
 </div>

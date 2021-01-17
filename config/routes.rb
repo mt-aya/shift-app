@@ -13,7 +13,6 @@ Rails.application.routes.draw do
       get 'search'
       post 'invite'
     end
-    resources :shifts, only: [:index]
-    resources :shift_frames, only: [:index, :create]
+    resources :shifts, only: [:index, :create]
   end
 end
