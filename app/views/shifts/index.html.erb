@@ -127,7 +127,7 @@
                       <div class="shift-edit-content">
                         <p><%= l(date, format: :long) %></p>
                         <p><%= staff.last_name %><%= staff.first_name %></p>
-                        <%= form_with model: [@board, @shift], url: "/boards/#{@board.id}/shifts/#{shift.id}", local:true do |f| %>
+                        <%= form_with model: [@board, shift], local:true do |f| %>
                           <%= hidden_field_tag :id, shift.id %>
                           <%= hidden_field_tag :staff_user_id, staff.id %>
                           <div class="shift-form-time-group">
@@ -149,6 +149,7 @@
                   <p><%= l(date, format: :long) %></p>
                   <p><%= staff.last_name %><%= staff.first_name %></p>
                   <%= form_with model: [@board, @shift], local:true do |f| %>
+                    <%= render partial: 'shared/error_messages', locals: { model: f.object } %>
                     <%= hidden_field_tag :staff_user_id, staff.id %>
                     <div class="shift-form-time-group">
                       <%= f.time_select :start_time, class:"start-form-box", default: date.in_time_zone, minute_step: 5 %>

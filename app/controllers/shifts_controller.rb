@@ -3,13 +3,14 @@ class ShiftsController < ApplicationController
   before_action :authenticate_owner!
   before_action :correct_owner, only: [:index]
   before_action :board_staff, only: [:index, :new]
+  before_action :index_set, only: [:create, :update]
 
   def index
     gon.board_id = @board.id
     gon.board_name = @board.name
     @board_staff = BoardStaff.new
     @board_staffs = @board.staff_users
-    # gon.board_staffs_id = @board_staffs.map { |s| s[:id] }
+    gon.board_staffs_id = @board_staffs.map { |s| s[:id] }
     @shifts = @board.shifts
     @shift = Shift.new
   end
@@ -19,9 +20,18 @@ class ShiftsController < ApplicationController
     @shift = Shift.new(shift_params)
     if @shift.valid?
       @shift.save
-      redirect_to board_shifts_path(@board.id)
+      redirect_to request.referer
     else
       render :index
+    end
+  end
+
+  def update
+    shift = Shift.find(params[:id])
+    if shift.update(shift_params)
+      redirect_to request.referer
+    else
+      render 'shifts/index'
     end
   end
 
@@ -51,4 +61,12 @@ class ShiftsController < ApplicationController
     @staffs = @board.staff_users
   end
 
+  def index_set
+    @board = Board.find(params[:board_id])
+    @board_staff = BoardStaff.new
+    @board_staffs = @board.staff_users
+    @shifts = @board.shifts
+    @staffs = @board.staff_users
+    @shift = Shift.new
+  end
 end

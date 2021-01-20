@@ -31,7 +31,6 @@ if (location.pathname.match(`/boards/${gon.board_id}/shifts`)){
           editOrDelete.style.display = "none";
         });
         shiftEditBtn.addEventListener("click", () => {
-          console.log(shiftEditForm);
           shiftEditForm.style.display = "block";
         });
         editCancel.addEventListener("click", () => {
