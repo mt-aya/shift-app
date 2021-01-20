@@ -8,7 +8,6 @@ require("@rails/activestorage").start()
 require("channels")
 require("../modal_board")
 require("../board_list")
-require("../switch")
 require("../input_display")
 
 

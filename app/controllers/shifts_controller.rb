@@ -3,7 +3,7 @@ class ShiftsController < ApplicationController
   before_action :authenticate_owner!
   before_action :correct_owner, only: [:index]
   before_action :board_staff, only: [:index, :new]
-  before_action :index_set, only: [:create, :update]
+  before_action :index_set, only: [:monthly, :weekly, :calendar, :create, :update]
 
   def index
     gon.board_id = @board.id
@@ -13,6 +13,15 @@ class ShiftsController < ApplicationController
     gon.board_staffs_id = @board_staffs.map { |s| s[:id] }
     @shifts = @board.shifts
     @shift = Shift.new
+  end
+
+  def monthly
+  end
+
+  def weekly
+  end
+
+  def calendar
   end
 
   def create
@@ -63,10 +72,13 @@ class ShiftsController < ApplicationController
 
   def index_set
     @board = Board.find(params[:board_id])
+    gon.board_id = @board.id
+    gon.board_name = @board.name
     @board_staff = BoardStaff.new
     @board_staffs = @board.staff_users
+    gon.board_staffs_id = @board_staffs.map { |s| s[:id] }
     @shifts = @board.shifts
-    @staffs = @board.staff_users
     @shift = Shift.new
+    @staffs = @board.staff_users
   end
 end

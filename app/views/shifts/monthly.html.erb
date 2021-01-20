@@ -48,41 +48,6 @@
     </div>
   </div>
 
-  <%# 週 シフト %>
-  <div class="week-shift" id="week-shift" style="display:none;">
-    <div class="shift-title">
-      <%= week_calendar do |date|%>
-      <% end %>
-    </div>
-    <div class="shift-table">
-      <div class="date-row">
-        <div class="empty"></div>
-        <div class="date-list">
-          <%= week_calendar do |date|%>
-            <%= "#{date.day}#{t('date.day_names')[date.wday]}" %>
-          <% end %>
-        </div>
-      </div>
-      <% @staffs.each do |staff| %>
-        <div class="staff-shift-list">
-          <div class="staff-cell">
-            <%= "#{staff.last_name} #{staff.first_name}" %>
-          </div>
-          <div class="staff-shift-group">
-            <%= week_calendar(events: staff.shifts) do |date, shifts| %>
-              <% shifts.each do |shift| %>
-                <p class="shift-time">
-                  <%= "#{l(shift.start_time, format: :short)} - #{l(shift.end_time, format: :short)}" %>
-                </p>
-              <% end %>
-              <i class="fas fa-caret-down lg shift-down"></i>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  </div>
-
   <%# 月 シフト %>
   <div class="month-shift" id="month-shift" style="display:block;">
     <div class="shift-title">
@@ -166,21 +131,6 @@
         </div>
       <% end %>
     </div>
-  </div>
-
-  <%# 月カレンダー %>
-  <div class="month-calendar" id="month-calendar" style="display:none;">
-    <%= month_calendar(events: @shifts) do |date, shifts| %>
-      <div class="month-day">
-        <%= date.day %>
-      </div>
-      <div class="month-day-staff">
-        <% shifts.each do |shift| %>
-          <% staff = StaffUser.find(shift.staff_user_id) %>
-          <%= "#{staff.last_name}" %>
-        <% end %>
-      </div>
-    <% end %>
   </div>
 
   <%# モーダルウィンドウ %>
