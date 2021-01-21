@@ -1,5 +1,6 @@
 if (location.pathname.match(`/boards/${gon.board_id}/shifts`)){
   document.addEventListener("DOMContentLoaded", () => {
+    // 日ごと
     const shiftContents = document.querySelectorAll(".shift-content");
     shiftContents.forEach(function(content) {
       const addShift = content.querySelector(".add-shift");
@@ -18,6 +19,7 @@ if (location.pathname.match(`/boards/${gon.board_id}/shifts`)){
         addShift.style.visibility = "hidden";
       });
 
+      // シフトごと
       const shiftTimes = content.querySelectorAll(".each-shift-time-content");
       shiftTimes.forEach(function(shift) {
         const editOrDelete = shift.querySelector(".shift-menu-list-box");

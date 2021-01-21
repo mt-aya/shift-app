@@ -33,33 +33,22 @@
     </div>
   </div>
 
-  <%# ヘッダー下 %>
-  <div class="under-board-header">
-    <div class="switch-bar">
-      <div id="switch-week" class="switch">
-        <%= link_to '週', "/boards/#{@board.id}/shifts/weekly" %>
-      </div>
-      <div id="switch-month" class="switch">
-        <%= link_to '月', "/boards/#{@board.id}/shifts/monthly" %>
-      </div>
-      <div id="switch-calendar" class="switch">
-        <%= link_to 'カレンダー', "/boards/#{@board.id}/shifts/calendar" %>
-      </div>
-    </div>
-  </div>
-
   <%# 月 シフト %>
-  <div class="month-shift" id="month-shift" style="display:block;">
+  <div class="month-shift" id="month-shift">
     <div class="shift-title">
       <%= month_calendar do |date|%>
       <% end %>
+      <%= render 'shared/switch_button' %>
     </div>
     <div class="shift-table">
       <div class="date-row">
         <div class="empty"></div>
         <div class="date-list">
           <%= month_calendar do |date|%>
-            <%= "#{date.day}#{t('date.day_names')[date.wday]}" %>
+            <p>
+              <span class="date-date"><%= date.day %></span>
+              (<span class="date-wday-name"><%= t('date.day_names')[date.wday] %></span>)
+            </p>
           <% end %>
         </div>
       </div>
@@ -68,9 +57,9 @@
           <div class="staff-cell">
             <%= "#{staff.last_name} #{staff.first_name}" %>
           </div>
-          <div class="staff-shift-group">
+          <div class="staff-shift-group" data-staff=<%= staff.id %>>
             <%= month_calendar(events: staff.shifts.where(board_id: @board.id)) do |date, shifts| %>
-              <div class="shift-content">
+              <div class="shift-content" data-date=<%= l(date, format: :default) %>>
                 <div class="shift-time-wrapper">
                   <% shifts.each do |shift| %>
                     <div class="each-shift-time-content">
@@ -89,6 +78,7 @@
                           </ul>
                         </div>
                       </div>
+                      <%# シフト時間の編集 ここから %>
                       <div class="shift-edit-content">
                         <p><%= l(date, format: :long) %></p>
                         <p><%= staff.last_name %><%= staff.first_name %></p>
@@ -104,16 +94,18 @@
                           <button type="button" class="shift-edit-form-cancel">キャンセル</button>
                         <% end %>
                       </div>
+                      <%# シフト時間の編集 ここまで %>
                     </div>
                   <% end %>
                   <div class="add-shift-place">
                     <p class="add-shift">+</p>
                   </div>
                 </div>
+                <%# シフトの追加ページ ここから %>
                 <div class="shift-create-content">
                   <p><%= l(date, format: :long) %></p>
                   <p><%= staff.last_name %><%= staff.first_name %></p>
-                  <%= form_with model: [@board, @shift], local:true do |f| %>
+                  <%= form_with model: [@board, @shift], class: "shift-add-form" do |f| %>
                     <%= render partial: 'shared/error_messages', locals: { model: f.object } %>
                     <%= hidden_field_tag :staff_user_id, staff.id %>
                     <div class="shift-form-time-group">
@@ -125,6 +117,7 @@
                     <button type="button" class="shift-create-form-cancel">キャンセル</button>
                   <% end %>
                 </div>
+                <%# シフトの追加ページ ここまで %>
               </div>
             <% end %>
           </div>

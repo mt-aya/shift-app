@@ -26,13 +26,13 @@ ja:
       - 11月
       - 12月
     day_names:
-      - (日)
-      - (月)
-      - (火)
-      - (水)
-      - (木)
-      - (金)
-      - (土)
+      - 日
+      - 月
+      - 火
+      - 水
+      - 木
+      - 金
+      - 土
     formats:
       default: "%Y/%m/%d"
       long: "%Y年%-m月%-d日(%a)"
@@ -60,4 +60,5 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%H:%M"
       date_long: "%Y/%m/%d(%a)"
+      date_only: "%Y/%m/%d"
     pm: 午後

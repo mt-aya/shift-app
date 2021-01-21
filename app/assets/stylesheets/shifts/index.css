@@ -1,5 +1,5 @@
 input {
-  outline: solid 1px #5b5b5b;
+  outline: solid 1px #dbdbdb;
 }
 
 #board-show-main {
@@ -61,7 +61,7 @@ input {
   width: 100%;
   padding: 12px 8px;
   text-decoration: none;
-  color: #5b5b5b;
+  color: #dbdbdb;
   opacity: 0.7;
   font-size: 16px;
   transition: opacity 0.3s, background-color 0.3s;
@@ -115,20 +115,108 @@ input {
   height: 52px;
 }
 
+/* ----- シフト表共通 --------------------------------------- */
+/* shift-title */
+.shift-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 16px 0;
+}
+
+.shift-title .calendar-heading {
+  margin-left: 125px;
+  display: flex;
+  align-items: center;
+}
+
+.shift-title .calendar-title {
+  color: #404040;
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.shift-title .fa-caret-left, .shift-title .fa-caret-right {
+  text-decoration: none;
+  padding: 7px 2px 2px 2px;
+  color: #8d8d8d;
+  font-size: 18px;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: background-color 0.2s;
+}
+
+.shift-title .shift-prev, .shift-title .shift-next {
+  width: 32px;
+  height: 32px;
+  background-color: #ececec;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+
+.shift-title .shift-prev:hover, .shift-title .shift-next:hover {
+  background-color: #daf1de;
+}
+
+.shift-title .shift-prev:hover a, .shift-title .shift-next:hover a {
+  color: #89c997;
+}
+
+.shift-title .shift-prev:active, .shift-title .shift-next:active {
+  background-color: #f6fff7;
+}
+
+.shift-title .shift-prev {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.shift-title .shift-next {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
 /* 表示切り替えボタン */
 .switch-bar {
-  padding: 0 20px;
-  width: 25%;
+  width: 28%;
   display: flex;
   justify-content: left;
+  margin-right: 5px;
 }
 
 .switch {
-  margin: 0 5px;
-  padding: 10px;
+  width: calc(100% / 3);
+  text-align: center;
+  background-color: #ececec;
+  color: #555555;
 }
 
-/* シフト表共通 */
+.switch a {
+  font-size: 14px;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 6px;
+}
+
+#switch-weekly {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+#switch-calendar {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.switch:hover {
+  background-color: #daf1de;
+  color: #7dcf8f;
+}
+
+/* ブロック表示形式 */
 .shift-title .table.table-striped, .date-list .calendar-heading, .staff-shift-group .calendar-heading {
   display: none;
 }
@@ -153,7 +241,31 @@ input {
 }
 
 .day {
-  border: 1px solid #5b5b5b;
+  border: 1px solid #dbdbdb;
+}
+
+.date-list .day {
+  vertical-align: bottom;
+}
+
+.date-list .day p {
+  margin: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #2b2b2b;
+}
+
+.wday-6 .date-wday-name {
+  color: #3b7fff;
+}
+
+.wday-0 .date-wday-name {
+  color: #ff3b3b;
+}
+
+.shift-time {
+  text-align: center;
+  font-size: 16px;
 }
 
 .staff-shift-group .day {
@@ -161,20 +273,26 @@ input {
 }
 
 .empty {
-  border-bottom: 1px solid #5b5b5b;
+  border-bottom: 1px solid #dbdbdb;
+  border-right: 1px solid #dbdbdb;
 }
 
 .staff-cell {
-  border-left: 1px solid #5b5b5b;
-  border-bottom: 1px solid #5b5b5b;
+  border-left: 1px solid #dbdbdb;
+  border-bottom: 1px solid #dbdbdb;
+  border-right: 1px solid #dbdbdb;
+}
+
+.shift-table .wday-1 {
+  border-left: none;
 }
 
 .today {
   background-color: #fff3b8;
 }
 
-.prev-month, .next-month {
-  background-color: #d4d9d6;
+.date-list .prev-month p, .date-list .next-month p {
+  color: #a4a4a4;
 }
 
 .date-list .day {
@@ -184,28 +302,6 @@ input {
 .table.table-striped {
   width: 100%;
   height: 100%;
-}
-
-.shift-time {
-  text-align: center;
-  font-size: 16px;
-}
-
-.calendar-heading {
-  margin: 20px 0 28px 0;
-  text-align: center;
-}
-
-.calendar-title {
-  color: #5b5b5b;
-  font-size: 20px;
-}
-
-.fa-angle-double-left, .fa-angle-double-right {
-  text-decoration: none;
-  padding: 4px 2px 2px 2px;
-  color: #008db7;
-  font-size: 22px;
 }
 
 .shift-content {
@@ -285,7 +381,7 @@ input {
   box-shadow: 2px 2px 8px gray;
 }
 
-/* 週表示（シフト） */
+/* ----- 週表示（シフト） ----------------------------------- */
 .week-shift {
   width: 1200px;
   margin: 0 auto;
@@ -315,7 +411,7 @@ input {
   min-width: 120px;
 }
 
-/* 月表示（シフト） */
+/* ----- 月表示（シフト） --------------------------------------- */
 .month-shift {
   width: 1200px;
   margin: 0 auto;
@@ -346,10 +442,18 @@ input {
 }
 
 
-/* 月表示（カレンダー） */
+/* ----- 月表示（カレンダー） ----------------------------------- */
 .month-calendar {
   margin: 0 auto;
   width: 1200px;
+}
+
+.month-calendar-main .calendar-heading {
+  display: none;
+}
+
+.month-calendar .shift-title .calendar-heading {
+  margin-left: 5px;
 }
 
 .month-calendar .simple-calendar {
@@ -357,7 +461,42 @@ input {
 }
 
 .month-calendar .day {
-  height: 80px;
+  min-height: 100px;
+  height: calc((100vh - 170px) / 5);
+}
+
+.month-calendar-main .day {
+  width: calc(100% / 7);
+  padding: 4px;
+}
+
+.month-calendar-main thead:after {
+  content: "";
+  width: 100%;
+  display: block;
+  height: 5px;
+}
+
+.month-calendar-main .wday-name {
+  font-weight: 500;
+  color: #6f6f6f;
+  font-size: 14px;
+  padding: 4px;
+}
+
+.month-calendar-main .month-day{
+  color: #555555;
+  padding: 2px;
+  margin-bottom: 2px;
+  font-size: 14px;
+}
+
+.month-calendar-main .wday-0 .month-day{
+  color: #ff3b3b;
+}
+
+.month-calendar-main .wday-6 .month-day{
+  color: #3b7fff;
 }
 
 /* モーダル */

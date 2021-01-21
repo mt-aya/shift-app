@@ -1,8 +1,12 @@
 <div class="simple-calendar">
   <div class="calendar-heading">
-    <%= link_to t('simple_calendar.previous', default: ''), calendar.url_for_previous_view, class: "fas fa-angle-double-left" %>
-    <span class="calendar-title"><%= l(start_date, format: :year_month) %></span>
-    <%= link_to t('simple_calendar.next', default: ''), calendar.url_for_next_view, class: "fas fa-angle-double-right" %>
+    <p class="shift-prev">
+      <%= link_to t('simple_calendar.previous', default: ''), calendar.url_for_previous_view, class: "fas fa-caret-left" %>
+    </p>
+    <p class="shift-next">
+      <%= link_to t('simple_calendar.next', default: ''), calendar.url_for_next_view, class: "fas fa-caret-right" %>
+    </p>
+    <p class="calendar-title"><%= l(start_date, format: :year_month) %></p>
   </div>
 
   <table class="table table-striped">

@@ -10,7 +10,7 @@
       <ul class="board-list-pulldown" id="board-list-pulldown" style="display:none;">
         <% current_owner.boards.each do |board| %>
           <li class="pulldown-list-each-board">
-            <%= link_to board.name, board_shifts_path(board), class: "pulldown-board-link", id:"pulldown-board-link" %>
+            <%= link_to board.name, board_shifts_path(board), class: "pulldown-board-link", id: "pulldown-board-link" %>
           </li>
         <% end %>
       </ul>
@@ -33,34 +33,26 @@
     </div>
   </div>
 
-  <%# ヘッダー下 %>
-  <div class="under-board-header">
-    <div class="switch-bar">
-      <div id="switch-week" class="switch">
-        <%= link_to '週', "/boards/#{@board.id}/shifts/weekly" %>
-      </div>
-      <div id="switch-month" class="switch">
-        <%= link_to '月', "/boards/#{@board.id}/shifts/monthly" %>
-      </div>
-      <div id="switch-calendar" class="switch">
-        <%= link_to 'カレンダー', "/boards/#{@board.id}/shifts/calendar" %>
-      </div>
-    </div>
-  </div>
-
   <%# 月カレンダー %>
   <div class="month-calendar" id="month-calendar">
-    <%= month_calendar(events: @shifts) do |date, shifts| %>
-      <div class="month-day">
-        <%= date.day %>
-      </div>
-      <div class="month-day-staff">
-        <% shifts.each do |shift| %>
-          <% staff = StaffUser.find(shift.staff_user_id) %>
-          <%= "#{staff.last_name}" %>
-        <% end %>
-      </div>
-    <% end %>
+    <div class="shift-title">
+      <%= month_calendar do |date|%>
+      <% end %>
+      <%= render 'shared/switch_button' %>
+    </div>
+    <div class="month-calendar-main">
+      <%= month_calendar(events: @shifts) do |date, shifts| %>
+        <div class="month-day">
+          <%= date.day %>
+        </div>
+        <div class="month-day-staff">
+          <% shifts.each do |shift| %>
+            <% staff = StaffUser.find(shift.staff_user_id) %>
+            <%= "#{staff.last_name}" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
 
   <%# モーダルウィンドウ %>
