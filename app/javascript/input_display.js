@@ -6,7 +6,7 @@ if (location.pathname.match(`/boards/${gon.board_id}/shifts`)){
     shiftContents.forEach(function(content) {
       const shiftForm = content.querySelector(".shift-create-content");
       const formCancel = shiftForm.querySelector(".shift-create-form-cancel");
-      content.addEventListener("dblclick", (e) => {
+      content.addEventListener("click", (e) => {
         if(!e.target.closest(".shift-content-exist")){
           modalOverlay.style.display = "block";
           shiftForm.style.display = "block";

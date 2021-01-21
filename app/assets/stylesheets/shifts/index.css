@@ -4,115 +4,10 @@ input {
 
 #board-show-main {
   margin: 0;
-  height: 800px;
-  background-color: #f4f9ff;
+  height: 100%;
+  background-color: #fefefe;
   position: relative;
-}
-
-.board-show-header {
-  background-color: #eaf4ff;
-  height: 60px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.board-list-menu {
-  margin: 0 2px 0 6px;
-}
-
-.board-list-menu-btn {
-  padding: 3px;
-  transition: transform 0.25s ease-in-out;
-}
-
-.board-list-menu-btn:hover {
-  transform: scale(1.1);
-}
-
-.board-list-menu-btn:active {
-  transform: scale(.9);
-}
-
-.fa-angle-down {
-  color: #555555;
-  padding: 3px;
-}
-
-.board-list-pulldown {
-  position: absolute;
-  top: 44px;
-  left: 10px;
-  border: 1px solid #b8b8b8;
-  background-color: #ffffff;
-  width: 180px;
-  z-index: 2;
-  overflow: hidden;
-}
-
-.pulldown-list-each-board {
-  width: 100%;
-  margin-top: -1px;
-  border-top: 1px solid #b8b8b8;
-}
-
-.pulldown-board-link {
-  display: block;
-  width: 100%;
-  padding: 12px 8px;
-  text-decoration: none;
-  color: #dbdbdb;
-  opacity: 0.7;
-  font-size: 16px;
-  transition: opacity 0.3s, background-color 0.3s;
-}
-
-.pulldown-board-link:hover {
-  background-color: #eeeeee;
-  opacity: 1;
-}
-
-#board-name-text {
-  font-size: 22px;
-  color: #555555;
-  font-weight: bold;
-}
-
-.board-name-btn:hover {
-  cursor: pointer;
-}
-
-.board-name-btn {
-  margin: 0 10px 0 0;
-  padding: 4px;
-}
-
-#invite-btn {
-  color: #555555;
-  opacity: 0.6;
-  padding: 6px;
-  transition: opacity 0.3s
-}
-
-#invite-btn:hover {
-  opacity: 0.8;
-  cursor: pointer;
-}
-
-#invite-btn:active {
-  opacity: 1;
-}
-
-.staff-list-wrapper {
-  margin-left: 10px;
-  display: flex;
-}
-
-.under-board-header {
-  display: flex;
-  background-color: #eaf4ff;
-  padding: 6px 30px 0 30px;
-  height: 52px;
+  padding-top: 40px;
 }
 
 /* ----- シフト表共通 --------------------------------------- */
@@ -121,7 +16,7 @@ input {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 16px 0;
+  margin-bottom: 16px;
 }
 
 .shift-title .calendar-heading {
@@ -599,7 +494,7 @@ input {
   background-color: rgba(36, 42, 42, 0.1);
   z-index: 5;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   position: absolute;
   top: 0;
   padding-top: 110px;
