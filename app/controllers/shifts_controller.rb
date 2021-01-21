@@ -2,17 +2,9 @@ class ShiftsController < ApplicationController
   before_action :visit_staff_user
   before_action :authenticate_owner!
   before_action :correct_owner, only: [:index]
-  before_action :board_staff, only: [:index, :new]
-  before_action :index_set, only: [:monthly, :weekly, :calendar, :create, :update]
+  before_action :index_set, only: [:index, :monthly, :weekly, :calendar]
 
   def index
-    gon.board_id = @board.id
-    gon.board_name = @board.name
-    @board_staff = BoardStaff.new
-    @board_staffs = @board.staff_users
-    gon.board_staffs_id = @board_staffs.map { |s| s[:id] }
-    @shifts = @board.shifts
-    @shift = Shift.new
   end
 
   def monthly
@@ -31,7 +23,7 @@ class ShiftsController < ApplicationController
       @shift.save
       redirect_to request.referer
     else
-      render :index
+      redirect_to request.referer
     end
   end
 
@@ -40,14 +32,14 @@ class ShiftsController < ApplicationController
     if shift.update(shift_params)
       redirect_to request.referer
     else
-      render 'shifts/index'
+      redirect_to request.referer
     end
   end
 
   def destroy
     shift = Shift.find(params[:id])
     shift.destroy
-    redirect_to board_shifts_path(params[:board_id])
+    redirect_to request.referer
   end
 
   private
@@ -63,11 +55,6 @@ class ShiftsController < ApplicationController
   def correct_owner
     @board = Board.find(params[:board_id])
     redirect_to boards_path if current_owner.id != @board.owner.id
-  end
-
-  def board_staff
-    @board = Board.find(params[:board_id])
-    @staffs = @board.staff_users
   end
 
   def index_set

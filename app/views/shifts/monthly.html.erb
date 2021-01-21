@@ -59,66 +59,7 @@
           </div>
           <div class="staff-shift-group" data-staff=<%= staff.id %>>
             <%= month_calendar(events: staff.shifts.where(board_id: @board.id)) do |date, shifts| %>
-              <div class="shift-content" data-date=<%= l(date, format: :default) %>>
-                <div class="shift-time-wrapper">
-                  <% shifts.each do |shift| %>
-                    <div class="each-shift-time-content">
-                      <div class="one-shift-time">
-                        <p class="shift-time">
-                          <%= "#{l(shift.start_time, format: :short)} - #{l(shift.end_time, format: :short)}" %>
-                        </p>
-                        <div class="shift-menu-list-box">
-                          <ul class="shift-menu-list">
-                            <li class="shift-time-edit">
-                              <button type="button" class="fas fa-edit shift-edit-btn"></button>
-                            </li>
-                            <li class="shift-time-delete">
-                              <%= link_to '', "/boards/#{@board.id}/shifts/#{shift.id}", method: :delete, class: "far fa-trash-alt" %>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                      <%# シフト時間の編集 ここから %>
-                      <div class="shift-edit-content">
-                        <p><%= l(date, format: :long) %></p>
-                        <p><%= staff.last_name %><%= staff.first_name %></p>
-                        <%= form_with model: [@board, shift], local:true do |f| %>
-                          <%= hidden_field_tag :id, shift.id %>
-                          <%= hidden_field_tag :staff_user_id, staff.id %>
-                          <div class="shift-form-time-group">
-                            <%= f.time_select :start_time, class:"start-form-box", default: shift.start_time, minute_step: 5 %>
-                            <span>-</span>
-                            <%= f.time_select :end_time, class: "end-form-box", default: shift.end_time, minute_step: 5 %>
-                          </div>
-                          <%= f.submit '保存する', class: "shift-edit-form-submit" %>
-                          <button type="button" class="shift-edit-form-cancel">キャンセル</button>
-                        <% end %>
-                      </div>
-                      <%# シフト時間の編集 ここまで %>
-                    </div>
-                  <% end %>
-                  <div class="add-shift-place">
-                    <p class="add-shift">+</p>
-                  </div>
-                </div>
-                <%# シフトの追加ページ ここから %>
-                <div class="shift-create-content">
-                  <p><%= l(date, format: :long) %></p>
-                  <p><%= staff.last_name %><%= staff.first_name %></p>
-                  <%= form_with model: [@board, @shift], class: "shift-add-form" do |f| %>
-                    <%= render partial: 'shared/error_messages', locals: { model: f.object } %>
-                    <%= hidden_field_tag :staff_user_id, staff.id %>
-                    <div class="shift-form-time-group">
-                      <%= f.time_select :start_time, class:"start-form-box", default: date.in_time_zone, minute_step: 5 %>
-                      <span>-</span>
-                      <%= f.time_select :end_time, class: "end-form-box", default: date.in_time_zone, minute_step: 5 %>
-                    </div>
-                    <%= f.submit '保存する', class: "shift-create-form-submit" %>
-                    <button type="button" class="shift-create-form-cancel">キャンセル</button>
-                  <% end %>
-                </div>
-                <%# シフトの追加ページ ここまで %>
-              </div>
+              <%= render partial: 'shared/inner_shift_cell', locals: { date: date, shifts: shifts, staff: staff } %>
             <% end %>
           </div>
         </div>

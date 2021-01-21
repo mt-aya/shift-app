@@ -307,6 +307,7 @@ input {
 .shift-content {
   width: 100%;
   height: 100%;
+  padding: 2px;
 }
 
 .each-shift-time-content {
@@ -317,68 +318,145 @@ input {
 
 .one-shift-time {
   position: relative;
+  background-color: rgba(178, 231, 205, 0.6);
+  border-radius: 3px;
+  transition: all 0.3s;
   width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .shift-time {
-  font-size: 15px;
-  float: left;
-}
-
-.shift-down-icon-wrapper {
-  display: none;
-}
-
-.add-shift-place {
+  padding: 1px 0;
   width: 100%;
+  font-size: 14px;
+  color: #555555;
 }
 
-.add-shift {
-  font-size: 18px;
-  text-align: center;
-  margin: 0 auto;
-  width: 80%;
+.one-shift-time:hover {
+  cursor: default;
+  background-color: rgba(178, 231, 205, 1);
+}
+
+.shift-menu-icon {
   visibility: hidden;
-  cursor: pointer;
+  position: relative;
+  text-align: center;
+  padding: 0 4px;
 }
 
-.shift-menu-list-box {
-  position: absolute;
-  top: 0;
-  left: 110px;
-  z-index: 2;
-  display: none;
-  background-color: #ffffff;
+.one-shift-time:hover .shift-menu-icon {
+  visibility: visible;
+}
+
+.shift-menu-icon .fa-ellipsis-h {
+  font-size: 14px;
+  color:#44c360;
+  padding-left: 4px;
 }
 
 .shift-menu-list {
-  display: flex;
+  position: absolute;
+  font-size: 12px;
+  background-color: #ffffff;
+  width: 66px;
+  display: none;
+  z-index: 5;
 }
 
-.shift-create-content {
+.shift-menu-icon:hover .shift-menu-list {
+  display: block;
+}
+
+.shift-menu-delete, .shift-menu-edit {
+  padding: 3px 8px;
+  border: 1px solid #dbdbdb;
+  cursor: pointer;
+  color: #555555;
+}
+
+.shift-menu-delete {
+  border-top: none;
+}
+
+/* シフト追加・編集ページ */
+
+.shift-create-content, .shift-edit-content {
   position: absolute;
-  top: 200px;
+  top: 160px;
   left: 0;
   right: 0;
   margin: auto;
   display: none;
   background-color: #ffffff;
   z-index: 6;
-  width: 350px;
+  padding: 30px 30px 24px 30px;
+  width: 400px;
   box-shadow: 2px 2px 8px gray;
+  color: #555555;
+  border-radius: 6px;
 }
 
-.shift-edit-content {
-  position: absolute;
-  top: 200px;
-  left: 0;
-  right: 0;
-  margin: auto;
-  display: none;
-  background-color: #ffffff;
-  z-index: 6;
-  width: 350px;
-  box-shadow: 2px 2px 8px gray;
+.shift-create-content h3, .shift-edit-content h3 {
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+.form-head-shift-staff-name, .form-head-shift-date {
+  font-size: 16px;
+  margin: 8px 0;
+}
+
+#shift_start_time_4i, #shift_start_time_5i, #shift_end_time_4i, #shift_end_time_5i{
+  background-color: #eeeeee;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+#shift_start_time_5i {
+  margin-right: 6px;
+}
+
+#shift_end_time_4i {
+  margin-left: 6px;
+}
+
+.shift-form-time-group {
+  margin: 14px 0;
+}
+
+.shift-form-btn-group {
+  margin-top: 18px;
+  text-align: right;
+}
+
+.shift-edit-form-submit, .shift-create-form-submit {
+  outline: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  background-color: #7ad08d;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+
+.shift-edit-form-cancel, .shift-create-form-cancel {
+  outline: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  color: #7d7d7d;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+
+.shift-edit-form-submit:hover, .shift-create-form-submit:hover {
+  background-color: #41ad59;
+}
+
+.shift-edit-form-cancel:hover, .shift-create-form-cancel:hover {
+  background-color: #eeeeee;
 }
 
 /* ----- 週表示（シフト） ----------------------------------- */
@@ -389,16 +467,19 @@ input {
 
 .week-shift .shift-table {
   margin: 0 auto;
+  width: 100%;
 }
 
 .week-shift .date-list .day {
   height: 40px;
-  min-width: calc((1200px - 122px) / 7);
+  width: calc((1200px - 122px) / 7);
+  min-width: 140px;
 }
 
 .week-shift .staff-shift-group .day {
   height: 60px;
-  min-width: calc((1200px - 122px) / 7);
+  width: calc((1200px - 122px) / 7);
+  min-width: 140px;
 }
 
 .week-shift .empty {
