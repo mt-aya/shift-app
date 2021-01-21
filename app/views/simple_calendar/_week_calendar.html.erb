@@ -1,14 +1,25 @@
 <div class="simple-calendar">
   <div class="calendar-heading">
-    <%= link_to t('simple_calendar.previous', default: ''), calendar.url_for_previous_view, class: "fas fa-angle-double-left" %>
-    <% if calendar.number_of_weeks == 1 %>
-      <span class="calendar-title week-begin"><%= l(start_date.beginning_of_week, format: :long) %></span>
-      <span class="calendar-title center">-</span>
-      <span class="calendar-title week-end"><%= l(start_date.end_of_week, format: :long) %></span>
-    <%else%>
-        <span class="calendar-title">Week <%= calendar.week_number %> - <%= calendar.end_week %></span>
-    <%end%>
-      <%= link_to t('simple_calendar.next', default: ''), calendar.url_for_next_view, class: "fas fa-angle-double-right" %>
+    <p class="shift-prev">
+      <%= link_to t('simple_calendar.previous', default: ''), calendar.url_for_previous_view, class: "fas fa-caret-left" %>
+    </p>
+    <p class="shift-next">
+      <%= link_to t('simple_calendar.next', default: ''), calendar.url_for_next_view, class: "fas fa-caret-right" %>
+    </p>
+    <p class="calendar-title">
+      <% if calendar.number_of_weeks == 1 %>
+        <span class="calendar-title-sub week-begin"><%= l(start_date.beginning_of_week, format: :year_month) %></span>
+        <% if start_date.beginning_of_week.year != start_date.end_of_week.year %>
+          <span class="calendar-title-sub center">-</span>
+          <span class="calendar-title-sub week-end"><%= l(start_date.end_of_week, format: :year_month) %></span>
+        <% elsif start_date.beginning_of_week.month != start_date.end_of_week.month %>
+          <span class="calendar-title-sub center">-</span>
+          <span class="calendar-title-sub week-end"><%= "#{start_date.end_of_week.month}月" %></span>
+        <% end %>
+      <%else%>
+        <span class="calendar-title-sub">Week <%= calendar.week_number %> - <%= calendar.end_week %></span>
+      <%end%>
+    </p>
   </div>
 
   <table class="table table-striped">

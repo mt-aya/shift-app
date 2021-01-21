@@ -1,4 +1,114 @@
 header {
-  height: 50px;
-  background-color: #333333;
+  height: 60px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.board-show-header {
+  height: 100%;
+  width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.board-header-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.board-list-menu {
+  margin: 0 2px 0 6px;
+}
+
+.board-list-menu-btn {
+  padding: 3px;
+  transition: transform 0.25s ease-in-out;
+}
+
+.board-list-menu-btn:hover {
+  transform: scale(1.1);
+}
+
+.board-list-menu-btn:active {
+  transform: scale(.9);
+}
+
+.fa-angle-down {
+  color: #555555;
+  padding: 3px;
+}
+
+.board-list-pulldown {
+  position: absolute;
+  top: 58px;
+  border: 1px solid #b8b8b8;
+  background-color: #ffffff;
+  width: 180px;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.pulldown-list-each-board {
+  width: 100%;
+  margin-top: -1px;
+  border-top: 1px solid #b8b8b8;
+}
+
+.pulldown-board-link {
+  display: block;
+  width: 100%;
+  padding: 12px 8px;
+  text-decoration: none;
+  color: #666666;
+  opacity: 0.7;
+  font-size: 16px;
+  transition: opacity 0.3s, background-color 0.3s;
+}
+
+.pulldown-board-link:hover {
+  background-color: #eeeeee;
+  opacity: 1;
+}
+
+#board-name-text {
+  font-size: 22px;
+  color: #555555;
+  font-weight: bold;
+}
+
+.board-name-btn:hover {
+  cursor: pointer;
+}
+
+.board-name-btn {
+  margin: 0 10px 0 0;
+  padding: 4px;
+}
+
+#invite-btn {
+  color: #555555;
+  opacity: 0.6;
+  padding: 6px;
+  transition: opacity 0.3s
+}
+
+#invite-btn:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+#invite-btn:active {
+  opacity: 1;
+}
+
+.staff-list-wrapper {
+  margin-left: 10px;
+  display: flex;
+}
+
+.current-user-wrapper {
+  float:right;
 }

@@ -1,17 +1,40 @@
 <header>
-  <% if owner_signed_in? %>
-    <%= link_to "#{current_owner.last_name} #{current_owner.first_name}", boards_path, class: 'owner_name' %>
-    <%= link_to 'ログアウト', destroy_owner_session_path, method: :delete, class: "logout" %>
-  <% else %>
-    <div>
-      <p>管理者の方はこちらから</p>
-      <%= link_to 'ログイン', new_owner_session_path, class: "login" %>
-      <%= link_to '新規登録', new_owner_registration_path, class: "sign-up" %>
+  <div class='board-show-header'>
+    <div class="board-header-left">
+      <nav class="board-list-menu">
+        <div class="board-list-menu-btn" id="board-list-menu">
+          <i class="fas fa-angle-down fa-lg"></i>
+        </div>
+        <ul class="board-list-pulldown" id="board-list-pulldown" style="display:none;">
+          <% current_owner.boards.each do |board| %>
+            <li class="pulldown-list-each-board">
+              <%= link_to board.name, board_shifts_path(board), class: "pulldown-board-link", id:"pulldown-board-link" %>
+            </li>
+          <% end %>
+        </ul>
+      </nav>
+      <div class="board-name-btn" id="board-name-btn">
+        <h2 id="board-name-text"><%= @board.name %></p>
+      </div>
+
+      <div class="invite-btn-wrapper">
+        <i class="fas fa-user-plus lg" id="invite-btn"></i>
+      </div>
+
+      <div class="staff-list-wrapper">
+        <% @board_staffs.each do |staff| %>
+          <div class="member-list">
+            <%= link_to "#{staff.last_name}", "#", class: "board-staff-link" %>
+          </div>
+        <% end %>
+        <div id="add-staff"></div>
+      </div>
     </div>
-    <div>
-      <p>スタッフの方はこちらから</p>
-      <%= link_to 'ログイン', new_staff_user_session_path, class: "login" %>
-      <%= link_to '新規登録', new_staff_user_registration_path, class: "sign-up" %>
+    <div class="board-header-right">
+      <div class="current-user-wrapper">
+        <%= link_to "#{current_owner.last_name} #{current_owner.first_name}", boards_path, class: 'owner_name' %>
+        <%= link_to 'ログアウト', destroy_owner_session_path, method: :delete, class: "logout" %>
+      </div>
     </div>
-  <% end %>
+  </div>
 </header>

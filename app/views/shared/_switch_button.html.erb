@@ -1,0 +1,23 @@
+<div class="switch-bar">
+  <% if params[:start_date] == nil %>
+    <div id="switch-weekly" class="switch">
+      <%= link_to '週', "/boards/#{@board.id}/shifts/weekly" %>
+    </div>
+    <div id="switch-monthly" class="switch">
+      <%= link_to '月', "/boards/#{@board.id}/shifts/monthly" %>
+    </div>
+    <div id="switch-calendar" class="switch">
+      <%= link_to 'カレンダー', "/boards/#{@board.id}/shifts/calendar" %>
+    </div>
+  <% else %>
+    <div id="switch-weekly" class="switch">
+      <%= link_to '週', "/boards/#{@board.id}/shifts/weekly?start_date=#{params[:start_date]}" %>
+    </div>
+    <div id="switch-monthly" class="switch">
+      <%= link_to '月', "/boards/#{@board.id}/shifts/monthly?start_date=#{params[:start_date]}" %>
+    </div>
+    <div id="switch-calendar" class="switch">
+      <%= link_to 'カレンダー', "/boards/#{@board.id}/shifts/calendar?start_date=#{params[:start_date]}" %>
+    </div>
+  <% end %>
+</div>

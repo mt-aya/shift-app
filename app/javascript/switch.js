@@ -1,33 +1,22 @@
-if (location.pathname.match(`/boards/${gon.board_id}/shifts`)) {
+if (location.pathname.match(`/boards/${gon.board_id}/shifts/weekly`)){
   document.addEventListener("DOMContentLoaded", () => {
-    const monthBtn = document.getElementById("switch-month");
-    const weekBtn = document.getElementById("switch-week");
+    const weeklyBtn = document.getElementById("switch-weekly");
+    weeklyBtn.style.backgroundColor = "#7dcf8f";
+    weeklyBtn.style.fontWeight = "bold";
+    weeklyBtn.style.color = "#ffffff"
+  });
+} else if (location.pathname.match(`/boards/${gon.board_id}/shifts/monthly`)){
+  document.addEventListener("DOMContentLoaded", () => {
+    const monthlyBtn = document.getElementById("switch-monthly");
+    monthlyBtn.style.backgroundColor = "#7dcf8f";
+    monthlyBtn.style.fontWeight = "bold";
+    monthlyBtn.style.color = "#ffffff"
+  });
+} else if (location.pathname.match(`/boards/${gon.board_id}/shifts/calendar`)){
+  document.addEventListener("DOMContentLoaded", () => {
     const calendarBtn = document.getElementById("switch-calendar");
-
-    const monthShift = document.getElementById("month-shift");
-    const weekShift = document.getElementById("week-shift");
-    const monthCalendar = document.getElementById("month-calendar");
-
-    monthBtn.addEventListener('click', () => {
-      if (monthShift.style.display == "none") {
-        monthCalendar.style.display = "none";
-        weekShift.style.display = "none";
-        monthShift.style.display = "block";
-      }
-    });
-    weekBtn.addEventListener('click', () => {
-      if (weekShift.style.display == "none") {
-        monthCalendar.style.display = "none";
-        monthShift.style.display = "none";
-        weekShift.style.display = "block";
-      }
-    });
-    calendarBtn.addEventListener('click', () => {
-      if (monthCalendar.style.display == "none") {
-        monthShift.style.display = "none";
-        weekShift.style.display = "none";
-        monthCalendar.style.display = "block";
-      }
-    });
+    calendarBtn.style.backgroundColor = "#7dcf8f";
+    calendarBtn.style.fontWeight = "bold";
+    calendarBtn.style.color = "#ffffff"
   });
 }

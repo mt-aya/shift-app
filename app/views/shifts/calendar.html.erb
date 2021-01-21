@@ -1,35 +1,23 @@
 <%= render "shared/second_header" %>
 
 <div id='board-show-main'>
-  <%# 月 シフト %>
-  <div class="month-shift" id="month-shift">
+  <%# 月カレンダー %>
+  <div class="month-calendar" id="month-calendar">
     <div class="shift-title">
       <%= month_calendar do |date|%>
       <% end %>
       <%= render 'shared/switch_button' %>
     </div>
-    <div class="shift-table">
-      <div class="date-row">
-        <div class="empty"></div>
-        <div class="date-list">
-          <%= month_calendar do |date|%>
-            <p>
-              <span class="date-date"><%= date.day %></span>
-              (<span class="date-wday-name"><%= t('date.day_names')[date.wday] %></span>)
-            </p>
-          <% end %>
+    <div class="month-calendar-main">
+      <%= month_calendar(events: @shifts) do |date, shifts| %>
+        <div class="month-day">
+          <%= date.day %>
         </div>
-      </div>
-      <% @staffs.each do |staff| %>
-        <div class="staff-shift-list">
-          <div class="staff-cell">
-            <%= "#{staff.last_name} #{staff.first_name}" %>
-          </div>
-          <div class="staff-shift-group" data-staff=<%= staff.id %>>
-            <%= month_calendar(events: staff.shifts.where(board_id: @board.id)) do |date, shifts| %>
-              <%= render partial: 'shared/inner_shift_cell', locals: { date: date, shifts: shifts, staff: staff } %>
-            <% end %>
-          </div>
+        <div class="month-day-staff">
+          <% shifts.each do |shift| %>
+            <% staff = StaffUser.find(shift.staff_user_id) %>
+            <%= "#{staff.last_name}" %>
+          <% end %>
         </div>
       <% end %>
     </div>

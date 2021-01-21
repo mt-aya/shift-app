@@ -13,6 +13,12 @@ Rails.application.routes.draw do
       get 'search'
       post 'invite'
     end
-    resources :shifts, only: [:index, :create]
+    resources :shifts, only: [:index, :create, :update, :destroy] do
+      collection do
+        get 'weekly'
+        get 'monthly'
+        get 'calendar'
+      end
+    end
   end
 end

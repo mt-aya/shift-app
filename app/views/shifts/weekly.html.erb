@@ -1,10 +1,10 @@
 <%= render "shared/second_header" %>
 
 <div id='board-show-main'>
-  <%# 月 シフト %>
-  <div class="month-shift" id="month-shift">
+  <%# 週 シフト %>
+  <div class="week-shift" id="week-shift">
     <div class="shift-title">
-      <%= month_calendar do |date|%>
+      <%= week_calendar do |date|%>
       <% end %>
       <%= render 'shared/switch_button' %>
     </div>
@@ -12,7 +12,7 @@
       <div class="date-row">
         <div class="empty"></div>
         <div class="date-list">
-          <%= month_calendar do |date|%>
+          <%= week_calendar do |date|%>
             <p>
               <span class="date-date"><%= date.day %></span>
               (<span class="date-wday-name"><%= t('date.day_names')[date.wday] %></span>)
@@ -25,8 +25,8 @@
           <div class="staff-cell">
             <%= "#{staff.last_name} #{staff.first_name}" %>
           </div>
-          <div class="staff-shift-group" data-staff=<%= staff.id %>>
-            <%= month_calendar(events: staff.shifts.where(board_id: @board.id)) do |date, shifts| %>
+          <div class="staff-shift-group">
+            <%= week_calendar(events: staff.shifts) do |date, shifts| %>
               <%= render partial: 'shared/inner_shift_cell', locals: { date: date, shifts: shifts, staff: staff } %>
             <% end %>
           </div>
