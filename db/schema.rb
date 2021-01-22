@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_07_212045) do
+ActiveRecord::Schema.define(version: 2021_01_22_093402) do
 
   create_table "board_staff_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "board_id"
@@ -44,6 +44,18 @@ ActiveRecord::Schema.define(version: 2021_01_07_212045) do
     t.index ["reset_password_token"], name: "index_owners_on_reset_password_token", unique: true
   end
 
+  create_table "shift_requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.datetime "start_time", null: false
+    t.datetime "end_time", null: false
+    t.boolean "sibmited"
+    t.bigint "staff_user_id"
+    t.bigint "board_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["board_id"], name: "index_shift_requests_on_board_id"
+    t.index ["staff_user_id"], name: "index_shift_requests_on_staff_user_id"
+  end
+
   create_table "shifts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "start_time", null: false
     t.datetime "end_time", null: false
@@ -73,6 +85,8 @@ ActiveRecord::Schema.define(version: 2021_01_07_212045) do
   add_foreign_key "board_staff_users", "boards"
   add_foreign_key "board_staff_users", "staff_users"
   add_foreign_key "boards", "owners"
+  add_foreign_key "shift_requests", "boards"
+  add_foreign_key "shift_requests", "staff_users"
   add_foreign_key "shifts", "boards"
   add_foreign_key "shifts", "staff_users"
 end
