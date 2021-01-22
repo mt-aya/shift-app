@@ -1,4 +1,65 @@
-header {
+.header {
+  color: #ffffff;
+}
+
+.header__top {
+  background-color: rgba(34, 34, 34, 0.9);
+  border-bottom: 1px solid #555555;
+  height: 24px;
+}
+
+.header .header-content {
+  height: 100%;
+  padding: 0 8px;
+  max-width: 1300px;
+  min-width: 760px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main__header {
+  background-color: rgba(34, 34, 34, 0.9);
   height: 60px;
-  background-color: #333333;
+}
+
+.header__top a {
+  font-size: 12px;
+}
+
+.owner-link-mark {
+  margin-right: 6px;
+  font-size: 6px;
+}
+
+.main__header h1 {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.header__right .login, .header__right .sign-up {
+  margin-left: 20px;
+  padding: 6px 0;
+  display: inline-block;
+  position: relative;
+}
+
+.header__right .login::after, .header__right .sign-up::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: rgb(197, 194, 255);
+  transform-origin: bottom right;
+  transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+.header__right .login:hover::after, .header__right .sign-up:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }

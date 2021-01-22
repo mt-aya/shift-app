@@ -1,20 +1,38 @@
-<header>
-  <% if owner_signed_in? %>
-    <%= link_to "#{current_owner.last_name} #{current_owner.first_name}", boards_path, class: 'owner_name' %>
-    <%= link_to 'ログアウト', destroy_owner_session_path, method: :delete, class: "logout" %>
-  <% elsif staff_user_signed_in? %>
-    <%= link_to "#{current_staff_user.last_name} #{current_staff_user.first_name}", "#", class: 'staff_name' %>
-    <%= link_to 'ログアウト', destroy_staff_user_session_path, method: :delete, class: "logout" %>
-  <% else %>
-    <div>
-      <p>管理者の方はこちらから</p>
-      <%= link_to 'ログイン', new_owner_session_path, class: "login" %>
-      <%= link_to '新規登録', new_owner_registration_path, class: "sign-up" %>
-    </div>
-    <div>
-      <p>スタッフの方はこちらから</p>
-      <%= link_to 'ログイン', new_staff_user_session_path, class: "login" %>
-      <%= link_to '新規登録', new_staff_user_registration_path, class: "sign-up" %>
+<header class="header">
+  <% unless owner_signed_in? || staff_user_signed_in? %>
+    <div class="header__top">
+      <div class="header-content">
+        <div class="header__left">
+          <%= link_to new_owner_session_path, class: "header__top-owner" do %>
+            <span class="owner-link-mark">▶︎</span><span>事業主様はこちら</span>
+          <% end %>
+        </div>
+        <div class="header__right">
+          <%= link_to 'メールでのお問い合わせ', "#", class: "header__top-contact" %>
+        </div>
+      </div>
     </div>
   <% end %>
+
+  <div class="main__header">
+    <div class="header-content">
+      <div class="header__left">
+        <h1>ShiftLink</h1>
+      </div>
+      <div class="header__right">
+        <% if owner_signed_in? %>
+          <%= link_to "#{current_owner.last_name} #{current_owner.first_name}", boards_path, class: 'owner_name' %>
+          <%= link_to 'ログアウト', destroy_owner_session_path, method: :delete, class: "logout" %>
+        <% elsif staff_user_signed_in? %>
+          <%= link_to "#{current_staff_user.last_name} #{current_staff_user.first_name}", "#", class: 'staff_name' %>
+          <%= link_to 'ログアウト', destroy_staff_user_session_path, method: :delete, class: "logout" %>
+        <% else %>
+          <div>
+            <%= link_to 'ログイン', new_staff_user_session_path, class: "login" %>
+            <%= link_to 'アカウント登録', new_staff_user_registration_path, class: "sign-up" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </header>

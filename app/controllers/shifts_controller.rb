@@ -2,7 +2,7 @@ class ShiftsController < ApplicationController
   before_action :visit_staff_user
   before_action :authenticate_owner!
   before_action :correct_owner, only: [:index]
-  before_action :index_set, only: [:index, :monthly, :weekly, :calendar]
+  before_action :index_set, only: [:index, :monthly, :weekly, :calendar, :create]
 
   def index
   end

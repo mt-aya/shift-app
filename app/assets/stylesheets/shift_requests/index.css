@@ -1,0 +1,67 @@
+.top-wrapper {
+  padding: 70px 0;
+  background-attachment: fixed;
+  background-color: #6060ff;
+  background-position-y: center;
+  height:420px;
+  width: 100%;
+  color: white;
+}
+
+.calendar_monochromatic {
+  height: 280px;
+}
+
+.top-container {
+  margin: 0 auto;
+  max-width: 1000px;
+  min-width: 780px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
+.top-container h2 {
+  font-size: 20px;
+  text-shadow: 1px 1px 3px #444444;
+  margin-bottom: 4px;
+}
+
+.top-container h1 {
+  font-size: 40px;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px #444444;
+  margin-bottom: 12px;
+}
+
+.top-wrapper p {
+  margin-bottom: 3px;
+}
+
+.catch__left {
+  text-align: center;
+}
+
+.top-sign-up {
+  display: block;
+  padding: 15px 0;
+  width: 140px;
+  background-color: #c89600;
+  border-radius: 6px;
+  margin-right: 20px;
+}
+
+.top-login {
+  display: block;
+  padding: 15px 0;
+  width: 140px;
+  background-color: #ffffff;
+  border-radius: 6px;
+  color: #555555;
+}
+
+.top-wrapper .btn-wrapper {
+  margin: 50px 0 20px 0;
+  display: flex;
+}
