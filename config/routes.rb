@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     registrations: 'owners/registrations',
     sessions: 'owners/sessions'
   }
-  root to: 'boards#index'
+  root to: 'shift_requests#index'
   resources :boards, only: [:index, :create, :update] do
     member do
       get 'search'

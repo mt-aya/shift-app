@@ -36,30 +36,5 @@
   </div>
 
   <%# モーダルウィンドウ %>
-  <div id="board-show-modal">
-    <div id="board-edit-content">
-      <button type="button" class="modal-close-btn" id="edit-close-btn">×</button>
-      <%= form_with model: @board, url: "/boards/#{@board.id}", id: "edit-form" do |f| %>
-        <h3 class="edit-header-text">シフトボード名の変更</h3>
-        <%= f.text_field :name, id: "board-edit-name" %>
-        <%= f.submit '変更する', id: "edit-submit-btn" %>
-      <% end %>
-    </div>
-
-    <div id="board-invite-content">
-      <button type="button" class="modal-close-btn" id="invite-close-btn">×</button>
-      <h3 class="invite-header-text">ボードに招待</h3>
-      <%= form_with model: @board_staff, url: "/boards/#{@board.id}/search", id: "invite-form" do |f| %>
-        <div class="search-staff-name-group">
-          <%= f.label :id_name, 'ユーザーID' %>
-          <%= f.text_field :id_name, id: "invite-staff-name" %>
-        </div>
-        <button type="button" id="search-staff-btn">検索する</button>
-        <p id="result-staff-name"></p>
-        <p id="result-message"></p>
-        <button  type="button", id="invite-staff-submit" >招待する</button>
-      <% end %>
-    </div>
-  </div>
-
+  <%= render 'shared/modal' %>
 </div>

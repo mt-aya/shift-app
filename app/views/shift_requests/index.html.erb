@@ -1,0 +1,24 @@
+<%= render 'shared/header' %>
+<% if staff_user_signed_in? %>
+<% else %>
+  <div class="home-main">
+    <div class="top-wrapper">
+      <div class="top-container">
+        <div class="catch__left">
+          <h2>シフト管理が、カンタンに</h2>
+          <h1>ShiftLink</h1>
+          <p>ここに文章が入ります。ここに文章が入ります。</p>
+          <p>ここに文章が入ります。</>
+          <div class="btn-wrapper">
+            <%= link_to 'アカウント登録', new_staff_user_registration_path, class: "top-sign-up" %>
+            <%= link_to 'ログイン', new_staff_user_session_path, class: "top-login" %>
+          </div>
+        </div>
+        <div class="catch__right">
+          <%= embedded_svg("Calendar_Monochromatic.svg", class: "calendar_monochromatic", alt: "top-image") %>
+        </div>
+      </div>
+    </div>
+    <div class="service"></div>
+  </div>
+<% end %>
