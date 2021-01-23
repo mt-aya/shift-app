@@ -6,10 +6,10 @@
 require("@rails/ujs").start()
 require("@rails/activestorage").start()
 require("channels")
-require("../modal_board")
-require("../board_list")
-require("../input_display")
 require("../switch")
+require("../modal_board")
+require("../input_display")
+
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference

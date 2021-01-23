@@ -2,13 +2,13 @@
 
 <% if staff_user_signed_in? %>
   <div class="staff-main">
-    <div class="staff-calendar" id="requested-shift-calendar">
+    <div class="staff-calendar" id="requested-shift-calendar" style="display:none;">
       <div class="shift-title">
         <%= month_calendar do |date| %>
         <% end %>
         <div class="calendar-switch-btn-group">
-          <button type="button" class="switch-shift__left">希望シフト</button>
-          <button type="button" class="switch-shift__right">確定済シフト</button>
+          <button type="button" class="switch-shift__right" id="r_f-btn">確定済シフト</button>
+          <button type="button" class="switch-shift__left" id="r_r-btn">希望シフト</button>
         </div>
       </div>
       <div class="month-calendar-main">
@@ -31,8 +31,8 @@
         <%= month_calendar do |date|%>
         <% end %>
         <div class="calendar-switch-btn-group">
-          <button type="button" class="switch-shift__left">希望シフト</button>
-          <button type="button" class="switch-shift__right">確定済シフト</button>
+          <button type="button" class="switch-shift__right" id="f_f-btn">確定済シフト</button>
+          <button type="button" class="switch-shift__left" id="f_r-btn">希望シフト</button>
         </div>
       </div>
       <div class="month-calendar-main">
