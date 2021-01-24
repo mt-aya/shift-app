@@ -13,14 +13,36 @@
       </div>
       <div class="month-calendar-main">
         <%= month_calendar(events: @shift_requests) do |date, shift_requests| %>
-          <div class="month-day">
-            <%= date.day %>
-          </div>
-          <div class="month-day-staff">
-            <% shift_requests.each do |shift_request| %>
-              <%= shift_requests.board.name %>
-              <%= "#{l(shift_request.start_time, format: :short)} - #{l(shift_request.end_time, format: :short)}" %>
-            <% end %>
+          <div class="staff-date-content">
+            <div class="month-day">
+              <%= date.day %>
+            </div>
+            <div class="except-month-day">
+              <div class="month-day-staff">
+                <% shift_requests.each do |shift_request| %>
+                  <%= shift_requests.board.name %>
+                  <%= "#{l(shift_request.start_time, format: :short)} - #{l(shift_request.end_time, format: :short)}" %>
+                <% end %>
+              </div>
+              <div class="shift-request-add">
+                <%= form_with model: @shift, local: true do |f| %>
+                  <h3>シフト希望の追加</h3>
+                  <%= hidden_field_tag :staff_user_id, current_staff_user.id %>
+                  <div class="staff-board-select">
+                    <%= f.collection_select :board_id, current_staff_user.boards, :id, :name, { include_blank: '選択してください' }, { required: true } %>
+                  </div>
+                  <div class="shift-form-time-group">
+                    <%= f.time_select :start_time, class:"start-form-box", default: date.in_time_zone, minute_step: 5 %>
+                    <span>-</span>
+                    <%= f.time_select :end_time, class: "end-form-box", default: date.in_time_zone, minute_step: 5 %>
+                  </div>
+                  <div class="staff-form-btn-group">
+                    <button type="button" class="staff-add-shift-cancel">キャンセル</button>
+                    <%= f.submit '保存', class: "staff-add-shift-submit" %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
           </div>
         <% end %>
       </div>
@@ -50,7 +72,7 @@
       </div>
     </div>
   </div>
-
+  <div id="staff-modal-overlay"></div>
 
 <% else %>
   <div class="home-main">

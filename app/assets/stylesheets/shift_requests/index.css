@@ -1,8 +1,8 @@
 /* スタッフログイン後メイン ----------------------------------------- */
 .staff-main {
   height: calc(100vh - 60px);
+  position: relative;
 }
-
 
 /* 切り替えボタン */
 .calendar-switch-btn-group {
@@ -91,6 +91,45 @@
 
 .month-day-staff {
   font-size: 14px;
+}
+
+.staff-date-content {
+  height: 100%;
+  width: 100%;
+}
+
+/* 希望追加 */
+.shift-request-add {
+  position: absolute;
+  top: 160px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: none;
+  background-color: #ffffff;
+  z-index: 6;
+  padding: 30px 30px 24px 30px;
+  width: 400px;
+  box-shadow: 2px 2px 8px gray;
+  color: #555555;
+  border-radius: 6px;
+}
+
+#_start_time_4i, #_start_time_5i, #_end_time_4i, #_end_time_5i {
+  background-color: #eeeeee;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+/* モーダル ------------------------------------------------------ */
+#staff-modal-overlay {
+  position:absolute;
+  z-index: 5;
+  background-color: rgba(36, 42, 42, 0.2);
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  display: none;
 }
 
 /* 紹介ページ ----------------------------------------------------- */

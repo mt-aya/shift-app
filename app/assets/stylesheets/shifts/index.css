@@ -296,7 +296,7 @@
   border-radius: 6px;
 }
 
-.shift-create-content h3, .shift-edit-content h3, #board-edit-content h3 {
+.shift-create-content h3, .shift-edit-content h3, #board-edit-content h3, .shift-request-add h3 {
   font-size: 20px;
   margin-bottom: 16px;
 }
@@ -306,17 +306,17 @@
   margin: 8px 0;
 }
 
-#shift_start_time_4i, #shift_start_time_5i, #shift_end_time_4i, #shift_end_time_5i{
+#shift_start_time_4i, #shift_start_time_5i, #shift_end_time_4i, #shift_end_time_5i {
   background-color: #eeeeee;
   padding: 4px 8px;
   border-radius: 4px;
 }
 
-#shift_start_time_5i {
+#shift_start_time_5i, #_start_time_5i {
   margin-right: 6px;
 }
 
-#shift_end_time_4i {
+#shift_end_time_4i, #_end_time_4i {
   margin-left: 6px;
 }
 
@@ -324,7 +324,7 @@
   margin: 14px 0;
 }
 
-.shift-form-btn-group, .board-edit-btn-group {
+.shift-form-btn-group, .board-edit-btn-group, .staff-form-btn-group {
   margin-top: 18px;
   text-align: right;
 }
