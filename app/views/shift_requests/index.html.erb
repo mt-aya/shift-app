@@ -1,5 +1,78 @@
 <%= render 'shared/header' %>
+
 <% if staff_user_signed_in? %>
+  <div class="staff-main">
+    <div class="staff-calendar" id="requested-shift-calendar" style="display:none;">
+      <div class="shift-title">
+        <%= month_calendar do |date| %>
+        <% end %>
+        <div class="calendar-switch-btn-group">
+          <button type="button" class="switch-shift__right" id="r_f-btn">確定済シフト</button>
+          <button type="button" class="switch-shift__left" id="r_r-btn">希望シフト</button>
+        </div>
+      </div>
+      <div class="month-calendar-main">
+        <%= month_calendar(events: @shift_requests) do |date, shift_requests| %>
+          <div class="staff-date-content">
+            <div class="month-day">
+              <%= date.day %>
+            </div>
+            <div class="except-month-day">
+              <div class="month-day-staff">
+                <% shift_requests.each do |shift_request| %>
+                  <%= shift_request.board.name %>
+                  <%= "#{l(shift_request.start_time, format: :short)} - #{l(shift_request.end_time, format: :short)}" %>
+                <% end %>
+              </div>
+              <div class="shift-request-add">
+                <%= form_with model: @shift_request, url: shift_requests_path, local: true do |f| %>
+                  <h3>シフト希望の追加</h3>
+                  <div class="staff-board-select">
+                    <%= f.collection_select :board_id, current_staff_user.boards, :id, :name, { include_blank: '選択してください' }, { required: true } %>
+                  </div>
+                  <div class="shift-form-time-group">
+                    <%= f.time_select :start_time, class:"start-form-box", default: date.in_time_zone, minute_step: 5 %>
+                    <span>-</span>
+                    <%= f.time_select :end_time, class: "end-form-box", default: date.in_time_zone, minute_step: 5 %>
+                  </div>
+                  <div class="staff-form-btn-group">
+                    <button type="button" class="staff-add-shift-cancel">キャンセル</button>
+                    <%= f.submit '保存', class: "staff-add-shift-submit" %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="staff-calendar" id="fixed-shift-calendar">
+      <div class="shift-title">
+        <%= month_calendar do |date|%>
+        <% end %>
+        <div class="calendar-switch-btn-group">
+          <button type="button" class="switch-shift__right" id="f_f-btn">確定済シフト</button>
+          <button type="button" class="switch-shift__left" id="f_r-btn">希望シフト</button>
+        </div>
+      </div>
+      <div class="month-calendar-main">
+        <%= month_calendar(events: @shifts) do |date, shifts| %>
+          <div class="month-day">
+            <%= date.day %>
+          </div>
+          <div class="month-day-staff">
+            <% shifts.each do |shift| %>
+              <%= shift.board.name %>
+              <%= "#{l(shift.start_time, format: :short)} - #{l(shift.end_time, format: :short)}" %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div id="staff-modal-overlay"></div>
+
 <% else %>
   <div class="home-main">
     <div class="top-wrapper">
@@ -8,7 +81,7 @@
           <h2>シフト管理が、カンタンに</h2>
           <h1>ShiftLink</h1>
           <p>ここに文章が入ります。ここに文章が入ります。</p>
-          <p>ここに文章が入ります。</>
+          <p>ここに文章が入ります。</p>
           <div class="btn-wrapper">
             <%= link_to 'アカウント登録', new_staff_user_registration_path, class: "top-sign-up" %>
             <%= link_to 'ログイン', new_staff_user_session_path, class: "top-login" %>

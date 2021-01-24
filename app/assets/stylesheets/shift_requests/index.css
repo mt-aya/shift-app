@@ -1,3 +1,138 @@
+/* スタッフログイン後メイン ----------------------------------------- */
+.staff-main {
+  height: calc(100vh - 60px);
+  position: relative;
+}
+
+/* 切り替えボタン */
+.calendar-switch-btn-group {
+  display: flex;
+  justify-content: center;
+  margin-right: 5px;
+}
+
+.switch-shift__left, .switch-shift__right {
+  font-size: 15px;
+  padding: 6px 0;
+  width: 116px;
+  text-align: center;
+  background-color: #ececec;
+  color: #555555;
+}
+
+
+.switch-shift__left {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.switch-shift__right {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.switch-shift__left:hover, .switch-shift__right:hover {
+  background-color: #d5e7f2;
+  color: #4a9ac3;
+}
+
+.switch-shift__left:active, .switch-shift__right:active {
+  background-color: #edf8ff;
+  color: #4a9ac3;
+}
+
+/* .カレンダー */
+.staff-calendar {
+  max-width: 1300px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.staff-calendar .simple-calendar {
+  height: 100%;
+}
+
+/* カレンダー上部 */
+.staff-calendar .calendar-heading {
+  height: 110px;
+  display: flex;
+  align-items: center;
+}
+
+.staff-calendar .shift-prev {
+  margin-left: 5px;
+}
+
+.staff-calendar .shift-prev:hover, .staff-calendar .shift-next:hover {
+  background-color: #d2e5f1;
+}
+
+.staff-calendar .shift-prev:hover a, .staff-calendar .shift-next:hover a {
+  color: #4a9ac3;
+}
+
+.staff-calendar .shift-prev:active, .staff-calendar .shift-next:active {
+  background-color: #edf8ff;
+}
+
+/* カレンダーメイン部分 */
+.staff-calendar .month-calendar-main {
+  height: calc(100% - 111px);
+}
+
+.staff-calendar .shift-title .calendar-heading {
+  margin: 0;
+}
+
+.staff-calendar .shift-title {
+  margin: 0;
+}
+
+.month-day-staff {
+  font-size: 14px;
+}
+
+.staff-date-content {
+  height: 100%;
+  width: 100%;
+}
+
+/* 希望追加 */
+.shift-request-add {
+  position: absolute;
+  top: 160px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: none;
+  background-color: #ffffff;
+  z-index: 6;
+  padding: 30px 30px 24px 30px;
+  width: 400px;
+  box-shadow: 2px 2px 8px gray;
+  color: #555555;
+  border-radius: 6px;
+}
+
+#shift_request_start_time_4i, #shift_request_start_time_5i, #shift_request_end_time_4i, #shift_request_end_time_5i {
+  background-color: #eeeeee;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+/* モーダル ------------------------------------------------------ */
+#staff-modal-overlay {
+  position:absolute;
+  z-index: 5;
+  background-color: rgba(36, 42, 42, 0.2);
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  display: none;
+}
+
+/* 紹介ページ ----------------------------------------------------- */
 .top-wrapper {
   padding: 70px 0;
   background-attachment: fixed;

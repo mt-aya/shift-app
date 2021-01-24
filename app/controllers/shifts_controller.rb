@@ -45,7 +45,7 @@ class ShiftsController < ApplicationController
   private
 
   def shift_params
-    params.require(:shift).permit(:start_time, :end_time,).merge(staff_user_id: params[:staff_user_id], board_id: params[:board_id])
+    params.require(:shift).permit(:start_time, :end_time).merge(staff_user_id: params[:staff_user_id], board_id: params[:board_id])
   end
 
   def visit_staff_user
