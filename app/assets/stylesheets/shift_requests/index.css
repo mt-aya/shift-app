@@ -115,7 +115,7 @@
   border-radius: 6px;
 }
 
-#_start_time_4i, #_start_time_5i, #_end_time_4i, #_end_time_5i {
+#shift_request_start_time_4i, #shift_request_start_time_5i, #shift_request_end_time_4i, #shift_request_end_time_5i {
   background-color: #eeeeee;
   padding: 4px 8px;
   border-radius: 4px;

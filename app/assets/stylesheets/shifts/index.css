@@ -312,11 +312,11 @@
   border-radius: 4px;
 }
 
-#shift_start_time_5i, #_start_time_5i {
+#shift_start_time_5i, #shift_request_start_time_5i {
   margin-right: 6px;
 }
 
-#shift_end_time_4i, #_end_time_4i {
+#shift_end_time_4i, #shift_request_end_time_4i {
   margin-left: 6px;
 }
 

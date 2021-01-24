@@ -20,14 +20,13 @@
             <div class="except-month-day">
               <div class="month-day-staff">
                 <% shift_requests.each do |shift_request| %>
-                  <%= shift_requests.board.name %>
+                  <%= shift_request.board.name %>
                   <%= "#{l(shift_request.start_time, format: :short)} - #{l(shift_request.end_time, format: :short)}" %>
                 <% end %>
               </div>
               <div class="shift-request-add">
-                <%= form_with model: @shift, local: true do |f| %>
+                <%= form_with model: @shift_request, url: shift_requests_path, local: true do |f| %>
                   <h3>シフト希望の追加</h3>
-                  <%= hidden_field_tag :staff_user_id, current_staff_user.id %>
                   <div class="staff-board-select">
                     <%= f.collection_select :board_id, current_staff_user.boards, :id, :name, { include_blank: '選択してください' }, { required: true } %>
                   </div>

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     sessions: 'owners/sessions'
   }
   root to: 'shift_requests#index'
-  resources :shift_requests, only: [:index]
+  resources :shift_requests, only: [:index, :create]
   resources :boards, only: [:index, :create, :update] do
     member do
       get 'search'
