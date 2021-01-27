@@ -33,43 +33,43 @@ RSpec.describe Owner, type: :model do
       it 'emailが空だと登録できない' do
         @owner.email = ''
         @owner.valid?
-        expect(@owner.errors.full_messages).to include("Email can't be blank")
+        expect(@owner.errors.full_messages).to include("Eメールを入力してください")
       end
 
       it 'passwordが空だと登録できない' do
         @owner.password = ''
         @owner.valid?
-        expect(@owner.errors.full_messages).to include("Password can't be blank")
+        expect(@owner.errors.full_messages).to include("パスワードを入力してください")
       end
 
       it 'passwordが存在していてもpassword_confirmationが空だと登録できない' do
         @owner.password_confirmation = ''
         @owner.valid?
-        expect(@owner.errors.full_messages).to include("Password confirmation doesn't match Password")
+        expect(@owner.errors.full_messages).to include("パスワード（確認用）とパスワードの入力が一致しません")
       end
 
       it 'companyが空だと登録できない' do
         @owner.company = ''
         @owner.valid?
-        expect(@owner.errors.full_messages).to include("Company can't be blank")
+        expect(@owner.errors.full_messages).to include("会社名を入力してください")
       end
 
       it 'last_nameが空だと登録できない' do
         @owner.last_name = ''
         @owner.valid?
-        expect(@owner.errors.full_messages).to include("Last name can't be blank")
+        expect(@owner.errors.full_messages).to include("お名前（姓）を入力してください")
       end
 
       it 'first_nameが空だと保存できない' do
         @owner.first_name = ''
         @owner.valid?
-        expect(@owner.errors.full_messages).to include("First name can't be blank")
+        expect(@owner.errors.full_messages).to include("お名前（名）を入力してください")
       end
 
       it 'emailは@が含まれていないと登録できない' do
         @owner.email = 'email'
         @owner.valid?
-        expect(@owner.errors.full_messages).to include('Email is invalid')
+        expect(@owner.errors.full_messages).to include('Eメールは不正な値です')
       end
 
       it 'passwordは数字だけでは登録できない' do
@@ -77,7 +77,7 @@ RSpec.describe Owner, type: :model do
         @owner.password = owner_password
         @owner.password_confirmation = owner_password
         @owner.valid?
-        expect(@owner.errors.full_messages).to include('Password is invalid')
+        expect(@owner.errors.full_messages).to include('パスワードは不正な値です')
       end
 
       it 'passwordは英字だけでは登録できない' do
@@ -85,7 +85,7 @@ RSpec.describe Owner, type: :model do
         @owner.password = owner_password
         @owner.password_confirmation = owner_password
         @owner.valid?
-        expect(@owner.errors.full_messages).to include('Password is invalid')
+        expect(@owner.errors.full_messages).to include('パスワードは不正な値です')
       end
 
       it 'passwordは英・数字混合でも5文字以下だと登録できない' do
@@ -93,7 +93,7 @@ RSpec.describe Owner, type: :model do
         @owner.password = owner_password
         @owner.password_confirmation = owner_password
         @owner.valid?
-        expect(@owner.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
+        expect(@owner.errors.full_messages).to include('パスワードは6文字以上で入力してください')
       end
 
       it '重複したemailが既に存在する場合は登録できない' do
@@ -101,19 +101,19 @@ RSpec.describe Owner, type: :model do
         another_owner = FactoryBot.build(:owner)
         another_owner.email = @owner.email
         another_owner.valid?
-        expect(another_owner.errors.full_messages).to include('Email has already been taken')
+        expect(another_owner.errors.full_messages).to include('Eメールはすでに存在します')
       end
 
       it 'last_nameは半角だと登録できない' do
         @owner.last_name = 'hankaku'
         @owner.valid?
-        expect(@owner.errors.full_messages).to include('Last name is invalid')
+        expect(@owner.errors.full_messages).to include('お名前（姓）は全角文字で入力してください')
       end
 
       it 'first_nameは半角だと登録できない' do
         @owner.first_name = 'hankaku'
         @owner.valid?
-        expect(@owner.errors.full_messages).to include('First name is invalid')
+        expect(@owner.errors.full_messages).to include('お名前（名）は全角文字で入力してください')
       end
     end
   end

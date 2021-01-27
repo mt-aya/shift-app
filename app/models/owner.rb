@@ -10,7 +10,7 @@ class Owner < ApplicationRecord
   VALID_NAME_REGEX = /\A[ぁ-んァ-ヶ一-龥々]+\z/.freeze   # 全角ひらがな、カタカナ、漢字
   validates :password, format: { with: VALID_PASSWORD_REGEX }
   validates :company, presence: true
-  with_options presence: true, format: { with: VALID_NAME_REGEX } do
+  with_options presence: true, format: { with: VALID_NAME_REGEX, message: :invalid_zenkaku_name } do
     validates :last_name
     validates :first_name
   end

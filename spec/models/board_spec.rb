@@ -16,13 +16,13 @@ RSpec.describe Board, type: :model do
       it 'nameが空だと保存できない' do
         @board.name = ''
         @board.valid?
-        expect(@board.errors.full_messages).to include("Name can't be blank")
+        expect(@board.errors.full_messages).to include("シフトボード名を入力してください")
       end
 
       it 'ownerが紐付いていないと保存できない' do
         @board.owner = nil
         @board.valid?
-        expect(@board.errors.full_messages).to include('Owner must exist')
+        expect(@board.errors.full_messages).to include('シフト管理者を入力してください')
       end
     end
   end
