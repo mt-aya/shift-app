@@ -25,4 +25,4 @@ services:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: root
     volumes:
-      - ./tmp/db:/var/lib/mysql
+      - mysql-data:/var/lib/mysql
