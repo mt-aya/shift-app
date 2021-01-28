@@ -9,4 +9,4 @@ WORKDIR /shift-app
 COPY Gemfile Gemfile.lock /shift-app/
 RUN bundle install
 COPY . /shift-app/
-CMD [ "raild", "s" ]
+CMD [ "raild", "s"]
