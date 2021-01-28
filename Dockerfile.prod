@@ -8,6 +8,5 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
 WORKDIR /shift-app
 COPY Gemfile Gemfile.lock /shift-app/
 RUN bundle install
-COPY . .
-RUN bundle exec rails assets:precompile
+COPY . /shift-app/
 CMD [ "raild", "s" ]
