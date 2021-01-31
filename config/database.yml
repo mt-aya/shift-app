@@ -27,6 +27,7 @@ development:
 test:
   <<: *default
   database: shift_app_test
+  host: <%= ENV.fetch("SHIFT_APP_DATABASE_HOST") { 'db' } %>
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -44,11 +45,12 @@ test:
 #
 # You can use this database configuration with:
 #
-production:
-  url: <%= ENV['DATABASE_URL'] %>
-#
 # production:
-#   <<: *default
-#   database: shift_app_production
-#   username: shift_app
-#   password: <%= ENV['SHIFT_APP_DATABASE_PASSWORD'] %>
+#   url: <%= ENV['DATABASE_URL'] %>
+#
+production:
+  <<: *default
+  database: <%= ENV['SHIFT_APP_DATABASE'] %>
+  username: <%= ENV['SHIFT_APP_DATABASE_USERNAME'] %>
+  password: <%= ENV['SHIFT_APP_DATABASE_PASSWORD'] %>
+  host: <%= ENV['SHIFT_APP_DATABASE_HOST'] %>
