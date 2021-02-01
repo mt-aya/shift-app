@@ -4,7 +4,7 @@
   <% end %>
   <div class="login-wrapper">
     <h2>シフト管理者としてログイン</h2>
-    <%= form_with model:@owner, url: owner_session_path, class: "session-main", local: true do |f| %>
+    <%= form_with model: @owner, url: owner_session_path, class: "session-main", local: true do |f| %>
       <div class="form-wrapper">
         <div class="login-flass-message">
           <%= flash[:notice] %>
