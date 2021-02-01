@@ -34,12 +34,10 @@
   align-items: center;
 }
 
-
-
 .sign h2 {
   font-size: 20px;
   padding: 0 10px;
-  margin-bottom: 8px;
+  margin-bottom: 13px;
 }
 
 .session-main, .registration-main {
@@ -53,7 +51,7 @@
 }
 
 .form-group {
-  margin: 0 20px 16px;
+  margin: 0 30px 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -112,7 +110,7 @@
 }
 
 .staff-signup-btn, .staff-login-btn {
-  background-color: #4a9ac3;
+  background-color: #47bef9;
 }
 
 .owner-registration-link, .owner-login-link {
@@ -121,7 +119,7 @@
 }
 
 .staff-registration-link, .staff-login-link {
-  color: #4a9ac3;
+  color: #4ea6d2;
   text-decoration: underline;
 }
 

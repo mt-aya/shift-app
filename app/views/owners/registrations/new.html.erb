@@ -5,9 +5,9 @@
   <div class="signup-wrapper">
     <h2 class="form-header-text">シフト管理者アカウント登録</h2>
     <%= form_with model: @owner, url: owner_registration_path, class: 'registration-main', local: true do |f| %>
-      <%= render "shared/error_messages", locals: { model: f.object } %>
-
       <div class="form-wrapper">
+        <%= render "shared/error_messages", locals: { model: f.object } %>
+
         <div class="form-group">
           <div class="form-text-wrapper">
             <%= f.label :email, "メールアドレス", class: "form-text" %>
