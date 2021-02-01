@@ -1,0 +1,128 @@
+.sign {
+  padding: 50px 0;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.owner-session, .owner-reg {
+  background-color: #eeeeee;
+}
+
+.staff-session, .staff-reg {
+  background-color: #a1d8e6;
+}
+
+.sign h1 {
+  color: #555555;
+  font-size: 42px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.login-wrapper, .signup-wrapper {
+  margin-top: 30px;
+  padding: 20px 8px;
+  background-color: #ffffff;
+  border-radius: 6px;
+  box-shadow: 2px 2px 4px #8da0b6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sign h2 {
+  font-size: 20px;
+  padding: 0 10px;
+  margin-bottom: 13px;
+}
+
+.session-main, .registration-main {
+  padding: 30px 0;
+  border-top: 1px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-group {
+  margin: 0 30px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input-wrapper {
+  margin-left: 20px;
+  width: 220px;
+}
+
+.input-default {
+  border: 1px solid #d4d9df;
+  width: 100%;
+  padding: 4px;
+  font-size: 15px;
+}
+
+.input-name-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-name {
+  border: 1px solid #d4d9df;
+  display: block;
+  width: 48%;
+  padding: 4px;
+  font-size: 15px;
+}
+
+.form-notice {
+  font-size: 12px;
+}
+
+.indispensable {
+  background-color: rgb(255, 149, 0);
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 12px;
+  padding: 4px 6px;
+}
+
+.actions {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.actions input {
+  padding: 10px 36px;
+  border-radius: 6px;
+  color: #ffffff;
+}
+
+.owner-signup-btn, .owner-login-btn {
+  background-color: #41ad59;
+}
+
+.staff-signup-btn, .staff-login-btn {
+  background-color: #47bef9;
+}
+
+.owner-registration-link, .owner-login-link {
+  color: #41ad59;
+  text-decoration: underline;
+}
+
+.staff-registration-link, .staff-login-link {
+  color: #4ea6d2;
+  text-decoration: underline;
+}
+
+.login-u-box {
+  margin-top: 16px;
+}

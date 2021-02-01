@@ -1,28 +1,41 @@
-<h2 class="form-header-text">Shift Linkにログイン</h2>
+<div class="staff-session sign">
+  <%= link_to root_path do %>
+    <h1>ShiftLink</h1>
+  <% end %>
+  <div class="login-wrapper">
+    <h2>ShiftLinkにログイン</h2>
+    <%= form_with model: @staff_user, url: staff_user_session_path, class: "session-main", local: true do |f| %>
+      <div class="form-wrapper">
+        <div class="login-flass-message">
+          <%= flash[:notice] %>
+          <%= flash[:alert] %>
+        </div>
 
-<%= form_with model:@staff_user, url: staff_user_session_path, class: "session-main", local: true do |f| %>
-  <div class="form-wrapper">
-    <div class="login-flass-message">
-      <%= flash[:notice] %>
-      <%= flash[:alert] %>
-    </div>
+        <div class="form-group">
+          <div class="form-text-wrapper">
+            <%= f.label :email, "メールアドレス", class: "form-text" %>
+          </div>
+          <div class="input-wrapper">
+            <%= f.email_field :email, autofocus: true, class: "input-default" %>
+          </div>
+        </div>
 
-    <div class="form-group">
-      <div class="form-text-wrapper">
-        <%= f.label :email, "メールアドレス", class: "form-text" %>
+        <div class="form-group">
+          <div class="form-text-wrapper">
+            <%= f.label :password, "パスワード", class:"form-text" %>
+          </div>
+          <div class="input-wrapper">
+            <%= f.password_field :password, class: "input-default" %>
+          </div>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "ログイン", class: "staff-login-btn" %>
+        </div>
       </div>
-      <%= f.email_field :email, autofocus: true, class: "input-default" %>
-    </div>
-
-    <div class="form-group">
-      <div class="form-text-wrapper">
-        <%= f.label :password, "パスワード", class:"form-text" %>
-      </div>
-      <%= f.password_field :password, class: "input-default" %>
-    </div>
-
-    <div class="actions">
-      <%= f.submit "ログイン", class: "staff-login-btn" %>
+    <% end %>
+    <div class="login-u-box">
+      <%= link_to 'アカウントの作成', new_staff_user_registration_path, class: "staff-registration-link" %>
     </div>
   </div>
-<% end %>
+</div>
