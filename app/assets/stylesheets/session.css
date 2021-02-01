@@ -1,0 +1,79 @@
+.owner-session {
+  background-color: #eeeeee;
+  padding: 50px 0;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.owner-session h1 {
+  color: #555555;
+  font-size: 42px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.login-wrapper {
+  margin-top: 30px;
+  padding: 20px 8px;
+  background-color: #ffffff;
+  border-radius: 6px;
+  box-shadow: 2px 2px 4px #d4d9df;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-wrapper h2 {
+  font-size: 20px;
+  padding: 0 10px;
+  margin-bottom: 8px;
+}
+
+.session-main {
+  padding: 30px 0;
+  border-top: 1px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-group {
+  margin: 0 20px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input-default {
+  border: 1px solid #d4d9df;
+  margin-left: 10px;
+  width: 220px;
+  padding: 2px;
+}
+
+.actions {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.actions input {
+  padding: 10px 36px;
+  background-color: #41ad59;
+  border-radius: 6px;
+  color: #ffffff;
+}
+
+.owner-registration-link {
+  color: #41ad59;
+  text-decoration: underline;
+}
+
+.login-u-box {
+  margin-top: 16px;
+}
