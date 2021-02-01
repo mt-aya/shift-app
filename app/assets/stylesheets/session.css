@@ -1,5 +1,4 @@
-.owner-session {
-  background-color: #eeeeee;
+.sign {
   padding: 50px 0;
   width: 100%;
   min-height: 100vh;
@@ -9,14 +8,18 @@
   align-items: center;
 }
 
-.owner-session h1 {
+.owner-session, .owner-reg {
+  background-color: #eeeeee;
+}
+
+.sign h1 {
   color: #555555;
   font-size: 42px;
   text-align: center;
   font-weight: bold;
 }
 
-.login-wrapper {
+.login-wrapper, .signup-wrapper {
   margin-top: 30px;
   padding: 20px 8px;
   background-color: #ffffff;
@@ -27,13 +30,13 @@
   align-items: center;
 }
 
-.login-wrapper h2 {
+.sign h2 {
   font-size: 20px;
   padding: 0 10px;
   margin-bottom: 8px;
 }
 
-.session-main {
+.session-main, .registration-main {
   padding: 30px 0;
   border-top: 1px solid #eeeeee;
   border-bottom: 1px solid #eeeeee;
@@ -50,11 +53,41 @@
   align-items: center;
 }
 
+.input-wrapper {
+  margin-left: 20px;
+  width: 220px;
+}
+
 .input-default {
   border: 1px solid #d4d9df;
-  margin-left: 10px;
-  width: 220px;
-  padding: 2px;
+  width: 100%;
+  padding: 4px;
+  font-size: 15px;
+}
+
+.input-name-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-name {
+  border: 1px solid #d4d9df;
+  display: block;
+  width: 48%;
+  padding: 4px;
+  font-size: 15px;
+}
+
+.form-notice {
+  font-size: 12px;
+}
+
+.indispensable {
+  background-color: rgb(255, 149, 0);
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 12px;
+  padding: 4px 6px;
 }
 
 .actions {
