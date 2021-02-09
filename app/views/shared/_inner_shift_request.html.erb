@@ -1,0 +1,15 @@
+<div class="shift-content" data-date=<%= l(date, format: :default) %>>
+  <div class="shift-content-exist">
+    <div class="shift-time-wrapper">
+      <% shift_requests.each do |shift_request| %>
+        <div class="each-shift-time-content">
+          <div class="one-shift-time">
+            <p class="shift-time" data-shiftr=<%= shift_request.id %>>
+              <%= "#{l(shift_request.start_time, format: :short)} - #{l(shift_request.end_time, format: :short)}" %>
+            </p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
