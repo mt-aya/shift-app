@@ -26,9 +26,16 @@
             <%= "#{staff.last_name} #{staff.first_name}" %>
           </div>
           <div class="staff-shift-group" data-staff=<%= staff.id %>>
-            <%= month_calendar(events: staff.shifts.where(board_id: @board.id)) do |date, shifts| %>
-              <%= render partial: 'shared/inner_shift_cell', locals: { date: date, shifts: shifts, staff: staff } %>
-            <% end %>
+            <div class="staff-shift__top">
+              <%= month_calendar(events: staff.shifts.where(board_id: @board.id)) do |date, shifts| %>
+                <%= render partial: 'shared/inner_shift_cell', locals: { date: date, shifts: shifts, staff: staff } %>
+              <% end %>
+            </div>
+            <div class="staff-shift-request__bottom">
+              <%= month_calendar(events: staff.shift_requests.where(board_id: @board.id, submitted: true)) do |date, shift_requests| %>
+                <%= render partial: 'shared/inner_shift_request', locals: { date: date, shift_requests: shift_requests, staff: staff } %>
+              <% end %>
+            </div>
           </div>
         </div>
       <% end %>

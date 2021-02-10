@@ -1,4 +1,6 @@
 class ShiftRequestsController < ApplicationController
+  before_action :visit_owner, except: [:index]
+  before_action :visit_no_login_user, except: [:index]
 
   def index
     if staff_user_signed_in?
@@ -18,9 +20,45 @@ class ShiftRequestsController < ApplicationController
     end
   end
 
+  def search
+    @search_params = search_params
+    if @search_params[:board_id].present? && @search_params[:start_term].present? && @search_params[:end_term].present?
+      @shift_requests = ShiftRequest.search(@search_params).includes(:board, :staff_user).order(start_time: "ASC")
+    else
+      render :search
+    end
+  end
+
+  def submit
+    request_ids = submit_params[:ids].split(" ").map(&:to_i)
+    if request_ids.length != 0
+      shift_requests = ShiftRequest.where(id: request_ids, staff_user_id: current_staff_user.id)
+      shift_requests.update(submitted: true)
+      redirect_to root_path
+    else
+      render :search
+    end
+  end
+
   private
 
   def shift_request_params
-    params.require(:shift_request).permit(:start_time, :end_time, :board_id).merge(staff_user_id: current_staff_user.id)
+    params.require(:shift_request).permit(:start_time, :end_time, :board_id).merge(staff_user_id: current_staff_user.id, submitted: false)
+  end
+
+  def search_params
+    params.fetch(:search, {}).permit(:board_id, :start_term, :end_term).merge(staff_user_id: current_staff_user.id, submitted: false)
+  end
+
+  def submit_params
+    params.fetch(:submit, {}).permit(:ids)
+  end
+
+  def visit_owner
+    redirect_to root_path if owner_signed_in?
+  end
+
+  def visit_no_login_user
+    redirect_to root_path unless owner_signed_in? || staff_user_signed_in?
   end
 end

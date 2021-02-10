@@ -1,6 +1,5 @@
 class ShiftsController < ApplicationController
-  before_action :visit_staff_user
-  before_action :authenticate_owner!
+  before_action :except_owner
   before_action :correct_owner, only: [:index]
   before_action :index_set, only: [:index, :monthly, :weekly, :calendar, :create]
 
@@ -48,8 +47,8 @@ class ShiftsController < ApplicationController
     params.require(:shift).permit(:start_time, :end_time).merge(staff_user_id: params[:staff_user_id], board_id: params[:board_id])
   end
 
-  def visit_staff_user
-    redirect_to root_path if staff_user_signed_in?
+  def except_owner
+    redirect_to root_path unless owner_signed_in?
   end
 
   def correct_owner

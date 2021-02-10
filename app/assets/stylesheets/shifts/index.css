@@ -124,6 +124,22 @@
   display: flex;
 }
 
+.staff-shift-list {
+  height: 60px;
+}
+
+.staff-shift-list .staff-shift__top, .staff-shift-list .staff-shift-request__bottom {
+  height: 50%;
+}
+
+.staff-shift__top .shift-content {
+  height: 29px;
+}
+
+.staff-shift-request__bottom .shift-content {
+  height: 29px;
+}
+
 .month-shift .shift-table {
   display: block;
   overflow-x: scroll;
@@ -138,6 +154,10 @@
 .date-list .day {
   vertical-align: bottom;
   background-color: #efefef;
+}
+
+.staff-shift__top .day {
+  border-bottom: 1px dashed #efefef;
 }
 
 .date-list .day p {
@@ -203,6 +223,7 @@
   height: 100%;
 }
 
+/* shift-content */
 .shift-content {
   width: 100%;
   height: 100%;
@@ -217,12 +238,15 @@
 
 .one-shift-time {
   position: relative;
-  background-color: rgba(178, 231, 205, 0.6);
-  border-radius: 3px;
   transition: all 0.3s;
   width: 100%;
   display: flex;
   align-items: center;
+}
+
+.staff-shift__top .one-shift-time {
+  background-color: rgba(178, 231, 205, 0.6);
+  border-radius: 3px;
 }
 
 .shift-time {
@@ -232,7 +256,15 @@
   color: #555555;
 }
 
-.one-shift-time:hover {
+.staff-shift-request__bottom .shift-time {
+  color: #999999;
+}
+
+.staff-shift-request__bottom .one-shift-time {
+  border-bottom: 2px solid rgba(178, 231, 205, 1);
+}
+
+.staff-shift__top .one-shift-time:hover {
   cursor: default;
   background-color: rgba(178, 231, 205, 1);
 }
@@ -376,7 +408,7 @@
 }
 
 .week-shift .staff-shift-group .day {
-  height: 60px;
+  height: 100%;
   width: calc((1200px - 122px) / 7);
   min-width: 140px;
 }
@@ -387,7 +419,7 @@
 }
 
 .week-shift .staff-cell {
-  height: 61px;
+  height: 60px;
   min-width: 120px;
 }
 
@@ -402,7 +434,7 @@
 }
 
 .month-shift .staff-shift-group .day {
-  height: 60px;
+  height: 100%;
   min-width: 140px;
 }
 
@@ -417,7 +449,7 @@
 }
 
 .month-shift .staff-cell {
-  height: 61px;
+  height: 60px;
   min-width: 120px;
 }
 

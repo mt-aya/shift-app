@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2021_01_22_093402) do
   create_table "shift_requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "start_time", null: false
     t.datetime "end_time", null: false
-    t.boolean "sibmited"
+    t.boolean "submitted"
     t.bigint "staff_user_id"
     t.bigint "board_id"
     t.datetime "created_at", precision: 6, null: false
