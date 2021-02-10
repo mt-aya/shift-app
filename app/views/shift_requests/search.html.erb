@@ -1,0 +1,12 @@
+<%= render 'shared/header' %>
+
+<div class="submit-wrapper">
+  <div class="submit-main">
+    <%= form_with(scope: :search, url: submit_confirm_shift_requests_path, local: true, method: :get, class: "submit-search-form") do |f| %>
+      <%= f.collection_select :board_id, current_staff_user.boards, :id, :name, { include_blank: '選択してください', selected: @search_params[:board_id] }, { required: true } %>
+      <%= f.date_field :start_term, value: @search_params[:start_term] %>
+      <%= f.date_field :end_term, value: @search_params[:end_term] %>
+      <%= f.submit "確認画面へ" %>
+    <% end %>
+  </div>
+</div>

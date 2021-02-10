@@ -18,9 +18,26 @@ class ShiftRequestsController < ApplicationController
     end
   end
 
+  def search
+    @search_params = search_params
+  end
+
+  def submit_confirm
+    @search_params = search_params
+    if @search_params[:board_id].present? && @search_params[:start_term].present? && @search_params[:end_term].present?
+      @shift_requests = ShiftRequest.search(@search_params).includes(:board, :staff_user)
+    else
+      render :search
+    end
+  end
+
   private
 
   def shift_request_params
     params.require(:shift_request).permit(:start_time, :end_time, :board_id).merge(staff_user_id: current_staff_user.id)
+  end
+
+  def search_params
+    params.fetch(:search, {}).permit(:board_id, :start_term, :end_term).merge(staff_user_id: current_staff_user.id)
   end
 end

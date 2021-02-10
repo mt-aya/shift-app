@@ -31,4 +31,10 @@ class ShiftRequest < ApplicationRecord
       end
     end
   end
+
+  def self.search(search_params)
+    start_term = Time.zone.parse(search_params[:start_term]).midnight if search_params[:start_term].present?
+    end_term = Time.zone.parse(search_params[:end_term]).end_of_day if search_params[:end_term].present?
+    ShiftRequest.where(board_id: search_params[:board_id], staff_user_id: search_params[:staff_user_id], start_time: start_term..end_term)
+  end
 end
