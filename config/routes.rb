@@ -11,8 +11,7 @@ Rails.application.routes.draw do
   resources :shift_requests, only: [:index, :create] do
     collection do
       get 'search'
-      get 'submit_confirm'
-      patch 'submit'
+      post 'submit'
     end
   end
   resources :boards, only: [:index, :create, :update] do
