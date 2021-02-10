@@ -1,4 +1,6 @@
 class ShiftRequestsController < ApplicationController
+  before_action :visit_owner, except: [:index]
+  before_action :visit_no_login_user, except: [:index]
 
   def index
     if staff_user_signed_in?
@@ -30,7 +32,7 @@ class ShiftRequestsController < ApplicationController
   def submit
     request_ids = submit_params[:ids].split(" ").map(&:to_i)
     if request_ids.length != 0
-      shift_requests = ShiftRequest.where(id: request_ids)
+      shift_requests = ShiftRequest.where(id: request_ids, staff_user_id: current_staff_user.id)
       shift_requests.update(submitted: true)
       redirect_to root_path
     else
@@ -50,5 +52,13 @@ class ShiftRequestsController < ApplicationController
 
   def submit_params
     params.fetch(:submit, {}).permit(:ids)
+  end
+
+  def visit_owner
+    redirect_to root_path if owner_signed_in?
+  end
+
+  def visit_no_login_user
+    redirect_to root_path unless owner_signed_in? || staff_user_signed_in?
   end
 end
