@@ -21,6 +21,9 @@
             <div class="except-month-day">
               <div class="month-day-staff">
                 <% shift_requests.each do |shift_request| %>
+                  <% if shift_request.submitted == true %>
+                    <i class="fas fa-check-circle"></i>
+                  <% end %>
                   <%= shift_request.board.name %>
                   <%= "#{l(shift_request.start_time, format: :short)} - #{l(shift_request.end_time, format: :short)}" %>
                 <% end %>
