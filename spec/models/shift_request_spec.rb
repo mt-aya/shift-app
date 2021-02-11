@@ -1,60 +1,69 @@
 require 'rails_helper'
 
 RSpec.describe ShiftRequest, type: :model do
-  before do
-    @shift_request = FactoryBot.build(:shift_request)
-  end
+  describe 'シフト希望の新規作成' do
+    let(:shift_request) { FactoryBot.build(:shift_request) }
+    let(:another_shift_request) { FactoryBot.build(:shift_request) }
+    subject { shift_request.errors.full_messages }
 
-  describe '#create' do
-    context '保存できる時' do
-      it '全てのカラムに値が存在すれば保存できる' do
-        expect(@shift_request).to be_valid
+    context '全てのカラムに値が存在するとき' do
+      it { expect(shift_request).to be_valid }
+    end
+
+    context 'start_timeが空のとき' do
+      it do
+        shift_request.start_time = nil
+        shift_request.valid?
+        is_expected.to include("開始時刻を入力してください")
       end
     end
 
-    context '保存できない時' do
-      it 'start_timeが空だと保存できない' do
-        @shift_request.start_time = nil
-        @shift_request.valid?
-        expect(@shift_request.errors.full_messages).to include("開始時刻を入力してください")
+    context 'end_timeが空のとき' do
+      it do
+        shift_request.end_time = nil
+        shift_request.valid?
+        is_expected.to include("終了時刻を入力してください")
       end
+    end
 
-      it 'end_timeが空だと保存できない' do
-        @shift_request.end_time = nil
-        @shift_request.valid?
-        expect(@shift_request.errors.full_messages).to include("終了時刻を入力してください")
+    context 'start_timeがend_timeより前の時刻のとき' do
+      it do
+        shift_request.end_time = shift_request.start_time - 1.hours
+        shift_request.valid?
+        is_expected.to include("終了時刻は開始時刻より前の時刻は指定できません")
       end
+    end
 
-      it 'start_timeがend_timeより前の時刻だと保存できない' do
-        @shift_request.end_time = @shift_request.start_time - 1.hours
-        @shift_request.valid?
-        expect(@shift_request.errors.full_messages).to include("終了時刻は開始時刻より前の時刻は指定できません")
+    context 'end_timeとstart_timeが同じ日付でないとき' do
+      it do
+        shift_request.end_time = shift_request.start_time + 1.days
+        shift_request.valid?
+        is_expected.to include("終了時刻は開始時刻と異なる日付は指定できません")
       end
+    end
 
-      it 'end_timeとstart_timeが同じ日付でない場合は保存できない' do
-        @shift_request.end_time = @shift_request.start_time + 1.days
-        @shift_request.valid?
-        expect(@shift_request.errors.full_messages).to include("終了時刻は開始時刻と異なる日付は指定できません")
+    context 'boardと紐づいてないとき' do
+      it do
+        shift_request.board = nil
+        shift_request.valid?
+        is_expected.to include("シフトボードを入力してください" )
       end
+    end
 
-      it 'boardと紐づいてなければ保存できない' do
-        @shift_request.board = nil
-        @shift_request.valid?
-        expect(@shift_request.errors.full_messages).to include("シフトボードを入力してください")
+    context 'staff_userと紐づいてないとき' do
+      it do
+        shift_request.staff_user = nil
+        shift_request.valid?
+        is_expected.to include("スタッフユーザーを入力してください")
       end
+    end
 
-      it 'staff_userと紐づいてなければ保存できない' do
-        @shift_request.staff_user = nil
-        @shift_request.valid?
-        expect(@shift_request.errors.full_messages).to include("スタッフユーザーを入力してください")
-      end
-
-      it '同じユーザーに既に登録されている期間と重複するものは保存できない' do
-        @shift_request.save
-        another_shift_request = FactoryBot.build(:shift_request)
-        another_shift_request.staff_user = @shift_request.staff_user
-        another_shift_request.start_time = @shift_request.start_time + 1.minutes
-        another_shift_request.end_time = @shift_request.end_time + 1.minutes
+    context '同じユーザーに既に登録されている期間と重複するとき' do
+      it do
+        shift_request.save
+        another_shift_request.staff_user = shift_request.staff_user
+        another_shift_request.start_time = shift_request.start_time + 1.minutes
+        another_shift_request.end_time = shift_request.end_time + 1.minutes
         another_shift_request.valid?
         expect(another_shift_request.errors.full_messages).to include("同じユーザーに既に登録されている期間と重複するものは指定できません")
       end
