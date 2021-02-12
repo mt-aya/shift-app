@@ -59,8 +59,7 @@ RSpec.describe ShiftRequest, type: :model do
 
     context '同じユーザーに既に登録されている期間と重複するとき' do
       let(:another_shift_request) do
-        build(:shift_request, staff_user_id: shift_request.staff_user_id, start_time: shift_request.start_time + 1.minutes,
-                              end_time: shift_request.end_time + 1.minutes)
+        build(:shift_request, staff_user_id: shift_request.staff_user_id, start_time: shift_request.start_time + 1.minutes, end_time: shift_request.end_time + 1.minutes)
       end
       it do
         shift_request.save
