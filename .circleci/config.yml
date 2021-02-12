@@ -36,7 +36,7 @@ jobs:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}
             - v1-dependencies-
 
-      - ruby/install-deps
+      - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
 
       - save_cache:
           paths:
@@ -53,7 +53,7 @@ jobs:
             - rails-demo-yarn-
 
       - run:
-          name: Yarn のインストール
+          name: Yarn INSTALL
           command: yarn install --cache-folder ~/.cache/yarn
 
       - save_cache:
