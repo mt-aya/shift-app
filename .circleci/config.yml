@@ -30,17 +30,32 @@ jobs:
     steps:
       - checkout:
           path: ~/shift-app
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+            - v1-dependencies-
+
       - ruby/install-deps
+
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+
       - run:
           name: Database setup
           command: bundle exec rails db:migrate
-      - run:
-          name: yarn Install
-          command: yarn install
-      - run: bundle exec bin/webpack
+
       - run:
           name: test
-          command: bundle exec rspec
+          command: |
+            bundle exec rspec --profile 10 \
+                              --format RspecJunitFormatter \
+                              --out test_results/rspec.xml \
+                              --format progress \
+                              $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+
 
   deploy:
     docker:
