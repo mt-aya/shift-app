@@ -23,17 +23,19 @@ class ShiftRequestsController < ApplicationController
   def search
     @search_params = search_params
     if @search_params[:board_id].present? && @search_params[:start_term].present? && @search_params[:end_term].present?
-      @shift_requests = ShiftRequest.search(@search_params).includes(:board, :staff_user).order(start_time: "ASC")
+      @shift_requests = current_staff_user.shift_requests.search(@search_params).includes(:board, :staff_user).order(start_time: "ASC")
+      session[:search] = @shift_requests.ids
     else
       render :search
     end
   end
 
   def submit
-    request_ids = submit_params[:ids].split(" ").map(&:to_i)
-    if request_ids.length != 0
-      shift_requests = ShiftRequest.where(id: request_ids, staff_user_id: current_staff_user.id)
+    ids = session[:search]
+    if ids.length != 0
+      shift_requests = current_staff_user.shift_requests.where(id: ids).includes(:board, :staff_user)
       shift_requests.update(submitted: true)
+      ids.clear
       redirect_to root_path
     else
       render :search
@@ -47,11 +49,7 @@ class ShiftRequestsController < ApplicationController
   end
 
   def search_params
-    params.fetch(:search, {}).permit(:board_id, :start_term, :end_term).merge(staff_user_id: current_staff_user.id, submitted: false)
-  end
-
-  def submit_params
-    params.fetch(:submit, {}).permit(:ids)
+    params.fetch(:search, {}).permit(:board_id, :start_term, :end_term).merge(staff_user_id: current_staff_user.id)
   end
 
   def visit_owner

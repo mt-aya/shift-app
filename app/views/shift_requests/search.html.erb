@@ -6,7 +6,7 @@
       <%= f.collection_select :board_id, current_staff_user.boards, :id, :name, { include_blank: '選択してください', selected: @search_params[:board_id] }, { required: true } %>
       <%= f.date_field :start_term, value: @search_params[:start_term] %>
       <%= f.date_field :end_term, value: @search_params[:end_term] %>
-      <%= f.submit "確認画面へ" %>
+      <%= f.submit "確認する" %>
     <% end %>
   </div>
 </div>
@@ -24,13 +24,10 @@
       <% end %>
     </ul>
     <div>
-      <%= form_with scope: :submit, url: submit_shift_requests_path, local: true do |form| %>
-        <%= form.hidden_field :ids, value: @shift_requests.ids %>
-        <div class="submit-btn-wrapper">
-          <%= link_to 'キャンセル', root_path %>
-          <%= form.submit '提出する' %>
-        </div>
-      <% end %>
+      <div class="submit-btn-wrapper">
+        <%= link_to 'キャンセル', root_path %>
+        <%= link_to '提出する',submit_shift_requests_path, method: :post %>
+      </div>
     </div>
   </div>
 <% end %>
