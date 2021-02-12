@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe ShiftRequest, type: :model do
   describe 'シフト希望の新規作成' do
     let(:shift_request) { build(:shift_request) }
-    let(:another_shift_request) { build(:shift_request) }
     subject { shift_request.errors.full_messages }
 
     context '全てのカラムに値が存在するとき' do
@@ -59,11 +58,9 @@ RSpec.describe ShiftRequest, type: :model do
     end
 
     context '同じユーザーに既に登録されている期間と重複するとき' do
+      let(:another_shift_request) { build(:shift_request, staff_user_id: shift_request.staff_user_id, start_time: shift_request.start_time + 1.minutes, end_time: shift_request.end_time + 1.minutes) }
       it do
         shift_request.save
-        another_shift_request.staff_user = shift_request.staff_user
-        another_shift_request.start_time = shift_request.start_time + 1.minutes
-        another_shift_request.end_time = shift_request.end_time + 1.minutes
         another_shift_request.valid?
         expect(another_shift_request.errors.full_messages).to include("同じユーザーに既に登録されている期間と重複するものは指定できません")
       end
