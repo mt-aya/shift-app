@@ -32,37 +32,37 @@ RSpec.describe Owner, type: :model do
       it 'emailが空だと登録できない' do
         owner.email = ''
         owner.valid?
-        is_expected.to include("Eメールを入力してください")
+        is_expected.to include('Eメールを入力してください')
       end
 
       it 'passwordが空だと登録できない' do
         owner.password = ''
         owner.valid?
-        is_expected.to include("パスワードを入力してください")
+        is_expected.to include('パスワードを入力してください')
       end
 
       it 'passwordが存在していてもpassword_confirmationが空だと登録できない' do
         owner.password_confirmation = ''
         owner.valid?
-        is_expected.to include("パスワード（確認用）とパスワードの入力が一致しません")
+        is_expected.to include('パスワード（確認用）とパスワードの入力が一致しません')
       end
 
       it 'companyが空だと登録できない' do
         owner.company = ''
         owner.valid?
-        is_expected.to include("会社名を入力してください")
+        is_expected.to include('会社名を入力してください')
       end
 
       it 'last_nameが空だと登録できない' do
         owner.last_name = ''
         owner.valid?
-        is_expected.to include("お名前（姓）を入力してください")
+        is_expected.to include('お名前（姓）を入力してください')
       end
 
       it 'first_nameが空だと保存できない' do
         owner.first_name = ''
         owner.valid?
-        is_expected.to include("お名前（名）を入力してください")
+        is_expected.to include('お名前（名）を入力してください')
       end
 
       it 'emailは@が含まれていないと登録できない' do

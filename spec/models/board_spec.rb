@@ -15,7 +15,7 @@ RSpec.describe Board, type: :model do
       it 'nameが空だと保存できない' do
         board.name = ''
         board.valid?
-        is_expected.to include("シフトボード名を入力してください")
+        is_expected.to include('シフトボード名を入力してください')
       end
 
       it 'ownerが紐付いていないと保存できない' do

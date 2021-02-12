@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe StaffUser, type: :model do
   describe 'staff_user新規登録' do
     let(:staff) { build(:staff_user) }
-    let(:another_staff) {build(:staff_user) }
+    let(:another_staff) { build(:staff_user) }
     context '登録できる時' do
       it '全てのカラムに値が存在すれば登録できる' do
         expect(staff).to be_valid
@@ -42,37 +42,37 @@ RSpec.describe StaffUser, type: :model do
       it 'emailが空だと登録できない' do
         staff.email = ''
         staff.valid?
-        is_expected.to include("Eメールを入力してください")
+        is_expected.to include('Eメールを入力してください')
       end
 
       it 'passwordが空だと登録できない' do
         staff.password = ''
         staff.valid?
-        is_expected.to include("パスワードを入力してください")
+        is_expected.to include('パスワードを入力してください')
       end
 
       it 'passwordが存在していてもpassword_confirmationが空だと登録できない' do
         staff.password_confirmation = ''
         staff.valid?
-        is_expected.to include("パスワード（確認用）とパスワードの入力が一致しません")
+        is_expected.to include('パスワード（確認用）とパスワードの入力が一致しません')
       end
 
       it 'id_nameが空だと登録できない' do
         staff.id_name = ''
         staff.valid?
-        is_expected.to include("ユーザーIDを入力してください")
+        is_expected.to include('ユーザーIDを入力してください')
       end
 
       it 'last_nameが空だと登録できない' do
         staff.last_name = ''
         staff.valid?
-        is_expected.to include("お名前（姓）を入力してください")
+        is_expected.to include('お名前（姓）を入力してください')
       end
 
       it 'first_nameが空だと保存できない' do
         staff.first_name = ''
         staff.valid?
-        is_expected.to include("お名前（名）を入力してください")
+        is_expected.to include('お名前（名）を入力してください')
       end
 
       it 'emailは@が含まれていないと登録できない' do
