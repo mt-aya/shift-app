@@ -23,7 +23,7 @@ class ShiftRequestsController < ApplicationController
   def search
     @search_params = search_params
     if @search_params[:board_id].present? && @search_params[:start_term].present? && @search_params[:end_term].present?
-      @shift_requests = current_staff_user.shift_requests.search(@search_params).includes(:board, :staff_user).order(start_time: "ASC")
+      @shift_requests = current_staff_user.shift_requests.search(@search_params).includes(:board, :staff_user).order(start_time: 'ASC')
       session[:search] = @shift_requests.ids
     else
       render :search
