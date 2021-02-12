@@ -43,10 +43,6 @@ jobs:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
-      - type: cache-restore
-          name: Restore bundle cache
-          key: rails-demo-bundle-{{ checksum "yarn.lock" }}
-
       - run:
           name: Database setup
           command: bundle exec rails db:migrate
