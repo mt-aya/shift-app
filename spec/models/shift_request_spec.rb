@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe ShiftRequest, type: :model do
   describe 'シフト希望の新規作成' do
-    let(:shift_request) { FactoryBot.build(:shift_request) }
-    let(:another_shift_request) { FactoryBot.build(:shift_request) }
+    let(:shift_request) { build(:shift_request) }
+    let(:another_shift_request) { build(:shift_request) }
     subject { shift_request.errors.full_messages }
 
     context '全てのカラムに値が存在するとき' do
