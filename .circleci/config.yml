@@ -54,12 +54,12 @@ jobs:
 
       - run:
           name: Yarn INSTALL
-          command: yarn install --cache-folder ~/.cache/yarn
+          command: yarn install --cache-folder ~/.cache/yarn/v6
 
       - save_cache:
           key: rails-demo-yarn-{{ checksum "yarn.lock" }}
           paths:
-            - ~/.cache/yarn
+            - ~/.cache/yarn/v6
 
       - run:
           name: test
