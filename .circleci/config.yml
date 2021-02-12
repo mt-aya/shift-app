@@ -6,7 +6,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.6.5
+      - image: circleci/ruby:2.6.5-node
     working_directory: ~/shift-app
     steps:
       - checkout:
@@ -15,7 +15,7 @@ jobs:
 
   test:
     docker:
-      - image: circleci/ruby:2.6.5
+      - image: circleci/ruby:2.6.5-node
       - image: circleci/mysql:5.7
         environment:
           MYSQL_ROOT_PASSWORD: password
@@ -54,12 +54,12 @@ jobs:
 
       - run:
           name: Yarn INSTALL
-          command: yarn install --cache-folder ~/.cache/yarn/v6
+          command: yarn install --cache-folder ~/.cache/yarn
 
       - save_cache:
           key: rails-demo-yarn-{{ checksum "yarn.lock" }}
           paths:
-            - ~/.cache/yarn/v6
+            - ~/.cache/yarn
 
       - run:
           name: test
