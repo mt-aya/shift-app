@@ -26,7 +26,7 @@ jobs:
       BUNDLE_RETRY: "3"
       SHIFT_APP_DATABASE_HOST: "127.0.0.1"
       RAILS_ENV: test
-      environment: "SELENIUM_DRIVER_URL=http://selenium_chrome:4444/wd/hub"
+      SELENIUM_DRIVER_URL: "http://selenium_chrome:4444/wd/hub"
     working_directory: ~/shift-app
     steps:
       - checkout:
