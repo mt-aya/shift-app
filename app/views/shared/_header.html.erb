@@ -17,7 +17,9 @@
   <div class="main__header">
     <div class="header-content">
       <div class="header__left">
-        <h1>ShiftLink</h1>
+        <%= link_to root_path do%>
+          <h1>ShiftLink</h1>
+        <% end %>
       </div>
       <div class="header__right">
         <% if owner_signed_in? %>
