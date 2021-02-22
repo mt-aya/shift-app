@@ -24,6 +24,8 @@ Rails.application.routes.draw do
         get 'weekly'
         get 'monthly'
         get 'calendar'
+        get 'search'
+        post 'submit'
       end
     end
   end

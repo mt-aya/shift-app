@@ -41,6 +41,12 @@ class ShiftsController < ApplicationController
     redirect_to request.referer
   end
 
+  def search
+  end
+
+  def submit
+  end
+
   private
 
   def shift_params
