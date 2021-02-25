@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_22_093402) do
+ActiveRecord::Schema.define(version: 2021_02_21_092033) do
 
   create_table "board_staff_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "board_id"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 2021_01_22_093402) do
     t.bigint "board_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "decided"
     t.index ["board_id"], name: "index_shifts_on_board_id"
     t.index ["staff_user_id"], name: "index_shifts_on_staff_user_id"
   end

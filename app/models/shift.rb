@@ -25,4 +25,10 @@ class Shift < ApplicationRecord
       end
     end
   end
+
+  def self.search(params)
+    start_term = Time.zone.parse(params[:start_term]).midnight if params[:start_term].present?
+    end_term = Time.zone.parse(params[:end_term]).end_of_day if params[:end_term].present?
+    Shift.where(board_id: params[:board_id], start_time: start_term..end_term, decided: nil)
+  end
 end
