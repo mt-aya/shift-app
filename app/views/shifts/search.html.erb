@@ -16,8 +16,8 @@
       <% @shifts.each do |shift| %>
         <li>
           <p>
-            <%= "#{shift.staff_user.last_name} #{shift.staff_user.first_name}" %>
             <%= l(shift.start_time, format: :date_long) %>
+            <%= "#{shift.staff_user.last_name} #{shift.staff_user.first_name}" %>
             <%= "#{l(shift.start_time, format: :short)} - #{l(shift.end_time, format: :short)}" %>
           </p>
         </li>
@@ -26,7 +26,7 @@
     <div>
       <div class="submit-btn-wrapper">
         <%= link_to 'キャンセル', "/boards/#{@board.id}/shifts" %>
-        <%= link_to '共有する', share_shifts_path, method: :post %>
+        <%= link_to '共有する', share_board_shifts_path, method: :post %>
       </div>
     </div>
   </div>
