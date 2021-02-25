@@ -3,8 +3,8 @@
     <div class="shift-time-wrapper">
       <% shifts.each do |shift| %>
         <div class="each-shift-time-content">
-          <div class="one-shift-time">
-            <p class="shift-time" data-shift=<%= shift.id %>>
+          <div class="one-shift-time" data-shift=<%= shift.id %> data-decided=<%= shift.decided %>>
+            <p class="shift-time">
               <%= "#{l(shift.start_time, format: :short)} - #{l(shift.end_time, format: :short)}" %>
             </p>
             <div class="shift-menu-icon">
