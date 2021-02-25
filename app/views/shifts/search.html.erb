@@ -1,0 +1,33 @@
+<%= render 'shared/second_header' %>
+
+<div class="submit-wrapper">
+  <div class="submit-main">
+    <%= form_with(scope: :search, url: "/boards/#{@board.id}/shifts/search", local: true, method: :get, class: "submit-search-form") do |f| %>
+      <%= f.date_field :start_term, value: @search_params[:start_term] %>
+      <%= f.date_field :end_term, value: @search_params[:end_term] %>
+      <%= f.submit "確認する" %>
+    <% end %>
+  </div>
+</div>
+
+<% if @shifts.present? %>
+  <div class="submit-confirm">
+    <ul>
+      <% @shifts.each do |shift| %>
+        <li>
+          <p>
+            <%= "#{shift.staff_user.last_name} #{shift.staff_user.first_name}" %>
+            <%= l(shift.start_time, format: :date_long) %>
+            <%= "#{l(shift.start_time, format: :short)} - #{l(shift.end_time, format: :short)}" %>
+          </p>
+        </li>
+      <% end %>
+    </ul>
+    <div>
+      <div class="submit-btn-wrapper">
+        <%= link_to 'キャンセル', "/boards/#{@board.id}/shifts" %>
+        <%= link_to '共有する', share_shifts_path, method: :post %>
+      </div>
+    </div>
+  </div>
+<% end %>

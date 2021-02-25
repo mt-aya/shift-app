@@ -30,6 +30,9 @@
         <div id="add-staff"></div>
       </div>
     </div>
+    <div class="share-button">
+      <%= link_to 'シフト共有', "/boards/#{@board.id}/shifts/search" %>
+    </div>
     <div class="board-header-right">
       <div class="current-user-wrapper">
         <%= link_to "#{current_owner.last_name} #{current_owner.first_name}", boards_path, class: 'owner_name' %>
