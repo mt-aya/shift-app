@@ -29,7 +29,8 @@ class ShiftsController < ApplicationController
 
   def update
     shift = Shift.find(params[:id])
-    if shift.update(shift_params)
+    if shift.decided != true
+      shift.update(shift_params)
       redirect_to request.referer
     else
       redirect_to request.referer
@@ -37,9 +38,11 @@ class ShiftsController < ApplicationController
   end
 
   def destroy
-    shift = Shift.find(params[:id])
-    shift.destroy
-    redirect_to request.referer
+    if shift.decided != true
+      shift = Shift.find(params[:id])
+      shift.destroy
+      redirect_to request.referer
+    end
   end
 
   def search
