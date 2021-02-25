@@ -1,9 +1,8 @@
 class ShiftsController < ApplicationController
   before_action :except_owner
-  before_action :correct_owner, only: [:index, :monthly, :weekly, :calendar, :create, :search, :share]
-  before_action :header_set, only: [:index_set, :search, :share]
+  before_action :correct_owner
   before_action :index_set, only: [:index, :monthly, :weekly, :calendar, :create]
-
+  before_action :header_set, only: [:index, :monthly, :weekly, :calendar, :create, :search]
 
   def index
   end
@@ -54,6 +53,15 @@ class ShiftsController < ApplicationController
   end
 
   def share
+    ids = session[:search]
+    if ids.length != 0
+      shifts = Shift.where(id: ids).includes(:board, :staff_user)
+      shifts.update(decided: true)
+      ids.clear
+      redirect_to board_shifts_path(@board.id)
+    else
+      render :search
+    end
   end
 
   private
@@ -75,12 +83,6 @@ class ShiftsController < ApplicationController
     redirect_to boards_path if current_owner.id != @board.owner.id
   end
 
-  def index_set
-    @shifts = @board.shifts
-    @shift = Shift.new
-    @staffs = @board.staff_users
-  end
-
   def header_set
     @board = Board.find(params[:board_id])
     gon.board_id = @board.id
@@ -88,5 +90,11 @@ class ShiftsController < ApplicationController
     @board_staff = BoardStaff.new
     @board_staffs = @board.staff_users
     gon.board_staffs_id = @board_staffs.map { |s| s[:id] }
+  end
+
+  def index_set
+    @shifts = @board.shifts
+    @shift = Shift.new
+    @staffs = @board.staff_users
   end
 end
