@@ -22,7 +22,7 @@
       </div>
 
       <div class="staff-list-wrapper">
-        <% @board_staffs.each do |staff| %>
+        <% @staffs.each do |staff| %>
           <div class="member-list">
             <%= link_to "#{staff.last_name}", "#", class: "board-staff-link" %>
           </div>
