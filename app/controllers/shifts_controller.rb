@@ -91,13 +91,12 @@ class ShiftsController < ApplicationController
     gon.board_id = @board.id
     gon.board_name = @board.name
     @board_staff = BoardStaff.new
-    @board_staffs = @board.staff_users
-    gon.board_staffs_id = @board_staffs.map { |s| s[:id] }
+    @staffs = @board.staff_users
+    gon.board_staffs_id = @staffs.map { |s| s[:id] }
   end
 
   def index_set
-    @shifts = @board.shifts
+    @shifts = @board.shifts.includes(:staff_user, :board)
     @shift = Shift.new
-    @staffs = @board.staff_users
   end
 end

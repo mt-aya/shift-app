@@ -4,8 +4,8 @@ class ShiftRequestsController < ApplicationController
 
   def index
     if staff_user_signed_in?
-      @shift_requests = current_staff_user.shift_requests
-      @shifts = current_staff_user.shifts.where(decided: true)
+      @shift_requests = current_staff_user.shift_requests.includes(:staff_user, :board)
+      @shifts = current_staff_user.shifts.where(decided: true).includes(:staff_user, :board)
       @shift_request = ShiftRequest.new
     end
   end
