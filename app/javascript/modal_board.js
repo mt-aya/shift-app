@@ -1,20 +1,7 @@
 if (typeof gon !== 'undefined') {
   if (location.pathname.match(`/boards/${gon.board_id}/shifts`)){
     document.addEventListener("DOMContentLoaded", () => {
-      // 共有されているシフトの場合、シフト時間の背景色、文字色が変わる（ここから）
-      const shiftTop = document.querySelector(".staff-shift__top")
-      const oneShiftTimes = shiftTop.querySelectorAll(".one-shift-time");
-      oneShiftTimes.forEach(function(oneShiftTime){
-        const shiftTime = oneShiftTime.querySelector(".shift-time");
-        const shiftMenuIcon = oneShiftTime.querySelector(".shift-menu-icon");
-        if(oneShiftTime.dataset.decided === "true"){
-          oneShiftTime.style.backgroundColor = "rgba(60,179,122,0.9)";
-          shiftTime.style.color = "#ffffff";
-          shiftMenuIcon.style.display = "none";
-        }
-      });
 
-      // 共有されているシフトの場合、シフト時間の背景色、文字色が変わる（ここまで）
       const boardListMenuBtn = document.getElementById("board-list-menu");
       const boardListPulldown = document.getElementById("board-list-pulldown");
   
